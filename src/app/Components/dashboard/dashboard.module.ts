@@ -103,7 +103,8 @@ const dashboardRoutes: Routes = [
           { path: 'addControl', component: AddControlComponent },
           { path: 'auditControl', component: AuditControlsComponent },
           { path: 'addEvidences', component: AddEvidencesComponent },
-          { path:  'organization-add', component:OrganizationAddComponent}
+          { path:  'organization-add', component:OrganizationAddComponent},
+          { path:  'multisheetExcel', component:MultisheetExcelTemplateComponent},
           
         ]
       },
