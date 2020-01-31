@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Trilod</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Styles Sheets -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="clear"></div>
+  <div class="col-md-12">
+    <div class="content-box">
+      <div class="white-con">
+        <div class="breadcrumb">
+          <ul>
+            <li>
+              <a href="#">Dashboard</a>
+            </li>
+            <li>
+              <a href="#"> Control</a>
+            </li>
+          </ul>
+        </div>
+        <h1>Control
+          <span></span>
+        </h1>
+        <div class="inner-white-box">
+          <div class="form-con">
+            <div class="col-md-6 float-left pl-0">
+              <label>Name:</label>
+              <input type="text" maxlength="80" name="" class="field-01 form-control" [(ngModel)]="name">
+              <div class="clear"></div>
+              <label>Frequency:</label>
+              <select class="field-01 form-control" [(ngModel)]="frequency">
+                <option selected value="">-SELECT-</option>
+                <option>Daily</option>
+                <option>Monthly</option>
+                <option>Yearly</option>
+              </select>
+              <div class="clear"></div>
+              <label>Process Name:</label>
+              <input type="text" name="" class="field-01 form-control" [(ngModel)]="process">
+            </div>
+            <div class="col-md-6 float-left pr-0">
+              <label>Description:</label>
+              <textarea rows="8" cols="50" class="field-02 form-control" [(ngModel)]="description"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+  <div class="main-table-con">
+    <div class="col-md-12">
+      <div class="content-box">
+        <h2 class="mtc-heading">Control Fields
+          <span></span>
+        </h2>
+        <div class="clear"></div>
+        <div class="inner-white-box">
+          <div class="form-con">
+            <div class="col-md-12">
+              <div class="col-md-4 float-left pl-0">
+                <label>Field Name:</label>
+                <input type="text" name="" class="field-01 form-control" [(ngModel)]="newAttribute.fieldName">
+              </div>
+              <div class="col-md-4 float-left pl-0">
+                <label>Field Type:</label>
+                <select class="field-01 form-control" [(ngModel)]="newAttribute.fieldType">
+                  <option selected value="">-SELECT-</option>
+                  <option>Numeric</option>
+                  <option>String</option>
+                  <option>Date/Time</option>
+                </select>
+              </div>
+              <div class="col-md-4 float-left pr-0">
+                <span></span>
+              </div>
+            </div>
+            <div class="clear"></div>
+            <div class="col-md-12">
+              <div class="col-md-4 float-left pl-0">
+                <label>Template:</label>
+                <select id="template" (change)="onChange($event.target.value)" class="field-01 form-control" name="template" [(ngModel)]="newAttribute.selectedTemplate">
+                  <option selected value="">-SELECT-</option>
+                  <option *ngFor="let template of this.templateList; index as i;">{{template.name}}</option>
+                </select>
+                <!-- <select class="field-01 form-control" (change)="onChange($event.target.value)" [(ngModel)]="newAttribute.field_type">
+                  <option selected value="">-SELECT-</option>
+                  <option>Template 1</option>
+                  <option>Template 2</option>
+                  <option>Template 3</option>
+                </select> -->
+
+                <!-- <select (change)="onChange($event.target.value)" class="field-01 form-control" formControlName="format">
+                    <option selected value="">-SELECT-</option>
+                    <option *ngFor="let file of this.FileTypeList; index as i">{{file.name}}</option>
+                  </select> -->
+              </div>
+              <div class="col-md-4 float-left pl-0">
+                <label>Template Field Name:</label>
+                <select id="templateField" (change)="onChangeTemplateField($event.target.value)" class="field-01 form-control" name="templateField" [(ngModel)]="newAttribute.templateField">
+                  <option selected value="">-SELECT-</option>
+                  <option *ngFor="let templateField of this.templateFieldList; index as i;">{{templateField.columnName}}</option>
+                </select>
+                <!-- <select class="field-01 form-control" [(ngModel)]="newAttribute.template_field_name">
+                  <option selected value="">-SELECT-</option>
+                  <option>Field 1</option>
+                  <option>Field 2</option>
+                  <option>Field 3</option>
+                </select> -->
+              </div>
+              <div class="col-md-2 float-left pr-0">
+                <label>&nbsp;</label>
+                <button (click)="addFieldValue()" class="field-01 form-control button float-left">Add</button>
+              </div>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
+          <tr>
+            <th>Field Name</th>
+            <th>Type</th>
+            <th>Template Name</th>
+            <th>Template Field</th>
+            <th align="center">Action</th>
+          </tr>
+          <tr *ngFor="let field of fieldArray; let id = index">
+            <td>
+              <span contenteditable="false">{{field.fieldName}}</span>
+            </td>
+            <td>
+              <span contenteditable="false">{{field.fieldType}}</span>
+            </td>
+            <td>
+              <span contenteditable="false">{{field.selectedTemplate}}</span>
+            </td>
+            <td valign="top">
+              <span contenteditable="false">{{field.templateField}}</span>
+            </td>
+            <td>
+              <a class="mt-delete-btn" (click)="remove(field.id, id)"></a>
+            </td>
+          </tr>
+        </table>
+        <div class="clear"></div>
+        <br />
+        <!-- <a (click)="addFieldValue()" class="mt-add-row-btn"></a> -->
+        <div class="side-menu">
+          <ul>
+            <li>
+              <a>Cancel</a>
+            </li>
+            <li>
+              <a (click)=saveControl()>Save</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

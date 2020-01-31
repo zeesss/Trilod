@@ -1,0 +1,51 @@
+<head>
+  <meta charset="utf-8">
+  <title>Trilod</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <!-- <header class="bg-01">
+  <div class="col-md-12">
+    <div class="content-box"><a href="#" class="logout">Logout</a>
+      <div class="logo logo-02"><a href="#"><img src="assets/images/logo.png" alt="logo"></a></div>
+    </div>
+  </div>
+</header> -->
+
+  <div class="col-md-12">
+    <div class="content-box">
+      <div class="white-con">
+
+        <h1>Add Files
+          <span></span>
+        </h1>
+        <br />
+        <form class="container" [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+          <div class="form-con">
+            <div class="col-md-12">
+              <select class="field-01 form-control">
+                <option>Template 1</option>
+                <option>Template 2</option>
+                <option>Template 3</option>
+              </select>
+            </div>
+            <div class="col-md-12">
+              <label>Upload Evidence File</label>
+              <input type="file" class="upload-field form-control" placeholder="Upload file here..." (change)="onFileSelect1($event)" name="evFile"
+                multiple>
+            </div>
+            <!-- <div class="clear"></div>
+            <a (click)="addFieldValue()" class="mt-add-row-btn"></a> -->
+            <div class="clear"></div>
+            <div class="blue-btn mt-5">
+              <button type="submit">Upload</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>

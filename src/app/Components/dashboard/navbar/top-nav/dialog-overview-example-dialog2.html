@@ -1,0 +1,56 @@
+<!-- <h1 mat-dialog-title>Hi {{data.name}}</h1> -->
+<button [mat-dialog-close]="" style="    float: right;
+    margin-top: -2%;
+    margin-right: -2%;
+    outline: none;
+    border: none;"><i style="color: #2e5399;font-size: 30px;" class="fas fa-times"></i></button>
+<h1 mat-dialog-title style="background:white; margin-top: 20px;">Search For Patient</h1>
+
+<div mat-dialog-content>
+<mat-card class="list-item-card mat-elevation-z8" class="border" style="background-color:#eff0f1;">
+   <mat-card-header >
+      
+      <div fxFlex fxLayout="row" fxLayoutAlign="space-around center" fxLayout.xs="column" fxLayout.sm="column" fxLayout.lg="row">
+        <mat-form-field>
+          <input matInput (keydown.enter)="search()" (click)="picker.open()" [(ngModel)]="DOB" [matDatepicker]="picker"  placeholder="DOB">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput  (keydown.enter)="search()" [(ngModel)]="FirstName" placeholder="First Name">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput  (keydown.enter)="search()" [(ngModel)]="LastName" placeholder="Last Name">
+        </mat-form-field>
+        <mat-form-field>
+  <mat-label>Gender</mat-label>
+  <mat-select [(ngModel)]="Gender" >
+    <mat-option value="male" >Male</mat-option>
+    <mat-option value="female" >Female</mat-option>
+  </mat-select>
+</mat-form-field>
+        <!-- <select [(ngModel)]="Gender" placeholder="Gender">
+    <option value="male" >Male</option>
+    <option value="female">Female</option>      
+  </select> -->
+        <mat-form-field >
+          <input matInput  (keydown.enter)="search()" [(ngModel)]="MRN" placeholder="MRN" >
+        </mat-form-field>
+        <mat-form-field >
+          <input matInput  (keydown.enter)="search()" [(ngModel)]="Mobile" placeholder="Mobile Number" >
+         
+        </mat-form-field>
+  <mat-form-field >
+          <input matInput  (keydown.enter)="search()" [(ngModel)]="Email" placeholder="Email" >
+        </mat-form-field>
+         <button (click)="search()" class="btn" style="background-color:#ea1862; color:white; border-radius:2em;">Search</button>
+       
+  
+      </div>
+    </mat-card-header>
+</mat-card>
+</div>
+<div mat-dialog-actions>
+  <!-- <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button> -->
+</div>

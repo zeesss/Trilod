@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Trilod</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Styles Sheets -->
+<!-- <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/style.css" rel="stylesheet"  type="text/css"> -->
+</head>
+<body class="bg-01">
+<div class="container">
+  <div class="col-md-12">
+    <!-- <div class="logo"><a href="#"><img src="assets/images/logo.png" alt="logo"></a></div> -->
+    <!-- <div class="clear"></div> -->
+    <!-- <div class="mainimg"><img src="assets/images/signin-icon.png" alt="Signin"></div> -->
+    <div class="arrow-box login-screen">
+      <div class="box-left">
+        <div class="border"></div>
+      </div>
+      <div class="box-right">
+        <div class="border"></div>
+      </div>
+      <div class="arrow-container">
+        <div class="arrow"></div>
+      </div>
+      <div class="arrow-box-content">
+        <div class="form" name="HForm">
+          <label>Name:*</label>
+          <input type="text" [(ngModel)]="name" ngControl="name" name="name" class="textfield" required placeholder="Name" maxlength="20">
+          <!-- <div *ngIf="name?.errors">
+            Name is required
+          </div> -->
+
+          <!-- <label>Description:*</label>
+          <textarea class="textarea" [(ngModel)]="description" name="description" required cols="" rows="" placeholder="Description"></textarea> -->
+          <!-- <label>Business Rule:*</label>
+          <input type="text" [(ngModel)]="businessRule" name="business" class="textfield" required placeholder="Business Rule">
+          <label>Rule Type:*</label>
+          <select id="rule" class="field-style-list-01 custom-select" required [(ngModel)]="ruleType">
+            <option selected value="">-SELECT-</option>
+              <option *ngFor="let ruleType of this.RuleTypeList; index as i" >{{ruleType.text}}</option> -->
+               
+            <label>Control Attribute:*</label>
+            <select id="file" class="field-style-list-01 custom-select" required [(ngModel)]="controlAttribute">
+                <option selected value="">-SELECT-</option>
+                <option  *ngFor="let controlattribute of this.ControlAttributeList; index as i" >{{controlattribute.attributeName}}</option>
+                
+              </select>
+          <div class="text-box color-white text-16">
+            <input type="checkbox"  [(ngModel)]="isActive">
+            Active</div>
+            
+          <a (click)="onYesClick()" class="button float-right">Save</a> <a (click)="onNoClick()" class="button float-left">Cancel</a>
+          <div class="clear"></div>
+
+        </div>
+      </div>
+    </div>
+    <!-- <div class="copyright">Copy Rights 2019, Trilod Automation Tool</div> -->
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,120 @@
+@import url("https://ajax.googleapis.com/ajax/libs/angular_material/1.1.9/angular-material.min.css");
+
+.example-button-toggle-label {
+  display: inline-block;
+  margin: 16px;
+}
+
+mat-form-field {
+  width: 150px;
+}
+.button{
+background-color:#ea1862;
+color:white;
+border: 1px;
+  border-radius: 2em;
+  height:30px;
+  margin-top:10px;
+  padding-left:15px;
+  padding-right:15px;
+}
+
+
+.mat-tab-group {
+  margin: 2%;
+  margin-top: 80px;
+}
+
+.mat-tab-labels {
+  background-color: dodgerblue;
+}
+
+
+.list-item-card {
+  max-width: 90%;
+  border-radius: 2px;
+}
+.mat-card-header{
+  width: 100%;
+  background: hsl(0,0%,93%);
+  border-radius: 2px;
+
+}
+.mat-expansion-panel-header{
+  background: hsl(0,0%,93%);
+  margin: 1px;
+}
+.card-main-div{
+  margin: 1%;
+}
+.card-main-div div{
+  //border: 1px solid;
+}
+.mat-card{
+  //margin: 1% 1% 1% 1%;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:1%;
+  margin-bottom:1%;
+  justify-content: center !important;
+  align-items: center !important;
+  
+}
+.border{
+border-radius: 1em;
+}
+.mat-card-header { 
+  justify-content: center;
+  
+ }
+.mat-card-title{
+  margin-top: 10px;
+  font-weight: bold;
+  margin-bottom: 10px;  
+  
+}
+
+.margin2per {
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+.normal-font {
+  font-weight: normal !important;
+}
+
+.float-right {
+  right: 1%;
+  position: absolute;
+}
+
+.last-update-color {
+  color: hsl(35,50%,50%);
+}
+
+.mat-expansion-panel-header-title,
+.mat-expansion-panel-header-description {
+  flex-basis: 0;
+ 
+}
+
+.mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+.mat-card-subtitle {
+  padding-left: 15px;
+}
+
+.mat-card-header-text {
+  //margin: 0px !important;
+  display: none;
+}
+
+.view-btn {
+  margin-top: 50%;
+  margin-right: 50%;
+}

@@ -1,0 +1,457 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Trilod</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Styles Sheets -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <!-- <header class="bg-01">
+  <div class="col-md-12">
+    <div class="content-box"><a href="#" class="logout">Logout</a>
+      <div class="logo logo-02"><a href="#"><img src="assets/images/logo.png" alt="logo"></a></div>
+    </div>
+  </div>
+</header> -->
+  <div class="clear"></div>
+  <div class="col-md-12">
+    <div class="content-box">
+      <div class="white-con">
+        <h1>Organization Detail
+          <span></span>
+        </h1>
+        <div class="breadcrumb mb-0">
+          <ul>
+            <li>
+              <a href="#">Dashboard</a>
+            </li>
+            <li>
+              <a href="#">Add Organization</a>
+            </li>
+          </ul>
+        </div>
+        <div class="inner-white-box">
+          <div class="form-con">
+            <!-- <div class="col-md-12">
+              
+              <div class="row">
+              <div class="col-md-4">
+                <label>Name</label>
+              </div>
+              <div class="col-md-4" >
+                <input type="text" class="field-01 form-control" name="name" placeholder="name" [(ngModel)]="name">
+              </div>
+            </div>
+            <div class="clear"></div>
+            <div class="clear"></div>
+            <div class="row">
+            <div class="col-md-4">
+              <label>Street</label>
+            </div>
+            <div class="col-md-4">
+              <input type="text" class="field-01 form-control" name="name" placeholder="name" [(ngModel)]="name">
+            </div>
+          </div>
+          <div class="clear"></div>
+          <div class="row">
+          <div class="col-md-4">
+            <label>City</label>
+          </div>
+          <div class="col-md-4">
+            <input type="text" class="field-01 form-control" name="name" placeholder="name" [(ngModel)]="name">
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="row">
+        <div class="col-md-4">
+          <label>State</label>
+        </div>
+        <div class="col-md-4">
+          <input type="text" class="field-01 form-control" name="name" placeholder="name" [(ngModel)]="name">
+        </div>
+      </div>
+      <div class="clear"></div>
+      <div class="row">
+      <div class="col-md-4">
+        <label>Country</label>
+      </div>
+      <div class="col-md-4" >
+        <input type="text" class="field-01 form-control" name="name" placeholder="name" [(ngModel)]="name">
+      </div>
+      </div>
+
+    <div class="clear"></div>
+    <div class="row">
+    <div class="col-md-4">
+      <label>Zip/Postal Code</label>
+    </div>
+    <div class="col-md-4">
+      <input type="text" class="field-01 form-control" name="name" placeholder="name" [(ngModel)]="name">
+    </div>
+    </div>
+  
+  <div class="clear"></div>
+  <div class="row">
+  <div class="col-md-4">
+    <label>Email</label>
+  </div>
+  <div class="col-md-4">
+    <input type="text" class="field-01 form-control" name="name" placeholder="name" [(ngModel)]="name">
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 float-center pl-0">
+    <button  class="field-01 form-control button float-left">Save</button>
+    </div>
+  </div>
+
+            </div> -->
+            <div class="col-md-12">
+              <div class="col-md-2 float-left pl-0 pr-5">
+                <label>Name</label>
+              </div>
+              <div class="col-md-4 float-left pl-0 pr-5">
+                <input type="text" class="field-01 form-control" name="Name" placeholder="Name" [(ngModel)]="SearchCompanyAndAudit">
+              </div>
+              <div class="col-md-4 float-left pl-0 pr-5">
+                <span></span>
+              </div>
+              </div>
+              <div class="clear"></div>
+              <!--col end-->
+              <div class="col-md-12">
+                <div class="col-md-2 float-left pl-0 pr-5">
+                  <label>Street</label>
+                </div>
+                <div class="col-md-4 float-left pl-0 pr-5">
+                  <input type="text" class="field-01 form-control" name="Street" placeholder="Street" [(ngModel)]="SearchCompanyAndAudit">
+                </div>
+                <div class="col-md-4 float-left pl-0 pr-5">
+                  <span></span>
+                </div>
+                </div>
+                <div class="clear"></div>
+                <!--col end-->
+                <div class="col-md-12">
+                  <div class="col-md-2 float-left pl-0 pr-5">
+                    <label>City</label>
+                  </div>
+                  <div class="col-md-4 float-left pl-0 pr-5">
+                    <input type="text" class="field-01 form-control" name="City" placeholder="City" [(ngModel)]="SearchCompanyAndAudit">
+                  </div>
+                  <div class="col-md-4 float-left pl-0 pr-5">
+                    <span></span>
+                  </div>
+                  </div>
+                  <div class="clear"></div>
+                  <!--col end-->
+                  <div class="col-md-12">
+                    <div class="col-md-2 float-left pl-0 pr-5">
+                      <label>State</label>
+                    </div>
+                    <div class="col-md-4 float-left pl-0 pr-5">
+                      <input type="text" class="field-01 form-control" name="State" placeholder="State" [(ngModel)]="SearchCompanyAndAudit">
+                    </div>
+                    <div class="col-md-4 float-left pl-0 pr-5">
+                      <span></span>
+                    </div>
+                    </div>
+                    <div class="clear"></div>
+                    <!--col end-->
+                    <div class="col-md-12">
+                      <div class="col-md-2 float-left pl-0 pr-5">
+                        <label>Country</label>
+                      </div>
+                      <div class="col-md-4 float-left pl-0 pr-5">
+                        <input type="text" class="field-01 form-control" name="Country" placeholder="Country" [(ngModel)]="SearchCompanyAndAudit">
+                      </div>
+                      <div class="col-md-4 float-left pl-0 pr-5">
+                        <span></span>
+                      </div>
+                      </div>
+                      <div class="clear"></div>
+                      <!--col end-->
+                      <div class="col-md-12">
+                        <div class="col-md-2 float-left pl-0 pr-5">
+                          <label>Zip/Postal Code</label>
+                        </div>
+                        <div class="col-md-4 float-left pl-0 pr-5">
+                          <input type="text" class="field-01 form-control" name="Zip/Postal Code" placeholder="Zip/Postal Code" [(ngModel)]="SearchCompanyAndAudit">
+                        </div>
+                        <div class="col-md-4 float-left pl-0 pr-5">
+                          <span></span>
+                        </div>
+                        </div>
+                        <div class="clear"></div>
+                        <!--col end-->
+                        <div class="col-md-12">
+                          <div class="col-md-2 float-left pl-0 pr-5">
+                            <label>Email</label>
+                          </div>
+                          <div class="col-md-4 float-left pl-0 pr-5">
+                            <input type="text" class="field-01 form-control" name="Email" placeholder="Email" [(ngModel)]="SearchCompanyAndAudit">
+                          </div>
+                          <div class="col-md-4 float-left pl-0 pr-5">
+                            <span></span>
+                          </div>
+                          </div>
+                          <div class="clear"></div>
+                          <!--col end-->
+                          <div class="col-md-12">
+                            <div class="col-md-2 float-right pl-0">
+                            <button  class="field-01 form-control button float-left">Save</button>
+                            </div>
+                          </div>
+                          
+                          
+              
+          </div>
+        </div>
+        <!--inner white con end-->
+        <div class="clear"></div>
+        <div class="clear"></div>
+        <h2>Company Info
+          <span></span>
+        </h2>
+        <div class="inner-white-box">
+          <div class="form-con">
+            <div class="col-md-12">
+              <div class="col-md-2 float-left pl-0 pr-5">
+                <label>Owner first name</label>
+              </div>
+              <div class="col-md-4 float-left pl-0 pr-5">
+                <input type="text" class="field-01 form-control" name="owner_first_name" placeholder="Owner first name" [(ngModel)]="owner_first_name">
+              </div>
+              <div class="col-md-4 float-left pl-0 pr-5">
+                <span></span>
+              </div>
+              </div>
+              <div class="clear"></div>
+              <!--col end-->
+              <div class="col-md-12">
+                <div class="col-md-2 float-left pl-0 pr-5">
+                  <label>Owner last name</label>
+                </div>
+                <div class="col-md-4 float-left pl-0 pr-5">
+                  <input type="text" class="field-01 form-control" name="owner_last_name" placeholder="Owner last name" [(ngModel)]="owner_last_name">
+                </div>
+                <div class="col-md-4 float-left pl-0 pr-5">
+                  <span></span>
+                </div>
+                </div>
+                <div class="clear"></div>
+                <!--col end-->
+                <div class="col-md-12">
+                  <div class="col-md-2 float-left pl-0 pr-5">
+                    <label>Company</label>
+                  </div>
+                  <div class="col-md-4 float-left pl-0 pr-5">
+                    <input type="text" class="field-01 form-control" name="company" placeholder="Company" [(ngModel)]="company">
+                  </div>
+                  <div class="col-md-4 float-left pl-0 pr-5">
+                    <span></span>
+                  </div>
+                  </div>
+                  <div class="clear"></div>
+                  <!--col end-->
+                  <div class="col-md-12">
+                    <div class="col-md-2 float-left pl-0 pr-5">
+                      <label>Address 1</label>
+                    </div>
+                    <div class="col-md-4 float-left pl-0 pr-5">
+                      <input type="text" class="field-01 form-control" name="address1" placeholder="Address" [(ngModel)]="address1">
+                    </div>
+                    <div class="col-md-4 float-left pl-0 pr-5">
+                      <span></span>
+                    </div>
+                    </div>
+                    <div class="clear"></div>
+                    <!--col end-->
+                    <div class="col-md-12">
+                      <div class="col-md-2 float-left pl-0 pr-5">
+                        <label>Address 2</label>
+                      </div>
+                      <div class="col-md-4 float-left pl-0 pr-5">
+                        <input type="text" class="field-01 form-control" name="address2" placeholder="Address" [(ngModel)]="address2">
+                      </div>
+                      <div class="col-md-4 float-left pl-0 pr-5">
+                        <span></span>
+                      </div>
+                      </div>
+                      <div class="clear"></div>
+                      <!--col end-->
+                      <div class="col-md-12">
+                        <div class="col-md-2 float-left pl-0 pr-5">
+                          <label>Address 3</label>
+                        </div>
+                        <div class="col-md-4 float-left pl-0 pr-5">
+                          <input type="text" class="field-01 form-control" name="address3" placeholder="Address" [(ngModel)]="address3">
+                        </div>
+                        <div class="col-md-4 float-left pl-0 pr-5">
+                          <span></span>
+                        </div>
+                        </div>
+                        <div class="clear"></div>
+                        <!--col end-->
+                        <div class="col-md-12">
+                          <div class="col-md-2 float-left pl-0 pr-5">
+                            <label>City</label>
+                          </div>
+                          <div class="col-md-4 float-left pl-0 pr-5">
+                            <input type="text" class="field-01 form-control" name="city" placeholder="City" [(ngModel)]="city">
+                          </div>
+                          <div class="col-md-4 float-left pl-0 pr-5">
+                            <span></span>
+                          </div>
+                          </div>
+                          <div class="clear"></div>
+                          <!--col end-->
+                          <div class="col-md-12">
+                            <div class="col-md-2 float-left pl-0 pr-5">
+                              <label>State</label>
+                            </div>
+                            <div class="col-md-4 float-left pl-0 pr-5">
+                              <select id="state" class="field-01 form-control" [(ngModel)]="state">
+                                <option selected class=""  value="">-SELECT-</option>
+                                <option value="fiscalStartDate">Texas</option>
+                                <option value="fiscalEndDate">Newyork</option>
+                              </select>
+                            </div>
+                            <div class="col-md-4 float-left pl-0 pr-5">
+                              <span></span>
+                            </div>
+                            </div>
+                            <div class="clear"></div>
+                            <!--col end-->
+                            <div class="col-md-12">
+                              <div class="col-md-2 float-left pl-0 pr-5">
+                                <label>State (if other)</label>
+                              </div>
+                              <div class="col-md-4 float-left pl-0 pr-5">
+                                <input type="text" class="field-01 form-control" name="state_op" placeholder="State" [(ngModel)]="state_op">
+                              </div>
+                              <div class="col-md-4 float-left pl-0 pr-5">
+                                <span></span>
+                              </div>
+                              </div>
+                              <div class="clear"></div>
+                              <!--col end-->
+                              <div class="col-md-12">
+                                <div class="col-md-2 float-left pl-0 pr-5">
+                                  <label>Country</label>
+                                </div>
+                                <div class="col-md-4 float-left pl-0 pr-5">
+                                  <select id="country" class="field-01 form-control" [(ngModel)]="country">
+                                    <option selected class=""  value="">-SELECT-</option>
+                                    <option value="fiscalStartDate">US</option>
+                                    <option value="fiscalEndDate">UK</option>
+                                  </select>
+                                </div>
+                                <div class="col-md-4 float-left pl-0 pr-5">
+                                  <span></span>
+                                </div>
+                                </div>
+                                <div class="clear"></div>
+                                <!--col end-->
+                                <div class="col-md-12">
+                                  <div class="col-md-2 float-left pl-0 pr-5">
+                                    <label>Postal Code</label>
+                                  </div>
+                                  <div class="col-md-4 float-left pl-0 pr-5">
+                                    <input type="text" class="field-01 form-control" name="postal_code" placeholder="Postal Code" [(ngModel)]="postal_code">
+                                  </div>
+                                  <div class="col-md-4 float-left pl-0 pr-5">
+                                    <span></span>
+                                  </div>
+                                  </div>
+                                  <div class="clear"></div>
+                                  <!--col end-->
+                                  <div class="col-md-12">
+                                    <div class="col-md-2 float-left pl-0 pr-5">
+                                      <label>Phone</label>
+                                    </div>
+                                    <div class="col-md-4 float-left pl-0 pr-5">
+                                      <input type="text" class="field-01 form-control" name="phone" placeholder="Phone" [(ngModel)]="phone">
+                                    </div>
+                                    <div class="col-md-4 float-left pl-0 pr-5">
+                                      <span></span>
+                                    </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <!--col end-->
+                                    <div class="col-md-12">
+                                      <div class="col-md-2 float-left pl-0 pr-5">
+                                        <label>Fax (optional)</label>
+                                      </div>
+                                      <div class="col-md-4 float-left pl-0 pr-5">
+                                        <input type="text" class="field-01 form-control" name="fax" placeholder="Fax" [(ngModel)]="fax">
+                                      </div>
+                                      <div class="col-md-4 float-left pl-0 pr-5">
+                                        <span></span>
+                                      </div>
+                                      </div>
+                                      <div class="clear"></div>
+                                      <!--col end-->
+                                      <div class="col-md-12">
+                                        <div class="col-md-2 float-left pl-0 pr-5">
+                                          <label>E-mail</label>
+                                        </div>
+                                        <div class="col-md-4 float-left pl-0 pr-5">
+                                          <input type="text" class="field-01 form-control" name="email" placeholder="Email" [(ngModel)]="email">
+                                        </div>
+                                        <div class="col-md-4 float-left pl-0 pr-5">
+                                          <span></span>
+                                        </div>
+                                        </div>
+                                        <div class="clear"></div>
+                                        <!--col end-->
+                                        <div class="col-md-12">
+                                          <div class="col-md-2 float-left pl-0 pr-5">
+                                            <label>Hostmaster E-mail</label>
+                                          </div>
+                                          <div class="col-md-4 float-left pl-0 pr-5">
+                                            <input type="text" class="field-01 form-control" name="hostmaster_email" placeholder="Hostmaster E-mail" [(ngModel)]="hostmaster_email">
+                                          </div>
+                                          <div class="col-md-4 float-left pl-0 pr-5">
+                                            <span></span>
+                                          </div>
+                                          </div>
+                                          <div class="clear"></div>
+                                          <!--col end-->
+                                          <div class="col-md-12">
+                                            <div class="col-md-2 float-left pl-0 pr-5">
+                                              <label>Website</label>
+                                            </div>
+                                            <div class="col-md-4 float-left pl-0 pr-5">
+                                              <input type="text" class="field-01 form-control" name="Website" placeholder="Website" [(ngModel)]="Website">
+                                            </div>
+                                            <div class="col-md-4 float-left pl-0 pr-5">
+                                              <span></span>
+                                            </div>
+                                            </div>
+                                            <div class="clear"></div>
+                                            <!--col end-->
+                          <div class="col-md-12">
+                            <div class="col-md-2 float-right pl-0">
+                            <button  class="field-01 form-control button float-left">Save</button>
+                            </div>
+                          </div>
+                          
+                          
+              
+          </div>
+        </div>
+        <!--inner white con end-->
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>

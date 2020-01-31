@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Trilod</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Styles Sheets -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+
+<body>
+  <div class="clear"></div>
+  <div class="col-md-12">
+    <div class="content-box">
+      <div class="white-con">
+        <h1>Add Evidence Files
+          <span></span>
+        </h1>
+        <br />
+        <div class="inner-white-box">
+          <form class="container" [formGroup]="uploadForm" (ngSubmit)="onSubmitEvidences()">
+            <div class="form-con">
+              <div class="col-md-12">
+                <div class="col-md-4 float-left pl-0">
+                  <label>Audit</label>
+                  <select (change)="onChange($event.target.value)" class="field-01 form-control" name="audit">
+                    <option selected value="">-SELECT-</option>
+                    <option *ngFor="let audit of this.auditList; index as i">{{audit.auditName}}</option>
+                  </select>
+                </div>
+                <div class="col-md-4 float-left pl-0">
+                  <label>Control</label>
+                  <select (change)="onChangeControl($event.target.value)" class="field-01 form-control" name="control">
+                    <option selected value="">-SELECT-</option>
+                    <option *ngFor="let control of this.controlList; index as i">{{control.name}}</option>
+                  </select>
+                </div>
+                <div class="col-md-4 float-left pl-0">
+                  <label>Template</label>
+                  <select (change)="onChangeTemplate($event.target.value)" class="field-01 form-control" name="template">
+                    <option selected value="">-SELECT-</option>
+                    <option *ngFor="let template of this.templateList; index as i">{{template.name}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="col-md-8 float-left pl-0">
+                  <label>Upload Evidence File</label>
+                  <input type="file" accept=".xls,.xlsx" class="upload-field form-control" placeholder="Upload file here..." (change)="onFileSelect($event)"
+                    name="evFile" multiple>
+                </div>
+                <div class="col-md-2 float-left pl-0">
+                  <label>&nbsp;</label>
+                  <button class="field-01 form-control button float-left">Add</button>
+                </div>
+              </div>
+              <div class="clear"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

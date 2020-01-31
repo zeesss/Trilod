@@ -1,0 +1,54 @@
+.modal-dialog .modal-content{
+	border-radius:20px;
+	padding:25px 30px;
+	text-align: center;
+}
+.modal-content .modal-body {
+	padding: 0 0 12px !important;
+}
+.modal-content .form-group{
+	margin: 0 !important;
+}
+.modal-content .modal-footer{
+	border: #eee;
+	padding: 12px 0 0 !important;
+}
+.popup-btn-01 {
+	float:right;
+	margin: 12px 3px 0 0 !important;
+	color:#fff !important;
+	height:34px;
+	width:90px;
+	display:block;
+	line-height: 34px !important;
+	text-align: center;
+	border-radius: 30px !important;
+	text-decoration: none;
+	background: #ea1862 !important;
+	border: none !important;
+	padding: 0 !important;
+}
+.popup-btn-01:hover {
+	background:#b2003e !important;
+}
+.popup-btn-01:focus{
+	box-shadow: none !important;
+}
+.popup-btn-02 {
+	float:right;
+	margin: 12px 0 0 3px !important;
+	color:#fff !important;
+	height:34px;
+	width:90px;
+	display:block;
+	line-height: 34px !important;
+	text-align: center;
+	border-radius: 30px !important;
+	text-decoration: none;
+	border: none !important;
+	background: #2a5297 !important;
+	padding: 0 !important;
+}
+.popup-btn-02 a:hover {
+	background:#00286d !important;
+}

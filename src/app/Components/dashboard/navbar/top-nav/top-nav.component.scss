@@ -1,0 +1,41 @@
+.mat-toolbar{
+        position: fixed;
+        z-index: 5;
+        height:100px;
+        
+}
+.div-menu{
+border-radius: 2em;
+margin-top:10px;
+background-color:#EAEAEA;
+
+align:right;
+
+}
+.div{
+margin-top:10px;
+
+}
+.button{
+background-color:#ea1862;
+color:white;
+border: 1px;
+  border-radius: 2em;
+}
+/*.active{
+background-color:#ea1862;
+color:white;
+border: 1px;
+border-radius: 2em;
+}*/
+.buttoninactive{
+background-color:#AEAEAE;
+color:white;
+border: 1px;
+  border-radius: 2em;
+}
+.divider{
+    width:10px;
+    height:auto;
+    display:inline-block;
+}

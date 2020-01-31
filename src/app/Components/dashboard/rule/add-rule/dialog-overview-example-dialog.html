@@ -1,0 +1,47 @@
+<head>
+  <meta charset="utf-8">
+  <title>Trilod</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Styles Sheets -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="bg-01">
+  <div class="container">
+    <div class="col-md-12">
+      <!-- <div class="logo"><a href="#"><img src="assets/images/logo.png" alt="logo"></a></div> -->
+      <!-- <div class="clear"></div> -->
+      <!-- <div class="mainimg"><img src="assets/images/signin-icon.png" alt="Signin"></div> -->
+      <div class="arrow-box login-screen">
+        <div class="box-left">
+          <div class="border"></div>
+        </div>
+        <div class="box-right">
+          <div class="border"></div>
+        </div>
+        <div class="arrow-container">
+          <div class="arrow"></div>
+        </div>
+        <div class="arrow-box-content">
+          <div class="form">
+            <label>Template Field 1:</label>
+            <select (change)="onTF1Change($event.target.value)" class="field-01 form-control" name="tfn1">
+              <option selected value="">-SELECT-</option>
+              <option *ngFor="let templateField of this.templateList1; index as i">{{templateField.columnName}}</option>
+            </select>
+            <div class="clear"></div>
+            <label>Template Field 2:</label>
+            <select (change)="onTF2Change($event.target.value)" class="field-01 form-control" name="tfn2">
+              <option selected value="">-SELECT-</option>
+              <option *ngFor="let templateField of this.templateList2; index as i">{{templateField.columnName}}</option>
+            </select>
+            <a (click)="onYesClick()" class="button float-right">Save</a>
+            <a (click)="onNoClick()" class="button float-left">Cancel</a>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="copyright">Copy Rights 2019, Trilod Automation Tool</div> -->
+    </div>
+  </div>

@@ -1,0 +1,253 @@
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>My Medi Port</title>
+<!-- Bootstrap Core CSS -->
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+
+
+<section>
+
+  <h1>Hello</h1>
+
+</section>
+<div class="clear"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> 
+<script src="assets/js/popper.min.js"></script> 
+<script src="assets/js/bootstrap.min.js"></script>
+
+
+<!-- <div>
+ <mat-card>
+   <mat-card-header style="background-color: white;padding-top: 1%;">
+     <mat-card-title >
+       Recent Encounter Records
+     </mat-card-title>
+   </mat-card-header>
+   <mat-card-content>
+
+
+  <div class="" style="width:100%">
+
+    <div fxLayout="row" style="margin-bottom: 10px;">
+    <mat-card fxFlex>
+        <mat-card-header style="background-color:#2e5399; color:white;border-top-left-radius:2em; border-top-right-radius:2em;margin:auto;width:90%; padding-top: 1%;">
+            <mat-card-title style="font-family:Alte Haas Grotesk ; font-size:13pt;">Conditions</mat-card-title>
+            <a (click)="conditionsPage()" style="color:white; margin-left:50%; margin-top:5px;font-family:Alte Haas Grotesk ;">View All</a>
+        </mat-card-header>
+    
+        <mat-card-content style="height: 120px;overflow-y: auto;overflow-x: hidden; width:90%; margin:auto;">
+            <div *ngFor="let item of patientDataList.Conditions| slice:0:5 ">
+                <div *ngIf="!patientDataList.Conditions" class="condition-color">Data not available</div>
+                <div class="condition-color col-md-12" >
+                <table>
+                
+                <tr><td class="col-md-12" ><div   style="font-family:Helvetica Neue Light ; font-size:13pt;">{{item.Name}}</div></td>
+                <td class="col-md-12"> 
+               <div style="text-align:right; color:#ea1862;font-family:Alte Haas Grotesk ; font-size:14pt;"  *ngIf="item.Status==='active' || item.Status==='Active'">{{item.Status}}</div>
+                <div style="text-align:right; color:#38c2df;font-family:Alte Haas Grotesk ; font-size:14pt;"  *ngIf="item.Status==='resolved' || item.Status==='Resolved'">{{item.Status}}</div>
+                <div style="text-align:right; color:#38c2df;font-family:Alte Haas Grotesk ; font-size:14pt;"  *ngIf="(item.Status==='' ) ">UnAvailable</div>
+
+				</td></tr>
+                 <tr>
+                 <td class="col-md-12"><div ><p style="font-family:Helvetica Neue Light ; font-size:10pt; color:#AEAEAE;">{{item.HealthStatus}}</p></div></td>
+                <td class="col-md-12"> <div style="text-align:right;"><p style="font-family:Helvetica Neue Light ; font-size:10pt; color:#AEAEAE;">{{item.StartDate| date: 'MM/dd/yyyy'}}</p></div></td>
+                 </tr>
+                  
+                </table>
+              
+                <div class="col-md-6" style="font-family:Helvetica Neue Regular ; font-size:12pt;">{{item.Name}}</div>
+                <div style="text-align:right; color:#ea1862;font-family:Alte Haas Grotesk ; font-size:14pt;" class="col-md-6" *ngIf="item.Status==='active' || item.Status==='Active'">{{item.Status}}</div>
+                <div style="text-align:right; color:#38c2df;font-family:Alte Haas Grotesk ; font-size:14pt;" class="col-md-6" *ngIf="item.Status==='resolved' || item.Status==='Resolved'">{{item.Status}}</div>
+                <div style="text-align:right; color:#38c2df;font-family:Alte Haas Grotesk ; font-size:14pt;" class="col-md-6" *ngIf="(item.Status==='' ) ">UnAvailable</div>
+
+                <div class="col-md-6" style="font-family:Helvetica Neue Light ; font-size:10pt; text-color:AEAEAE;">{{item.HealthStatus}}</div>
+                <div style="text-align:right;" class="col-md-6">{{item.StartDate| date: 'MM/dd/yyyy'}}</div>
+                
+                    <span><strong>{{utilsvc.dateFormat(item.StartDate, true)}}
+                            &nbsp;&nbsp; {{'Condition' || titlecase}}</strong> &nbsp;
+                        {{item.Name+' '+item.HealthStatus+' '+item.Category}}</span>
+                </div>
+            </div>
+        </mat-card-content>
+    
+    </mat-card>
+    
+    <mat-card fxFlex>
+        <mat-card-header style="background-color:#2e5399; color:white;border-top-left-radius:2em; border-top-right-radius:2em;margin:auto;width:90%; padding-top: 1%;">
+            <mat-card-title style="font-family:Alte Haas Grotesk ; font-size:13pt;">Allergies</mat-card-title>
+            <a (click)="allergiesPage()" style="color:white; margin-left:50%; margin-top:5px;font-family:Alte Haas Grotesk ;">View All</a>
+        </mat-card-header >
+        <mat-card-content style="height: 120px;overflow-y: auto;overflow-x: hidden; width:90%; margin:auto;">
+       
+            <div *ngIf="!patientDataList.Allergies.length" class="condition-color">Data not available</div>
+            <div *ngFor="let item of patientDataList.Allergies| slice:0:5"> 
+                <div  class="condition-color col-md-12" >
+<table>
+                
+                <tr><td class="col-md-12"><div   style="font-family:Helvetica Neue Light ; font-size:13pt;" >{{item.Name}}</div></td>
+                <td class="col-md-12"> <div style="text-align:right; color:#ea1862;font-family:Alte Haas Grotesk ; font-size:14pt;"  *ngIf="(item.Status==='active' || item.Status==='Active') ">{{item.Status}}</div>
+                <div style="text-align:right; color:#38c2df;font-family:Alte Haas Grotesk ; font-size:14pt;"  *ngIf="(item.Status==='InActive' || item.Status==='Inactive') ">{{item.Status}}</div>
+                <div style="text-align:right; color:#38c2df;font-family:Alte Haas Grotesk ; font-size:14pt;"  *ngIf="(item.Status==='' ) ">UnAvailable</div>
+
+</td></tr>
+                 <tr>
+                 <td class="col-md-12"><div style="font-family:Helvetica Neue Light ; font-size:10pt; color:#AEAEAE;">{{item.Substance}}</div></td>
+                <td class="col-md-12"> <div style="text-align:right;font-family:Helvetica Neue Light ; font-size:10pt; color:#AEAEAE;">{{item.StartDate| date: 'MM/dd/yyyy'}}</div></td>
+                 </tr>
+                  
+                </table>
+                
+                <div class="col-md-6" style="text-align:left;">{{item.Name}}</div>
+                <div style="text-align:right; color:#ea1862" class="col-md-6" *ngIf="(item.Status==='active' || item.Status==='Active') && item.StartDate!==''">{{item.Status}}</div>
+                <div style="text-align:right; color:#38c2df" class="col-md-6" *ngIf="(item.Status==='InActive' || item.Status==='Inactive') && item.StartDate!==''">{{item.Status}}</div>
+				<div style="text-align:center; color:#ea1862" class="col-md-6" *ngIf="(item.Status==='active' || item.Status==='Active') && item.StartDate===''">{{item.Status}}</div>
+                <div style="text-align:center; color:#38c2df" class="col-md-6" *ngIf="(item.Status==='InActive' || item.Status==='Inactive') && item.StartDate===''">{{item.Status}}</div>
+
+                <div class="col-md-6"  style="text-align:left;">{{item.Substance}}</div>
+                <div class="col-md-6" style="text-align:right;">{{item.StartDate| date: 'MM/dd/yyyy'}}</div>
+                    <span><strong>{{utilsvc.dateFormat(item.StartDate, true)}}
+                            &nbsp;&nbsp; {{'Allergy' | titlecase}}</strong> &nbsp; {{item.Name+' '+item.Criticality}}</span>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+
+    </div>
+
+    <div fxLayout="row" >
+        <mat-card fxFlex>
+            <mat-card-header style="background-color:#2e5399; color:white;border-top-left-radius:2em; border-top-right-radius:2em;margin:auto;width:90%; padding-top: 1%;">
+                <mat-card-title style="font-family:Alte Haas Grotesk ; font-size:13pt;">Procedures</mat-card-title>
+                <a (click)="proceduresPage()" style="color:white; margin-left:50%; margin-top:5px;font-family:Alte Haas Grotesk ;">View All</a>
+             </mat-card-header>
+            <mat-card-content style="height: 120px; overflow-y: auto;overflow-x: hidden; width:90%; margin:auto;">
+               <div *ngIf="!patientDataList.Procedures.length" class="condition-color">Data not available</div>
+                <div *ngFor="let item of patientDataList.Procedures | slice:0:5">
+                 
+                    <div class="condition-color col-md-12">
+                    
+                    <table>
+                
+                <tr><td class="col-md-12"><div   style="font-family:Helvetica Neue Light ; font-size:13pt;" >{{item.Name}}</div></td>
+                <td class="col-md-12"> <div style="text-align:right; color:#ea1862;font-family:Alte Haas Grotesk ; font-size:14pt;"  *ngIf="(item.Status==='completed' || item.Status==='Completed') ">{{item.Status}}</div>
+                <div style="text-align:right; color:#38c2df;font-family:Alte Haas Grotesk ; font-size:14pt;" *ngIf="(item.Status==='InActive' || item.Status==='Inactive') ">{{item.Status}}</div>
+                <div style="text-align:right; color:#38c2df;font-family:Alte Haas Grotesk ; font-size:14pt;"  *ngIf="(item.Status==='' ) ">UnAvailable</div>
+
+</td></tr>
+                 <tr>
+                 <td class="col-md-12"><div style="font-family:Helvetica Neue Light ; font-size:10pt; color:#AEAEAE;">{{item.TargetSite}}</div></td>
+                <td class="col-md-12"> <div style="text-align:right;font-family:Helvetica Neue Light ; font-size:10pt; color:#AEAEAE;">{{item.DateTime| date: 'MM/dd/yyyy'}}</div></td>
+                 </tr>
+                  
+                </table>
+                    
+                    <div  class="col-md-6" >{{item.Name}}</div>
+                <div style="text-align:right; color:#ea1862" class="col-md-6" *ngIf="(item.Status==='Active' || item.Status==='active' ) ">{{item.Status}}</div>
+                <div style="text-align:right; color:#38c2df" class="col-md-6" *ngIf="(item.Status==='' ) ">UnAvailable</div>
+                
+
+                <div class="col-md-6" >{{item.TargetSite}}</div>
+                <div style="text-align:right;" class="col-md-6" *ngIf="item.Status!==''" >{{item.DateTime| date: 'MM/dd/yyyy'}}</div>
+                        <span><strong>{{utilsvc.dateFormat(item.DateTime, true)}}
+                                &nbsp;&nbsp; {{'Procedure' | titlecase}}</strong> &nbsp;
+                            {{item.Name+' '+item.TargetSite}}</span>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+
+
+    <mat-card fxFlex >
+        <mat-card-header style="background-color:#2e5399; color:white;border-top-left-radius:2em; border-top-right-radius:2em;margin:auto;width:90%; padding-top: 1%;">
+            <mat-card-title style="font-family:Alte Haas Grotesk ; font-size:13pt;">Medication</mat-card-title>
+            <button (click)="medicationsPage()" style="color:white; margin-left:50%; margin-top:5px;font-family:Alte Haas Grotesk ;">View All</button>
+                   <a (click)="medicationsPage()" style="color:white; margin-left:50%; margin-top:5px;font-family:Alte Haas Grotesk ;">View All</a>
+            
+        </mat-card-header>
+    
+        <mat-card-content style="height: 120px; overflow-y: auto;overflow-x: hidden; width:90%; margin:auto;">
+            <div *ngIf="!patientDataList.Medications.length" class="condition-color">Data not available</div>
+            <div *ngFor="let item of patientDataList.Medications | slice:0:5">
+                <div class="condition-color col-md-12" >
+                <table>
+                
+                <tr><td class="col-md-12"><div   style="font-family:Helvetica Neue Light ; font-size:13pt;" >{{item.Product}}</div></td>
+                <td class="col-md-12"> <div style="text-align:right; color:#ea1862;font-family:Alte Haas Grotesk ; font-size:14pt;"  *ngIf="(item.Status==='active' || item.Status==='Active') ">{{item.Status}}</div>
+                <div style="text-align:right; color:#38c2df;font-family:Alte Haas Grotesk ; font-size:14pt;"  *ngIf="(item.Status==='InActive' || item.Status==='Inactive') ">{{item.Status}}</div>
+                <div style="text-align:right; color:#38c2df;font-family:Alte Haas Grotesk ; font-size:14pt;"  *ngIf="(item.Status==='' || item.Status===undefined ) ">UnAvailable</div></td></tr>
+                 <tr>
+                 <td class="col-md-12"><div style="font-family:Helvetica Neue Light ; font-size:10pt; color:#AEAEAE;">{{item.Dose.Quantity}}</div></td>
+                <td class="col-md-12"> <div style="text-align:right;font-family:Helvetica Neue Light ; font-size:10pt; color:#AEAEAE;">{{item.StartDate| date: 'MM/dd/yyyy'}}</div></td>
+                 </tr>
+                  
+                </table>
+                <div  class="col-md-6" >{{item.Product}}</div>
+
+
+                <div class="col-md-6" >{{item.Dose.Quantity}}</div>
+                <div style="text-align:right;" class="col-md-6">{{item.StartDate| date: 'MM/dd/yyyy'}}</div>
+                    <span><strong>{{utilsvc.dateFormat(item.StartDate, true)}}
+                            &nbsp;&nbsp; {{'Medication' | titlecase}}</strong> &nbsp;
+                        {{item.Product+' '+item.Dose.Quantity+' '+item.Dose.Units}}</span>
+                </div>
+            </div>
+        </mat-card-content>
+    
+    
+    </mat-card>
+    </div>
+    
+    </div>
+    </mat-card-content>
+    </mat-card>
+
+
+
+
+  <div style="margin-top:50px;" class="col-md-12">
+    <p style="color:#2e5399;font-family:Alte Haas Grotesk ; font-size:16pt;"  class="col-md-2">Encounters:</p>
+    
+     
+        
+          <ul class="timeline timeline-horizontal col-md-8">
+            <li class="timeline-item" *ngFor="let encounter of patientDataList.Encounters | slice:0:5; index as i">
+              <div (click)="openDialog(encounter,patientDataList)" class="timeline-badge" style="background-color:#DCDCDC;">
+                {{colorClassIndex++}}
+                {{increamentColorIndex()}}
+               <span style="color:#2e5399;font-size:14px;font-family:Alte Haas Grotesk ; width: fit-content;">{{encounter.DateTime | date: 'dd MMM'}}</span>
+                
+               <span style="color:black;font-size:14px; width: fit-content;"><strong>{{utilsvc.timeStampToDate1(encounter.DateTime)}}</strong></span>
+          </div>
+              <div class="timeline-panel">
+                <div class="timeline-body">
+                
+               </div>
+              </div>
+            </li>
+         
+          
+            
+            
+          </ul>
+          <a (click)="encountersPage()" class="col-md-2" style="color:#2e5399;font-family:Alte Haas Grotesk ;">View All</a>
+        
+      
+   
+  </div>
+
+
+
+
+
+
+
+
+</div> -->
+
+

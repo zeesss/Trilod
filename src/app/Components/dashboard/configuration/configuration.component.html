@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Trilod</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Styles Sheets -->
+<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/style.css" rel="stylesheet"  type="text/css">
+</head>
+<body>
+<!-- <header class="bg-01">
+  <div class="col-md-12">
+    <div class="content-box">
+      <a href="#" class="logout">Logout</a> 
+      <div class="logo logo-02"><a href="#"><img src="assets/images/logo.png" alt="logo"></a></div>
+    </div>
+  </div>
+</header> -->
+<div class="clear"></div>
+<div class="col-md-12">
+  <div class="content-box">
+    <div class="white-con">
+      <div class="breadcrumb">
+        <ul>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Configuration</a></li>
+        </ul>
+      </div>
+     
+      <h1>Configuration<span></span></h1>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="clear"></div> -->
+
+<div class="main-table-con" *ngIf="this.checkObject.canView">
+  <div class="col-md-12">
+    <div class="content-box">
+      <!-- Editable table -->
+      <div class="col-md-6 float-left pl-0">
+        <label>Company:</label>
+      
+
+       
+        <select (change)="onChange($event.target.value)" class="field-01 form-control" [(ngModel)]="company">
+            <option selected value="">-SELECT-</option>
+          <option *ngFor="let company of this.CompanyList; index as i " [(ngValue)]="company.id">{{company.clientName}}</option>
+      </select>
+      </div>
+      <div class="col-md-6 float-right pl-0">
+        <label>Audits:</label>
+    
+        <select (change)="onChangeAudit($event.target.value)" class="field-01 form-control" [(ngModel)]="audit">
+            <option selected value="">-SELECT-</option>
+          <option *ngFor="let audit of this.auditList; index as i" [(ngValue)]="audit.id">{{audit.auditName}}</option>
+      </select>
+      </div>
+ 
+     
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="content-box">
+      <!-- Editable table -->
+      <div class="col-md-4 float-left pl-0">
+        <label>Number of Columns To Process:</label>
+        <input type="number"  disabled [(ngModel)]="configObject.numColumnsToProcess"/>
+      </div>
+      
+    </div>
+  </div>
+  <div class="clear"></div>
+  
+        <!-- Editable table -->
+  <div class="card"  *ngIf="this.checkObject.canAdd || this.checkObject.canEdit">
+      <div class="card-body">
+        <div id="table" class="table-editable"  >
+        
+          <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table" >
+            <tr>
+                <th>Audit File Data</th>
+                <th>Number of Columns</th>
+                
+              
+            </tr>
+            <tr *ngFor="let config of this.configList; let id = index">
+              <td >
+                <span >{{config.textToDisplay}}</span>
+
+              </td>
+              <td>
+                <input min="1" type="number" (keyup)="changeValue(id, 'conf', $event)" (mouseup)="changeValue(id, 'conf', $event)"   class="field-01 form-control" >
+              </td>
+            </tr>
+            </table>
+            </div>
+            </div>
+            </div>
+            
+           
+
+  <!-- <div class="col-md-12">
+    <div class="content-box">
+     
+      <div class="col-md-4  pl-0">
+        <label>Audit File Data:</label>
+      
+        <select class="field-01 form-control" [(ngModel)]="conf1">
+            <option selected value="">-SELECT-</option>
+          <option *ngFor="let conf of this.configList; index as i" [(ngValue)]="conf.id">{{conf.textToDisplay}}</option>
+      </select>
+      <label>Number of Columns:</label>
+      <input type="number"  [(ngModel)]="conf1Number"/>
+      </div>
+      <div class="col-md-4  pl-0">
+        <label>Audit File Data:</label>
+      
+        <select  class="field-01 form-control" [(ngModel)]="conf2">
+            <option selected value="">-SELECT-</option>
+          <option *ngFor="let conf of this.configList; index as i" [(ngValue)]="conf.id">{{conf.textToDisplay}}</option>
+      </select>
+      <label>Number of Columns:</label>
+      <input type="number"  [(ngModel)]="conf2Number"/>
+      </div>
+      <div class="col-md-4  pl-0">
+        <label>Audit File Data:</label>
+      
+        <select  class="field-01 form-control" [(ngModel)]="conf3">
+            <option selected value="">-SELECT-</option>
+          <option *ngFor="let conf of this.configList; index as i" [(ngValue)]="conf.id">{{conf.textToDisplay}}</option>
+      </select>
+      <label>Number of Columns:</label>
+      <input type="number"  [(ngModel)]="conf3Number"/>
+      </div>
+      
+    </div>
+  </div>
+  <div class="clear"></div>
+  <div class="col-md-12">
+    <div class="content-box">
+      
+      <div class="col-md-4  pl-0">
+        <label>Audit File Data:</label>
+      
+        <select  class="field-01 form-control" [(ngModel)]="conf4">
+            <option selected value="">-SELECT-</option>
+          <option *ngFor="let conf of this.configList; index as i" [(ngValue)]="conf.id">{{conf.textToDisplay}}</option>
+      </select>
+      <label>Number of Columns:</label>
+      <input type="number"  [(ngModel)]="conf4Number"/>
+      </div>
+      <div class="col-md-4  pl-0">
+        <label>Audit File Data:</label>
+      
+        <select  class="field-01 form-control" [(ngModel)]="conf5">
+            <option selected value="">-SELECT-</option>
+          <option *ngFor="let conf of this.configList; index as i" [(ngValue)]="conf.id">{{conf.textToDisplay}}</option>
+      </select>
+      <label>Number of Columns:</label>
+      <input type="number"  [(ngModel)]="conf5Number"/>
+      </div>
+      <div class="col-md-4  pl-0">
+        <label>Audit File Data:</label>
+      
+        <select  class="field-01 form-control" [(ngModel)]="conf6">
+            <option selected value="">-SELECT-</option>
+          <option *ngFor="let conf of this.configList; index as i" [(ngValue)]="conf.id">{{conf.textToDisplay}}</option>
+      </select>
+      <label>Number of Columns:</label>
+      <input type="number"  [(ngModel)]="conf6Number"/>
+      </div>
+      
+    </div>
+  </div>
+  <div class="clear"></div> -->
+  <div class="col-md-12">
+    <div class="content-box">
+      <!-- Editable table -->
+      <div class="col-md-4 float-left pl-0">
+        <label>Starting Row:</label>
+        <input type="number"  min="1" [(ngModel)]="configObject.startingRow"/>
+      </div>
+      <div class="col-md-4 float-right pl-0">
+        <label> Starting Column:</label>
+        <input type="number"  min="1" [(ngModel)]="configObject.startingColumn"/>
+        
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-12">
+    <div class="content-box">
+      <!-- Editable table -->
+      <div class="col-md-4 float-left pl-0">
+        <label>Ending Column:</label>
+       
+        <input type="number"  min="1" [(ngModel)]="configObject.endingColumn"/>
+      </div>
+      </div>
+      </div>
+</div>
+<div class="side-menu">
+  <ul>
+    <li><a (click)=saveConfig()>Save Configuration</a></li>
+    <!-- <li><a href="#">Edit</a></li>
+    <li><a href="#">Delete</a></li> -->
+  </ul>
+</div>
+
+<!-- <button (click)="saveConfig()" class="">Save Configuration</button> -->
+</body>
+</html>
+<script>
+jQuery(document).ready(function ($) {
+    $(window).load(function () {
+        setTimeout(function(){
+            $('#preloader').fadeOut('slow', function () {
+            });
+        },3000); // set the time here
+    });  
+});
+</script>

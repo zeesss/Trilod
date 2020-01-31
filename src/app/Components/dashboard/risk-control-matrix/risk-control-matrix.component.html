@@ -1,0 +1,154 @@
+
+<head>
+<meta charset="utf-8">
+<title>Trilod</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Styles Sheets -->
+<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/style.css" rel="stylesheet"  type="text/css">
+</head>
+<body>
+<!-- <header class="bg-01">
+  <div class="col-md-12">
+    <div class="content-box">
+      <a href="#" class="logout">Logout</a> 
+      <div class="logo logo-02"><a href="#"><img src="assets/images/logo.png" alt="logo"></a></div>
+    </div>
+  </div>
+</header> -->
+<div class="clear"></div>
+<div class="col-md-12">
+  <div class="content-box">
+    <div class="white-con">
+      <div class="breadcrumb">
+        <ul>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Risk Control Matrix</a></li>
+        </ul>
+      </div>
+      <div class="side-menu" *ngIf="this.checkObject.canAdd" >
+        <ul>
+          <li><a (click)=newRiskControl()>New</a></li>
+          <!-- <li><a href="#">Edit</a></li>
+          <li><a href="#">Delete</a></li> -->
+        </ul>
+      </div>
+      <h1>Risk Control Matrix<span></span></h1>
+          <!-- search start-->
+    
+     <div class="inner-white-box">
+       <div class="main-search">
+         <label>Search:</label>
+         <input type="text" name="search" placeholder="Company or Audit name" [(ngModel)]="SearchControlAttribute">
+         <!-- ng-keydown="search()" -->
+        <a (click)="search()"  class="main-search-btn"></a> 
+      </div>
+     </div>
+     <!--Search end-->
+    </div>
+  </div>
+</div>
+<!-- <div class="col-md-12">
+  <div class="content-box">
+    <div class="white-con">
+      <div class="breadcrumb">
+        <ul>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Control Attributes</a></li>
+        </ul>
+      </div>
+      <div class="side-menu">
+        <ul>
+          <li><a (click)=newFile()>New</a></li>
+          <li><a href="#">Edit</a></li> comment
+          <li><a href="#">Delete</a></li> -->
+        <!-- </ul>
+      </div>
+  
+    </div>
+      
+      <h1><span>Control Attributes</span></h1>
+ 
+  </div>
+</div> --> 
+
+<div class="clear"></div>
+<div class="main-table-con" *ngIf="this.checkObject.canView">
+  <div class="col-md-12">
+    <div class="content-box">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
+        <tr>
+          <th>Sr.</th>
+          <th>Name</th>
+          <th>Control Attribute</th>
+          <th>Status</th>
+          
+         <!-- <th>Actions</th> -->
+        </tr>
+        <tr *ngFor="let person of personList; let id = index">
+            <!-- <td valign="top"><select name="" class="field-style-list-01 custom-select">
+                <option>{{id+1}}</option>
+                <option>AB5610</option> -->
+              <!-- </select>
+            </td> -->
+            <td valign="top">
+                {{id+1}}
+            </td>
+            <td valign="top"> 
+              <span *ngIf="!this.checkObject.canEdit" (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(person.id,id, 'name', $event)">{{person.name}}</span>
+
+              <span contenteditable="true" *ngIf="this.checkObject.canEdit" (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(person.id,id, 'name', $event)">{{person.name}}</span>
+            </td>
+          <!-- <td valign="top"><select name="" class="field-style-list-01 custom-select">
+              <option>{{person.isActive}}</option>
+              
+            </select></td> -->
+            <td>
+                <!-- <select name="" class="field-style-list-01 custom-select" (onchange)="changeValue(id, 'fileType', $event)" (blur)="updateList(person.id,id, 'fileType', $event)">
+                    <option *ngFor="let fileType of this.FileTypeList; index as i" ngModel="fileType" [attr.selected]="">{{fileType.name}}</option>
+                    
+                  </select> -->
+                <div *ngIf="!this.checkObject.canEdit">{{person.attributeId.attributeName}}</div>
+                  <select *ngIf="this.checkObject.canEdit" [(ngModel)]="person.attributeId.attributeName" class='form-control' (onchange)="changeValue(id, 'controlAttribute', $event)" (blur)="updateList(person.id,id, 'controlAttribute', $event)">
+                    <option *ngFor="let controlAttribute of this.ControlAttributeList" 
+                    [ngValue]="controlAttribute.attributeName">{{controlAttribute.attributeName}}</option>
+                </select>
+              <!-- <span contenteditable="true" (keyup)="changeValue(id, 'fileTypeId.name', $event)" (blur)="updateList(person.id,id, 'fileTypeId.name', $event)">{{person.fileTypeId.name}}</span> -->
+            </td>
+            <td  valign="top">
+              <input *ngIf="!this.checkObject.canEdit"  type="checkbox" [(ngModel)]="person.isActive">
+              <input *ngIf="this.checkObject.canEdit"  type="checkbox" [(ngModel)]="person.isActive"
+              [ngModelOptions]="{standalone: true}"  (onchange)="changeValue(id, 'isActive', $event)" (blur)="updateList(person.id,id, 'isActive', $event)" ></td>
+         
+          
+        
+          
+          <!-- <td><div class="side-menu">
+              <ul>
+            <li><a (click)=edit(file.id)>Edit</a></li>
+          <li><a (click)=delete(file.id)>Delete</a></li>
+        </ul>
+        </div>
+      </td> -->
+          
+        </tr>
+       
+       
+       
+       
+       
+      </table>
+      <div class="clear"></div>
+      <!-- <ul class="pagination t-pagination">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item active"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">4</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul> -->
+    </div>
+  </div>
+</div>
+</body>
+

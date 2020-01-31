@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Trilod</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Styles Sheets -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="clear"></div>
+  <div class="col-md-12">
+    <div class="content-box">
+      <div class="white-con">
+        <div class="breadcrumb">
+          <ul>
+            <li>
+              <a href="#">Dashboard</a>
+            </li>
+            <li>
+              <a href="#"> Rule</a>
+            </li>
+          </ul>
+        </div>
+        <h1>Rule
+          <span></span>
+        </h1>
+        <div class="inner-white-box">
+          <div class="form-con">
+            <div class="col-md-12">
+              <div class="col-md-4 float-left pl-0">
+                <!-- <option selected value="">-SELECT-</option> -->
+                <label>Control:</label>
+                <select id="" class="field-01 form-control" [(ngModel)]="control">
+                  <!-- <option selected value="">-SELECT-</option> -->
+                  <option *ngFor="let c of this.controlList" [ngValue]="c.name">{{c.name}}</option>
+                </select>
+                <!-- <select name="" class="field-style-list-02 custom-select"  >
+                  <option *ngFor="let r of this.controlList; let id = index"  [ngValue]="r.name" >{{r.name}}</option>
+             </select> -->
+              </div>
+              <div class="col-md-2 float-left pl-0">
+                <label>&nbsp;</label>
+                <button (click)="selectControl()" class="field-01 form-control button float-left">Select</button>
+              </div>
+              <div class="col-md-2 float-left pl-0">
+                <label>&nbsp;</label>
+                <button (click)="deselectControl()" class="field-01 form-control button float-left">De-Select</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="inner-white-box" *ngIf="showcard">
+          <div class="form-con">
+            <div class="col-md-12">
+              <div class="col-md-4 float-left pl-0">
+                <label>Rule Name:</label>
+                <input type="text" class="field-01 form-control" [(ngModel)]="rule_name">
+              </div>
+              <div class="col-md-4 float-left pl-0">
+                <label>Condition:</label>
+                <select class="field-01 form-control" [(ngModel)]="condition">
+                  <option selected value="">No Condition</option>
+                  <option value=">=">Greater or Equals</option>
+                  <option value="<=">Less or Equals</option>
+                  <option value="!=">Not Equals</option>
+                  <option value="=">Equals</option>
+                  <option value=">">Greater</option>
+                  <option value="<">Less</option>
+                  <option value="">Get Value</option>
+                </select>
+              </div>
+              <div class="col-md-4 float-left pl-0">
+                <label *ngIf="condition!==''">Field Type:</label>
+                <select *ngIf="condition!==''" class="field-01 form-control" [(ngModel)]="fieldType" (change)="onChange_fieldType()">
+                  <option selected value="">-SELECT-</option>
+                  <option value="Value">Value</option>
+                  <option value="Control_field">Control Field</option>
+                </select>
+              </div>
+            </div>
+            <div class="clear"></div>
+            <div class="col-md-12">
+              <div class="col-md-4 float-left pl-0">
+                <label *ngIf="condition!==''">Control Field Name:</label>
+                <select *ngIf="condition!==''" class="field-01 form-control" [(ngModel)]="cfn1">
+                  <option selected value="">-SELECT-</option>
+                  <option *ngFor="let c of this.controlFieldName; index as i" [ngValue]="c.fieldName">{{c.fieldName}}</option>
+                </select>
+              </div>
+              <div class="col-md-4 float-left pr-0">
+                <div class="clear"></div>
+                <div>
+                  <label *ngIf="fieldType!=='Value' && fieldType!==''">Control Field Name:</label>
+                  <select *ngIf="fieldType!=='Value' && fieldType!==''" class="field-01 form-control" [(ngModel)]="cfn2">
+                    <option selected value="">-SELECT-</option>
+                    <option *ngFor="let c of this.controlFieldName; index as i" [ngValue]="c.fieldName">{{c.fieldName}}</option>
+                  </select>
+                  <div>
+                    <label *ngIf="fieldType==='Value'">Value:</label>
+                    <input *ngIf="fieldType==='Value'" type="text" class="field-01 form-control" [(ngModel)]="value">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2 float-left pr-0">
+                <label>&nbsp;</label>
+                <button *ngIf="condition!==''" (click)="addFieldValue()" class="field-01 form-control button float-left">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+  <div class="main-table-con">
+    <div class="col-md-12">
+      <div class="content-box">
+        <h2 class="mtc-heading">Rules
+          <span></span>
+        </h2>
+        <div class="clear"></div>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
+          <tr>
+            <th>Rule Name</th>
+            <th>Field Name</th>
+            <th>Condition</th>
+            <th>Field Name / Value</th>
+            <th align="center">Action</th>
+          </tr>
+          <tr *ngFor="let field of fieldArray; let id = index">
+            <td>
+              <span contenteditable="false">{{field.name}}</span>
+            </td>
+            <td>
+              <span contenteditable="false">{{field.field1Name}}</span>
+            </td>
+            <td>
+              <span contenteditable="false">{{field.operator}}</span>
+            </td>
+            <td valign="top">
+              <span contenteditable="false">{{field.field2Name}}</span>
+            </td>
+            <td>
+              <a class="mt-delete-btn" (click)="remove(field.id, id)"></a>
+            </td>
+          </tr>
+        </table>
+        <div class="clear"></div>
+        <br />
+        <div class="side-menu">
+          <ul>
+            <li>
+              <a>Cancel</a>
+            </li>
+            <li>
+              <a (click)=saveRule()>Save</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>My Medi Port</title>
+<!-- Bootstrap Core CSS -->
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body class="bg-01">
+<div class="container">
+  <div class="col-md-12">
+    <div class="logo"><a href="#"><img src="assets/images/logo.png" alt="logo"></a></div>
+    <div class="clear"></div>
+    <div class="mainimg"><img src="assets/images/signin-icon.png" alt="Signin"></div>
+    <div class="arrow-box login-screen">
+      <div class="box-left">
+        <div class="border"></div>
+      </div>
+      <div class="box-right">
+        <div class="border"></div>
+      </div>
+      <div class="arrow-container">
+        <div class="arrow"></div>
+      </div>
+      <div class="arrow-box-content">
+        
+        <form class="container" [formGroup]="uploadForm1" (ngSubmit)="login()">
+          <div class="form">
+          <label>User Name</label>
+          <input type="text" formControlName="username" name="username" class="textfield" placeholder="User Name"  maxlength="12">
+          <label>Password</label>
+          <input type="password" formControlName="password" class="textfield" placeholder="Password" maxlength="18" >
+          <div class="text-box"><a (click)="forgotpassword()">Forgot password?</a></div>
+          
+          <button type="submit"  class="button float-left">Sign In</button>
+          <!-- <a (click)="login()" class="button float-left">sign in</a> -->
+          <div class="clear"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="copyright">Copy Rights 2019, Trilod Automation Tool</div>
+  </div>
+</div>
+
+<!-- <div class="container">
+  <div class="login-container">
+    <div class="col-md-12 float-left">
+      <div class="logo"><a ></a></div>
+      <div class="clear"></div>
+      <div class="login-box">
+        <p>Enter Details to Connect</p>
+        <input name="login" type="text" onfocus="this.value=''" [(ngModel)]="username" placeholder="Username"  required class="form-control login-box-field-style">
+        <input name="password" type="password" onfocus="this.value=''" [(ngModel)]="password"  placeholder="Password"   required class="form-control login-box-field-style">
+        <div class="clear"></div>
+        <a (click)="forgotpassword()" class="forgot-password">Forgot Password</a>
+        <div class="login-btn"><a (click)="login()">Next</a></div>
+        <div class="clear"></div>
+      </div>
+     
+              <div class="copyright">MyMediPort LLC | v 1.2.209 | All rights reserved</div>
+
+    </div>
+  </div>
+</div> -->
+
+<div class="clear"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> 
+<script src="assets/js/popper.min.js"></script> 
+<script src="assets/js/bootstrap.min.js"></script>
+</body>
+<!-- <div fxFlex fxLayout="column">
+  <div>
+    <mat-toolbar color="primary" class="sticky-top">
+      <mat-toolbar-row>
+        <span>Welcome</span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+  <img  mat-card-md-imagealign="middle" class="center" src="assets/images/mmp_logo.png" alt="mymediport">
+  <div fxFlex fxLayout="row" fxLayoutAlign="center center">
+  
+    <mat-card class="login-card" >
+    
+      <mat-card-header class="card-container">
+        <mat-card-title class="card-container">Enter Details To Connect</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form class="login-form">
+
+            
+          <mat-form-field  style="text-align: center" appearance="none">
+            <input class="field" matInput placeholder="Username" [(ngModel)]="username" name="username" required >
+          </mat-form-field>
+          <br>
+          <mat-form-field style="text-align: center" appearance="none">
+            <input style="text-align: center" class="field" matInput (keydown.enter)="login()" placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
+          </mat-form-field>
+        </form>
+        <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+      </mat-card-content>
+      <mat-card-actions>
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayout.sm="column">
+          <div>
+             
+             <a class="btn btn-sm btn-outline-primary" (click)="forgotpassword()">Forgot Password? Click Here</a>
+ 
+             <button mat-raised-button (click)="forgotpassword()" class="button_blue">Forgot Password?</button>
+ 
+            <button mat-raised-button (click)="login()" class="button">Next</button>
+          </div>
+          <div>
+            <button mat-raised-button (click)="demoLogin()" color="accent">Demo</button>
+          </div>
+        </div>
+        
+
+      </mat-card-actions>
+      <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px', fullScreenBackdrop: true }"></ngx-loading>
+    </mat-card>
+  </div>
+  <footer class="footer"> mymediport LLC | v 1.2.2019 | All rights reserved</footer>
+</div> -->

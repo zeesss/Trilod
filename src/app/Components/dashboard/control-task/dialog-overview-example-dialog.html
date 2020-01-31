@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Trilod</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Styles Sheets -->
+<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/style.css" rel="stylesheet"  type="text/css">
+</head>
+<body class="bg-01">
+<div class="container">
+  <div class="col-md-12">
+    <!-- <div class="logo"><a href="#"><img src="assets/images/logo.png" alt="logo"></a></div> -->
+    <!-- <div class="clear"></div> -->
+    <!-- <div class="mainimg"><img src="assets/images/signin-icon.png" alt="Signin"></div> -->
+    <div class="arrow-box login-screen">
+      <div class="box-left">
+        <div class="border"></div>
+      </div>
+      <div class="box-right">
+        <div class="border"></div>
+      </div>
+      <div class="arrow-container">
+        <div class="arrow"></div>
+      </div>
+      <div class="arrow-box-content">
+        <div class="form">
+          <label>Code:*</label>
+          <input type="text" [(ngModel)]="code" name="code" class="textfield" required  maxlength="10" placeholder="Code">
+          <label>Description:*</label>
+          <textarea class="textarea" [(ngModel)]="description" name="description" maxlength="800" required cols="" rows="" placeholder="Description"></textarea>
+          <label>Business Rule:*</label>
+          <!-- <select  class="field-style-list-01 custom-select" required [(ngModel)]="br1">
+            <option selected value="">-SELECT-</option>
+              <option *ngFor="let businessrule of this.findBusinessRuleList ; index as i"  [ngValue]="businessrule.id" >{{businessrule.textToDisplay}}</option>
+               
+            </select> -->
+            <!-- <select  class="field-style-list-01 custom-select" required [(ngModel)]="br2">
+              <option selected value="">-SELECT-</option>
+                <option  value=">=">>=</option>
+                <option  value="<="><=</option>
+                <option  value="=">=</option>
+                <option  value=">">></option>
+                <option  value="<"><</option>
+                 
+              </select> -->
+            <!-- <select  class="field-style-list-01 custom-select" required [(ngModel)]="br3">
+              <option selected value="">-SELECT-</option>
+                <option *ngFor="let businessrule of this.findBusinessRuleList; index as i" [ngValue]="businessrule.id" >{{businessrule.textToDisplay}}</option>
+                 
+              </select> -->
+          <input type="text" [(ngModel)]="businessRule" name="code" class="textfield" required maxlength="500" placeholder="Business Rule">
+          <label>Rule Type:*</label>
+          <select id="rule" class="field-style-list-01 custom-select" required [(ngModel)]="ruleType">
+            <option selected value="">-SELECT-</option>
+              <option *ngFor="let ruleType of this.RuleTypeList; index as i" >{{ruleType.text}}</option>
+               
+            </select>
+            <label>File Type:*</label>
+            <select id="file" class="field-style-list-01 custom-select" required [(ngModel)]="fileType">
+                <option selected value="">-SELECT-</option>
+                <option  *ngFor="let fileType of this.FileTypeList; index as i" >{{fileType.name}}</option>
+                
+              </select>
+          <div class="text-box color-white text-16">
+            <input type="checkbox"  [(ngModel)]="isActive">
+            Active</div>
+            
+          <a (click)="onYesClick()" class="button float-right">Save</a> <a (click)="onNoClick()" class="button float-left">Cancel</a>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="copyright">Copy Rights 2019, Trilod Automation Tool</div> -->
+  </div>
+</div>
+</body>
+</html>

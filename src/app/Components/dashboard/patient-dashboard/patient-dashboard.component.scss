@@ -1,0 +1,124 @@
+.patient-details-card {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  font-family: Helvetica Neue;
+  // position: fixed;
+
+}
+@media only screen and (min-width : 957px) {
+  .patient-details-card {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    position: fixed;
+    width: 19%;
+  }
+}
+
+// .mat-card-image{
+//   object-fit: cover; /*this makes de image in src fit to the size of specified below*/
+//   width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+//   height: 60%;}
+.header-avatar {
+  // background-image: url('https://openclipart.org/image/2400px/svg_to_png/261881/Cartoon-Man-Avatar-2.png');
+  background-size: cover;
+}
+
+.vitals-table {
+  width: 100%;
+
+  tr {
+    height: 40px;
+    text-align: center;
+
+    th {
+      text-align: left;
+    }
+    td {
+      text-align: left;
+    }
+  }
+}
+
+.right-nav-menu {
+  width: 210px;
+  height: 440px;
+  top: 60px;
+  position: fixed;
+}
+
+.floating-button {
+  opacity: 0.3;
+  right: 7px;
+  z-index: 2;
+  //background: red;
+  float: right;
+  top: 100px;
+  position: fixed;
+
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  background-color: #538fbe;
+  //padding: 10px 20px;
+  //font-size: 24px;
+  border: 1px solid #983833;
+  background-image: linear-gradient(bottom, rgb(152, 56, 51) 0%, rgb(190, 63, 58) 100%);
+  background-image: -o-linear-gradient(bottom, rgb(152, 56, 51) 0%, rgb(190, 63, 58) 100%);
+  background-image: -moz-linear-gradient(bottom, rgb(152, 56, 51) 0%, rgb(190, 63, 58) 100%);
+  background-image: -webkit-linear-gradient(bottom, rgb(152, 56, 51) 0%, rgb(190, 63, 58) 100%);
+  background-image: -ms-linear-gradient(bottom, rgb(152, 56, 51) 0%, rgb(190, 63, 58) 100%);
+
+  background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0, rgb(152, 56, 51)),
+      color-stop(1, rgb(190, 63, 58))
+  );
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+
+  text-shadow: 0px  -1px 0px rgba(0,0,0,.5);
+
+  -webkit-box-shadow: 0px 6px 0px #983833;
+  -moz-box-shadow: 0px 6px 0px #983833;
+  box-shadow: 0px 6px 0px #983833;
+
+  -webkit-box-shadow: 0px 6px 0px #983833, 0px 3px 15px rgba(0,0,0,.4);
+  -moz-box-shadow: 0px 6px 0px #983833, 0px 3px 15px rgba(0,0,0,.4);
+  box-shadow: 0px 6px 0px #983833, 0px 3px 15px rgba(0,0,0,.4);
+}
+
+.floating-button:hover {
+  opacity: 1;
+  background-image: linear-gradient(bottom, rgb(152, 56, 51) 0%, rgb(190, 63, 58) 100%);
+  background-image: -o-linear-gradient(bottom, rgb(152, 56, 51) 0%, rgb(190, 63, 58) 100%);
+  background-image: -moz-linear-gradient(bottom, rgb(152, 56, 51) 0%, rgb(190, 63, 58) 100%);
+  background-image: -webkit-linear-gradient(bottom, rgb(152, 56, 51) 0%, rgb(190, 63, 58) 100%);
+  background-image: -ms-linear-gradient(bottom, rgb(152, 56, 51) 0%, rgb(190, 63, 58) 100%);
+
+  background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0, rgb(152, 56, 51)),
+      color-stop(1, rgb(190, 63, 58))
+  );
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+
+  text-shadow: 0px  -1px 0px rgba(0,0,0,.5);
+
+  -webkit-box-shadow: 0px 6px 0px #983833;
+  -moz-box-shadow: 0px 6px 0px #983833;
+  box-shadow: 0px 6px 0px #983833;
+
+  -webkit-box-shadow: 0px 6px 0px #983833, 0px 3px 15px rgba(0,0,0,.4);
+  -moz-box-shadow: 0px 6px 0px #983833, 0px 3px 15px rgba(0,0,0,.4);
+  box-shadow: 0px 6px 0px #983833, 0px 3px 15px rgba(0,0,0,.4);
+}

@@ -1,0 +1,85 @@
+<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/style.css" rel="stylesheet" type="text/css">
+<section>
+  <div class="clear"></div>
+  <div class="col-md-12">
+    <div class="content-box">
+      <div class="white-con">
+        <h1>Sessions
+          <span></span>
+        </h1>
+        <div class="inner-white-box">
+          <div class="col-md-12">
+            <div class="col-md-4 float-left pl-0 pr-5">
+              <label>Search:</label>
+              <input type="text" class="field-01 form-control" name="search" placeholder="Company or Audit name" [(ngModel)]="SearchCompanyAndAudit">
+            </div>
+            <div class="col-md-4 float-left pl-0 pr-5">
+              <label>Type:</label>
+              <select id="StartEndDateSearch" class="field-01 form-control" [(ngModel)]="StartEndDateSearch">
+                <option selected class=""  value="">-SELECT-</option>
+                <option value="fiscalStartDate">Fiscal Start Date</option>
+                <option value="fiscalEndDate">Fiscal End Date</option>
+              </select>
+            </div>
+            <div class="col-md-4 float-left pl-0 pr-5">
+              <span></span>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-4 float-left pl-0 pr-5">
+              <label>Range Start:</label>
+              <input class="field-01 form-control" type="date" id="start" [(ngModel)]="startDate" placeholder="MM-DD-YYYY" />
+            </div>
+            <div class="col-md-4 float-left pl-0 pr-5">
+              <label>Range End</label>
+              <input class="field-01 form-control" type="date" [(ngModel)]="endDate" placeholder="MM-DD-YYYY" />
+            </div>
+            <div class="col-md-4 float-left pl-0 pr-5">
+              <a (click)="onSubmit()" class="main-search-btn"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+  <div class="main-table-con" *ngIf="this.checkObject.canView">
+    <div class="col-md-12">
+      <div class="content-box">
+        <a (click)="addSession()" class="mt-add-row-btn" *ngIf="this.checkObject.canAdd"></a>
+        <div class="table-outer-con">
+          <div id="table" class="table-editable">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table mt-0">
+              <tr>
+                <th>Company</th>
+                <th>Audit Name</th>
+                <th>Fiscal Start Date</th>
+                <th>Fiscal End Date</th>
+                <th>Status</th>
+                <th>&nbsp;</th>
+              </tr>
+              <tr *ngFor="let person of this.personList; let id = index">
+                <td>{{person.clientId.clientName}}</td>
+                <td>{{person.auditName}}</td>
+                <td>{{person.fiscalStartDate}}</td>
+                <td>{{person.fiscalEndDate}}</td>
+                <td>
+                  <span *ngIf="person.status===0">In Progress</span>
+                  <span *ngIf="person.status===1">Completed</span>
+                  <span *ngIf="person.status===2">Aborted</span>
+                </td>
+                <td>
+                  <!-- <a *ngIf="person.status===0 && this.checkObject.canEdit" (click)="abort(person.id)" class="">Abort</a> -->
+                  <a *ngIf="person.status===0 && this.checkObject.canEdit" (click)="startAudit(person.id)" class="">Start Audit</a>
+                  <!-- <a *ngIf="person.status!==2 && this.checkObject.canEdit" (click)="editSession(person.id)" class="mt-edit-btn"></a> -->
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+</section>

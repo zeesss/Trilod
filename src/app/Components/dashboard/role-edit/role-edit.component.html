@@ -1,0 +1,152 @@
+
+<head>
+<meta charset="utf-8">
+<title>Trilod</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Styles Sheets -->
+<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/style.css" rel="stylesheet"  type="text/css">
+</head>
+<body>
+<!-- <header class="bg-01">
+  <div class="col-md-12">
+    <div class="content-box"><a href="#" class="logout">Logout</a>
+      <div class="logo logo-02"><a href="#"><img src="assets/images/logo.png" alt="logo"></a></div>
+    </div>
+  </div>
+</header> -->
+<div class="clear"></div>
+<div class="col-md-12">
+  <div class="content-box">
+    <div class="white-con">
+      <div class="breadcrumb">
+        <ul>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Role Edit</a></li>
+        </ul>
+      </div>
+      <h1>Role Edit<span></span></h1>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
+<div class="main-table-con">
+  <div class="col-md-12">
+    <div class="content-box">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
+        <tr>
+          <th width="350" align="left">Role</th>
+          <th class="text-center">&nbsp;</th>
+          <!-- <th width="150" align="center" class="text-center">Active</th>
+          <th width="50" align="center" class="text-center">&nbsp;</th> -->
+        </tr>
+        <tr>
+          <td>
+            <select name="" class="field-style-list-02 custom-select" (change)="updateRole($event)" >
+              <option *ngFor="let r of this.RoleList; let id = index"  [ngValue]="r.roleName" >{{r.roleName}}</option>
+         </select>
+        
+        </td>
+          <td align="center">&nbsp;</td>
+          <!-- <td align="center"><input name="checkbox" type="checkbox" id="checkbox" checked></td>
+          <td align="center"><a href="#" class="mt-delete-btn"></a></td> -->
+        </tr>
+      </table>
+      <div class="clear"></div>
+      <!-- <a href="#" class="mt-add-row-btn"></a> -->
+      <div class="clear"></div>
+      <!--TABLE IF ROLES ARE NOT ADDED-->
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table"  *ngIf="this.RoleDropDownSelectionList.length==0">
+        <tr>
+          <th width="350" align="left">Form Name</th>
+          <th class="text-center">&nbsp;</th>
+          <th width="150" class="text-center">View</th>
+          <th width="150" align="center" class="text-center">Add</th>
+          <th width="150" align="center" class="text-center">Edit</th>
+          <th width="150" align="center" class="text-center">Delete</th>
+          <!-- <th width="50" align="center" class="text-center">&nbsp;</th> -->
+         
+        </tr>
+        <tr *ngFor="let form of this.formList;">
+          <td>
+            <!-- *ngFor="let form of this.formList;" -->
+            {{form.textToDisplay}}
+            <!-- {{SelectionList()}} -->
+            <!-- <select name="" class="field-style-list-02 custom-select" >
+              <option [ngValue]="SelectionList(roleAccess.formId)">{{SelectionList}}</option>
+            </select> -->
+          </td>
+          <!-- <td [ngValue]="roleAccess.id">{{roleAccess.id}}</td> -->
+          <td align="center">&nbsp;</td>
+          <td align="center"><input name="checkbox" type="checkbox" id="checkbox" (change)="Save(form.textToDisplay,'canView', $event,1,'formname')"  ></td>
+          <td align="center"><input name="checkbox" type="checkbox" id="checkbox" (change)="Save(form.textToDisplay,'canAdd', $event,1,'formname')"></td>
+          <td align="center"><input name="checkbox" type="checkbox" id="checkbox"(change)="Save(form.textToDisplay,'canEdit', $event,1,'formname')" ></td>
+          <td align="center"><input name="checkbox" type="checkbox" id="checkbox" (change)="Save(form.textToDisplay,'canDelete', $event,1,'formname')"></td>
+          <!-- <td align="center"><a href="#" class="mt-delete-btn"></a></td> -->
+         
+        </tr>
+      
+        
+
+      </table>
+      <!--IF ROLES ARE ADDED-->
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table" *ngIf="this.RoleDropDownSelectionList.length>0">
+        <tr>
+          <th width="350" align="left">Form Name</th>
+          <th class="text-center">&nbsp;</th>
+          <th width="150" class="text-center">View</th>
+          <th width="150" align="center" class="text-center">Add</th>
+          <th width="150" align="center" class="text-center">Edit</th>
+          <th width="150" align="center" class="text-center">Delete</th>
+          <!-- <th width="50" align="center" class="text-center">&nbsp;</th> -->
+         
+        </tr>
+        <tr>
+          <td>
+            <tr *ngFor="let form of this.formList1;">
+              <td>
+                {{form.textToDisplay}}
+              </td>
+               
+              </tr>
+          </td>
+          <td>
+            <tr *ngFor="let roleAccess of this.RoleDropDownSelectionList; let id = index">
+              <!-- <div *ngFor="let form of this.formList;">
+                <td>
+                  {{form.textToDisplay}}
+                </td> -->
+              <!-- <td *ngFor="let form of this.formList;">
+                {{form.textToDisplay}}
+              </td> -->
+              <!-- <td>
+                   {{SelectionList()}}
+              </td> -->
+              <!-- <td [ngValue]="roleAccess.id">{{roleAccess.id}}</td> -->
+              <td align="center">&nbsp;</td>
+            
+              <td align="center"><input name="checkbox" type="checkbox" id="checkbox"  [(ngModel)]="roleAccess.canView"
+                [ngModelOptions]="{standalone: true}" (blur)="changeValue(id, 'canView', $event)" (onchange)="Save('test','canView', $event,roleAccess.formId,'formid')" ></td>
+              <td align="center"><input name="checkbox" type="checkbox" id="checkbox" [(ngModel)]="roleAccess.canAdd"
+                [ngModelOptions]="{standalone: true}" (blur)="changeValue(id, 'canAdd', $event)" (onchange)="Save('test','canView', $event,roleAccess.formId,'formid')" ></td>
+              <td align="center"><input name="checkbox" type="checkbox" id="checkbox" [(ngModel)]="roleAccess.canEdit"
+                [ngModelOptions]="{standalone: true}" (blur)="changeValue(id, 'canEdit', $event)" (onchange)="Save('test','canView', $event,roleAccess.formId,'formid')" ></td>
+              <td align="center"><input name="checkbox" type="checkbox" id="checkbox" [(ngModel)]="roleAccess.canDelete"
+                [ngModelOptions]="{standalone: true}" (blur)="changeValue(id, 'canDelete', $event)" (onchange)="Save('test','canView', $event,roleAccess.formId,'formid')" ></td>
+              <!-- <td align="center"><a href="#" class="mt-delete-btn"></a></td> -->
+         
+            </tr>
+          </td>
+        </tr>
+        
+
+      </table>
+      <div class="clear"></div>
+      <!-- <a href="#" class="mt-add-row-btn"></a> -->
+      <div class="clear"></div>
+      <div class="blue-btn"><a (click)="OnSave()">Save</a></div>
+      
+    </div>
+  </div>
+</div>
+</body>

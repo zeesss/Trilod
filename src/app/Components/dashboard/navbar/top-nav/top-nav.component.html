@@ -1,0 +1,97 @@
+
+<head>
+<meta charset="utf-8">
+<title>Trilod</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Styles Sheets -->
+<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/style.css" rel="stylesheet"  type="text/css">
+</head>
+
+<header class="bg-02">
+  <div class="content-box">
+  <div class="col-xl-4 float-left">
+
+      <div class="logo logo-02"><a href="#"><img src="assets/images/logo.png" alt="logo"></a></div>
+
+  </div>
+  <div class="col-xl-8 float-right">
+
+    <a (click)="logout()" class="logout">Logout</a>
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              ADMINISTRATION
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" id="1" *ngIf="matchKey('1')"  (click)="roles()">Roles </a>
+              <a class="dropdown-item" (click)="assignForms()">Assign Forms to Roles</a>
+              <a class="dropdown-item" id="2" *ngIf="matchKey('2')" (click)="users()">Users</a>
+              <a class="dropdown-item" id="4" *ngIf="matchKey('4')" (click)="fileType()">File Type</a>
+              <!-- <a class="dropdown-item" href="#">Assign Roles to Users</a> -->
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                TEMPLATE
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" id="5"  (click)="addTemplate()">Template</a>
+              </div>
+            </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              SETUP
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" id="3" *ngIf="matchKey('3')" (click)="company()">Company</a>
+              <a class="dropdown-item" id="3" *ngIf="matchKey('3')" (click)="company()">Process</a>
+              <a class="dropdown-item" id="5"  (click)="control()">Control</a>
+              <a class="dropdown-item" id="5"  (click)="rule()">Rule</a>
+              <!-- <a class="dropdown-item" id="5" *ngIf="matchKey('5')" (click)="controlTask()">Control Task</a> -->
+              <!-- <a class="dropdown-item" id="7" *ngIf="matchKey('7')" (click)="config()">Configuration for Audit Data</a> -->
+              <!-- <a class="dropdown-item" id="8" *ngIf="matchKey('8')" (click)="controlAttribute()">Control Attribute</a> -->
+              <!-- <a class="dropdown-item" id="9" *ngIf="matchKey('9')" (click)="rcm()">Risk Control Matrix</a> -->
+              <!-- <a class="dropdown-item" (click)="dashboard()">Dashboard</a> -->
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              AUDIT SESSION
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" id="6" *ngIf="matchKey('6')" (click)="sessions()">Audit</a>
+              <a class="dropdown-item" id="6" *ngIf="matchKey('6')" (click)="auditControl()">Audit Controls</a>
+              <a class="dropdown-item" id="6" *ngIf="matchKey('6')" (click)="sampleFile()">Sample Source</a>
+            </div>
+          </li>
+          <!-- <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              REPORTS
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" (click)="eventLog()">Event Log</a>
+              <a class="dropdown-item" (click)="WPT()">Work Paper Template</a>
+              <!-- <a class="dropdown-item" (click)="toExcel()">File To Excel</a>
+            </div>
+          </li> -->
+        </ul>
+      </div>
+    </nav>
+
+  </div>
+
+
+
+
+
+  </div>
+</header>
+<div class="clear"></div>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Trilod</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Styles Sheets -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="clear"></div>
+  <div class="col-md-12">
+    <div class="content-box">
+      <div class="white-con">
+        <div class="breadcrumb">
+          <ul>
+            <li>
+              <a href="#">Dashboard</a>
+            </li>
+            <li>
+              <a href="#">Template</a>
+            </li>
+          </ul>
+        </div>
+        <div class="side-menu">
+          <ul>
+            <li>
+              <a (click)=openAddNew()>New</a>
+            </li>
+          </ul>
+        </div>
+        <h1>Template
+          <span></span>
+        </h1>
+      </div>
+    </div>
+  </div>
+  <div class="main-table-con">
+    <div class="col-md-12">
+      <div class="content-box">
+        <!-- Editable table -->
+        <div class="">
+          <div class="table-outer-con">
+            <div id="table" class="table-editable">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table  mt-0">
+                <tr>
+                  <th>Sr.No.</th>
+                  <th>Name</th>
+                  <th>Format</th>
+                  <th>Description</th>
+                  <th>Action</th>
+                </tr>
+                <tr *ngFor="let template of dataSource; let id = index">
+                  <td>
+                    <span>{{id+1}}</span>
+                  </td>
+                  <td>
+                    <span>{{template.name}}</span>
+                  </td>
+                  <td>
+                    <span>{{template.fileType.name}}</span>
+                  </td>
+                  <td>
+                    <span>{{template.description}}</span>
+                  </td>
+                  <td>
+                    <span>
+                      <a class="mt-view-btn" (click)=editUserRole(template.id)></a>
+                    </span>
+                    <a class="mt-edit-btn" (click)=editUserRole(template.id)></a>
+                    &nbsp;&nbsp;
+                    <a class="mt-delete-btn" (click)=editUserRole(template.id)></a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+<script>
+  jQuery(document).ready(function ($) {
+    $(window).load(function () {
+      setTimeout(function () {
+        $('#preloader').fadeOut('slow', function () {
+        });
+      }, 3000); // set the time here
+    });
+  });
+</script>

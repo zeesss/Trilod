@@ -1,0 +1,307 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Trilod</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Styles Sheets -->
+<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/style.css" rel="stylesheet"  type="text/css">
+</head>
+<body>
+<!-- <header class="bg-01">
+  <div class="col-md-12">
+    <div class="content-box"><a href="#" class="logout">Logout</a>
+      <div class="logo logo-02"><a href="#"><img src="assets/images/logo.png" alt="logo"></a></div>
+    </div>
+  </div>
+</header> -->
+<div class="clear"></div>
+<div class="col-md-12">
+  <div class="content-box">
+    <div class="white-con">
+      <div class="breadcrumb">
+        <ul>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Audit Session</a></li>
+        </ul>
+      </div>
+      <h1>Audit Session<span></span></h1>
+      <div class="side-menu">
+        <ul>
+          <li><a (click)=addConfig()>Add/ Update Configuration</a></li>
+          <!-- <li><a href="#">Edit</a></li>
+          <li><a href="#">Delete</a></li> -->
+        </ul>
+      </div>
+      <!-- <a (click)="addConfig()">Add/ Update Configuration</a> -->
+      <div class="inner-white-box">
+        <div class="form-con">
+          <div class="col-md-6 float-left pl-0">
+            <label>Company:</label>
+            <!-- <select id="company" class="field-style-list-01 custom-select" required [(ngModel)]="company" (onchange)="changeCompany()">
+              <option selected value="">-SELECT-</option>
+              <option  *ngFor="let company of this.CompanyList; index as i" >{{company.clientName}}</option>
+              
+            </select> -->
+            <!-- <select (change)="onChange($event.target.value)" class="field-01 form-control">
+              <option selected value="session.clientId.clientName">{{session.clientId.clientName}}</option>
+            <option *ngFor="let company of this.CompanyList; index as i">{{company.clientName}}</option>
+        </select> -->
+            <!-- <select [(ngModel)]="clientName" class='form-control' >
+              <option *ngFor="let company of this.CompanyList"
+              [ngValue]="company.clientName">{{company.clientName}}</option>
+          </select>-->
+            <select [(ngModel)]="this.session.clientId.clientName" class='form-control' (change)="onChange($event.target.value)" >
+                <option *ngFor="let company of this.CompanyList" 
+                [ngValue]="company.clientName">{{company.clientName}}</option>
+            </select> 
+            
+            
+            <div class="clear"></div>
+            <label>Audit Name:</label>
+            <input type="text" name="" class="field-01 form-control" [(ngModel)]="auditName" disabled >
+            <div class="clear"></div>
+            <label>Address:</label>
+            <input type="text" name="" class="field-01 form-control" [(ngModel)]="address" >
+          </div>
+          <div class="col-md-6 float-left pr-0">
+            <label>Fiscal Start Date:</label>
+            <input name="" value="Start Date:" onfocus="(this.value == 'Start Date:') && (this.value = '')"
+               onblur="(this.value == '') && (this.value = 'Start Date:')" placeholder="Start Date"
+                class="" (click)="picker.open()"   [(ngModel)]="fiscalStartDate"
+                [matDatepicker]="picker"/>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            <!-- <input type="text" name="" class="calendar-field form-control"> -->
+            <div class="clear"></div>
+            <label>Fiscal End Date:</label>
+            <input name="" value="End Date:" onfocus="(this.value == 'End Date:') && (this.value = '')"
+             onblur="(this.value == '') && (this.value = 'End Date:')"  placeholder="End Date"
+               (click)="pickers.open()"  [(ngModel)]="fiscalEndDate"
+              [matDatepicker]="pickers" />
+             <mat-datepicker-toggle matSuffix [for]="pickers"></mat-datepicker-toggle>
+             <mat-datepicker #pickers ></mat-datepicker>
+            <!-- <input type="text" name="" class="calendar-field form-control"> -->
+            
+            
+              
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
+<div class="main-table-con">
+  <div class="col-md-12">
+    <div class="content-box">
+      <h2 class="mtc-heading">Population<span></span></h2>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
+        <tr>
+          <th width="50%">Requested Data</th>
+          <th>Requested Date</th>
+          <th>Fulfil Date</th>
+        </tr>
+        
+        <tr *ngFor="let population of this.PopulationList; let id = index" >
+          <td> 
+              <input contenteditable="true" type="text" name="" class="field-01 form-control" [(ngModel)]="requestedData" >
+            <!-- <span contenteditable="true"  [(ngModel)]="RequestedData"></span> -->
+          </td>
+          <td>
+              <!-- <span contenteditable="true" ngDefaultControl [(ngModel)]="population.requestedDate" (blur)="changeValuePopulation(id, 'rDate', $event)" >{{population.requestedDate}}</span> -->
+<input name="" value="Requested Date:" onfocus="(this.value == 'Requested Date:') && (this.value = '')"
+             onblur="(this.value == '') && (this.value = 'Requested Date:')"  placeholder="Requested Date"
+               (click)="pickers.open()"  [(ngModel)]="requestedDate"
+              [matDatepicker]="reqDate" />
+             <mat-datepicker-toggle matSuffix [for]="reqDate"></mat-datepicker-toggle>
+             <mat-datepicker #reqDate ></mat-datepicker>
+          </td>
+          <td>
+              <input name="" value="FulFill Date:" onfocus="(this.value == 'FulFill Date:') && (this.value = '')"
+              onblur="(this.value == '') && (this.value = 'FulFill Date:')"  placeholder="FulFill Date"
+                (click)="pickers.open()"  [(ngModel)]="fulfillDate"
+               [matDatepicker]="fulDate" />
+              <mat-datepicker-toggle matSuffix [for]="fulDate"></mat-datepicker-toggle>
+              <mat-datepicker #fulDate ></mat-datepicker>
+              <!-- <span contenteditable="true" ngDefaultControl [(ngModel)]="population.fulfillDate" (blur)="changeValuePopulation(id, 'fDate', $event)" >{{population.fulfillDate}}</span> -->
+
+          </td>
+        </tr>
+      </table>
+      <div class="clear"></div>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table" *ngIf="con===true" >
+        <tr>
+          <th>File Name</th>
+          <th>Format</th>
+          <th>Type</th>
+          <th>Sample Size Number</th>
+          <th>Sample Size % Population</th>
+        
+          <th>&nbsp;</th>
+        </tr>
+        
+        <tr *ngFor="let file of session.auditFileList; let id = index">
+          <td>{{file.fileName}}</td>
+          <td>{{file.format}}</td>
+          <td>{{file.fileType}}</td>
+          <td>{{file.sampleSizeNumber?file.sampleSizeNumber:""}}</td>
+          <td>{{file.sampleSizePercentage?file.sampleSizePercentage:""}}</td>
+          
+          <td><a *ngIf="session.auditFileList.length>=1" (click)="sampleFile()" class="">Sample</a></td>
+        </tr>
+      </table>
+      <div class="clear"></div>
+      <a *ngIf="session.status!==1" (click)="addFile()" class="mt-add-row-btn"></a>
+      
+      <!-- <a *ngIf="session.auditFileList.length<1" (click)="addFile()" class="mt-add-row-btn"></a> -->
+      <div class="clear"></div>
+      
+      
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
+        <tr>
+          <th>Control Task Code</th>
+          <th>Description</th>
+          <th>Business Rule</th>
+          <th>Rule Type</th>
+          <th>File Type</th>
+          <th align="center">Is Active</th>
+          <th>Creation Date</th>
+        </tr>
+         <tr >
+           <td>
+                <select  class='form-control'  [(ngModel)]="newAttribute.code" name="code" (change)=getrow() >
+                    <option *ngFor="let codes of code"  [ngValue]="codes"  
+                    >{{codes}}</option>
+                </select>
+              
+            </td>
+            <td>
+              <span contenteditable="true" ngDefaultControl [(ngModel)]="newAttribute.description" (blur)="changeValue(id, 'description', $event)" >{{newAttribute.description}}</span>
+            </td>
+            <td>
+              <span contenteditable="true" ngDefaultControl [(ngModel)]="newAttribute.businessRule" (blur)="changeValue(id, 'businessRule', $event)">{{newAttribute.businessRule}}</span>
+            </td>
+            
+                <td valign="top">
+                    <select [(ngModel)]="newAttribute.ruleType" class='form-control' name="ruleType" >
+                        <option *ngFor="let ruleType of this.RuleTypeList" 
+                        [ngValue]="ruleType.text">{{ruleType.text}}</option>
+                    </select>
+
+                </td>
+             
+            <td>
+               
+                  <select [(ngModel)]="newAttribute.fileTypeId.name" class='form-control' >
+                    <option *ngFor="let fileType of this.FileTypeList" 
+                    [ngValue]="fileType.name">{{fileType.name}}</option>
+                </select>
+            </td>
+            <!-- <td align="center" valign="top"><input  type="checkbox" [(ngModel)]="newAttribute.isActive"
+              [ngModelOptions]="{standalone: true}"   ></td> -->
+
+            <td>
+                {{newAttribute.createDate}}
+              </td>
+           
+            
+          </tr>
+        <tr  *ngFor="let field of fieldArray; let id = index">
+            <td>
+                <span (keyup)="changeValue1(id, 'code', $event)" (blur)="updateList(field.id,id, 'code', $event)" contenteditable="true">{{field.code}}</span>
+              </td>
+              <td>
+                <span contenteditable="true" (keyup)="changeValue1(id, 'description', $event)" (blur)="updateList(field.id,id, 'description', $event)">{{field.description}}</span>
+              </td>
+              <td>
+                <span contenteditable="true" (keyup)="changeValue1(id, 'businessRule', $event)" (blur)="updateList(field.id,id, 'businessRule', $event)">{{field.businessRule}}</span>
+              </td>
+                  <td valign="top">
+                      <select [(ngModel)]="field.ruleType" class='form-control'  (onchange)="changeValue1(id, 'ruleType', $event)" (blur)="updateList(field.id,id, 'ruleType', $event)">
+                          <option *ngFor="let ruleType of this.RuleTypeList" 
+                          [ngValue]="ruleType.text">{{ruleType.text}}</option>
+                      </select>
+                  </td>
+                
+              <td>
+                    <select [(ngModel)]="field.fileTypeId.name" class='form-control' (onchange)="changeValue1(id, 'fileType', $event)" (blur)="updateList(field.id,id, 'fileType', $event)">
+                      <option *ngFor="let fileType of this.FileTypeList" 
+                      [ngValue]="fileType.name">{{fileType.name}}</option>
+                  </select>
+              </td>
+               <!-- <td align="center" valign="top"><input  type="checkbox" [(ngModel)]="field.isActive" 
+                [ngModelOptions]="{standalone: true}"  (onchange)="changeValue1(id, 'isActive', $event)" (blur)="updateList(field.id,id, 'isActive', $event)" ></td>
+   -->
+              <td>
+                  {{field.createDate}}
+                </td>
+                <td>
+                  <button type="button" color="danger" rounded="true" size="sm" class="side-menu" (click)="remove(field.id, id)">Remove</button>
+              </td>
+             
+              
+          <!-- <td valign="top"><select name="" class="field-style-list-01 custom-select">
+              <option>AB5611</option>
+              <option>AB5610</option>
+            </select></td>
+          <td valign="top"><input type="text" name="" class="field-style-01 form-control" placeholder="Description">{{field.description}</td>
+          <td valign="top"><textarea cols="" rows="" class="textarea-style-01 form-control" placeholder="Rule..."></textarea></td>
+          <td valign="top"><select name="" class="field-style-list-01 custom-select">
+              <option>Lookup</option>
+              <option>.....</option>
+            </select></td>
+          <td valign="top"><select name="" class="field-style-list-01 custom-select">
+              <option>.....</option>
+              <option>.....</option>
+            </select></td>
+          <td align="center" valign="top"><input name="" type="checkbox" value=""></td>
+          <td valign="top">3/31/2017  10:22:00 AM</td> -->
+        </tr>
+        
+        <!-- <tr>
+            <td>
+                <input class="form-control" type="text" id="newAttributeCode" [(ngModel)]="newAttribute.code" name="newAttributeCode" />
+            </td>
+            <td>
+                <input class="form-control" type="text" id="newAttributeName" [(ngModel)]="newAttribute.description" name="newAttributeName" />
+            </td>
+            <td>
+                <input class="form-control" type="text" id="newAttributePrice" [(ngModel)]="newAttribute.businessRule" name="newAttributePrice" />
+            </td>
+            <td>
+                <input class="form-control" type="text" id="newAttributeCode" [(ngModel)]="newAttribute.ruleType" name="newAttributeCode" />
+            </td>
+            <td>
+                <input class="form-control" type="text" id="newAttributeName" [(ngModel)]="newAttribute.fileTypeId.name" name="newAttributeName" />
+            </td>
+            <td>
+                <input class="form-control" type="text" id="newAttributePrice" [(ngModel)]="newAttribute.isActive" name="newAttributePrice" />
+            </td>
+            <td>
+                <input class="form-control" type="text" id="newAttributePrice" [(ngModel)]="newAttribute.createDate" name="newAttributePrice" />
+            </td>
+        </tr> -->
+      </table>
+      <div class="clear"></div>
+      <a (click)="addFieldValue()" class="mt-add-row-btn"></a> 
+      <div class="side-menu">
+        <ul>
+          <li><a (click)=editSessionAudit()>Edit Audit Session</a></li>
+          <!-- <li><a href="#">Edit</a></li>
+          <li><a href="#">Delete</a></li> -->
+        </ul>
+      </div>
+      <!-- <button (click)="editSessionAudit()" class="">Edit Audit Session</button>  -->
+    </div>
+      
+      
+  </div>
+  
+</div>
+
+</body>
+
+</html>

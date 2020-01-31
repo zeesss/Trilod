@@ -1,0 +1,424 @@
+<div class="div-top-margin">
+  <mat-card class="list-item-card mat-elevation-z8">
+    <mat-card-header>
+      <div class="flex-vert-center" fxFlex>
+        <mat-card-title>
+          <div fxLayout="row" fxLayout.xs="column" fxLayout.lg="row">
+            <span class="margin2per">{{patient.fullName}}</span>
+            <mat-divider vertical="true"></mat-divider>
+            <span class="margin2per normal-font">MRN: {{patient.MRN}}</span>
+            <mat-divider vertical="true"></mat-divider>
+            <span class="margin2per normal-font">{{patient.birthDate}}</span>
+            <mat-divider vertical="true"></mat-divider>
+            <span class="margin2per normal-font">{{patient.gender}}</span>
+            <mat-divider vertical="true"></mat-divider>
+            <span class="margin2per normal-font">{{patient.maritalStatus.display}}</span>
+
+            <!--<div fxFlex fxShow.xs fxHide.sm fxHide.md fxHide.lg class="last-update-color">-->
+            <!--<span class="margin2per normal-font">{{patient.lastUpdated}}</span>-->
+            <!--</div>-->
+          </div>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <div fxLayout="row" fxLayout.xs="column" fxLayout.lg="row">
+            <span class="margin2per" *ngIf="patient.address.length > 0">{{patient.address[0].fullAddress}}</span>
+            <mat-divider vertical="true" *ngIf="patient.address.length > 0"></mat-divider>
+            <span class="margin2per" *ngIf="patient.telecom.length > 0">{{patient.telecom[0].value}}</span>
+          </div>
+        </mat-card-subtitle>
+      </div>
+      <div fxFlex="2" fxLayoutAlign="end" class="last-update-color">
+        <button class="view-btn" mat-mini-fab color="warn" (click)="backToDash()">Back</button>
+        <!--<span class="margin2per normal-font">{{patient.lastUpdated}}</span>-->
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayout.md="column" fxLayout.lg="row"
+           class="card-main-div">
+        <div fxFlex>
+          <h4>Care Providers List</h4>
+          <p *ngFor="let careProvider of patient.AllCareProviders">{{careProvider.display}}</p>
+        </div>
+        <div fxFlex>
+          <h4>Authorized Contacts</h4>
+          <mat-accordion>
+            <mat-expansion-panel *ngFor="let contact of patient.contact">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{contact.relationship}}
+                </mat-panel-title>
+                <mat-panel-description>
+                  {{contact.fullName}}
+
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <p><strong>Address: </strong> {{contact.address.fullAddress}}</p>
+              <p><strong>Gender: </strong> {{contact.gender}}</p>
+
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Contact
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div *ngFor="let telecom of contact.telecom">
+                  <p>{{telecom.system}} : {{telecom.value}} ({{telecom.use}})</p>
+                </div>
+              </mat-expansion-panel>
+
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Vitals Container ***************************88-->
+
+  <div fxLayout="row" fxLayout.xs="row" fxLayout.sm="row" fxLayout.lg="row" class="card-main-div">
+    <div fxFlex>
+      <mat-card class="vitals-card mat-elevation-z6">
+        <mat-card-header class="vitals-card-header mat-elevation-z3 negative-top-margin" style="background:chocolate">
+          <mat-card-title class="vitals-card-header-title">
+            <i style="color:white;" class="fas fa-thermometer"></i>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Body Temperature</p>
+          <!--<hr>-->
+          <p>98.6 <strong>F</strong></p>
+        </mat-card-content>
+        <mat-card-footer>
+        </mat-card-footer>
+      </mat-card>
+
+    </div>
+    <div fxFlex>
+      <mat-card class="vitals-card mat-elevation-z6">
+        <mat-card-header class="vitals-card-header mat-elevation-z3 negative-top-margin" style="background:chocolate">
+          <mat-card-title class="vitals-card-header-title">
+            <i style="color:white;" class="fas fa-ruler"></i>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Body height</p>
+          <!--<hr>-->
+          <p>72 <strong>in</strong></p>
+        </mat-card-content>
+        <mat-card-footer>
+        </mat-card-footer>
+      </mat-card>
+
+    </div>
+    <div fxFlex>
+      <mat-card class="vitals-card mat-elevation-z6">
+        <mat-card-header class="vitals-card-header mat-elevation-z3 negative-top-margin" style="background:chocolate">
+          <mat-card-title class="vitals-card-header-title">
+            <i style="color:white;" class="fas fa-weight"></i>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Body weight</p>
+          <!--<hr>-->
+          <p>176.4 <strong>lb</strong></p>
+        </mat-card-content>
+        <mat-card-footer>
+        </mat-card-footer>
+      </mat-card>
+
+    </div>
+    <div fxFlex>
+      <mat-card class="vitals-card mat-elevation-z6">
+        <mat-card-header class="vitals-card-header mat-elevation-z3 negative-top-margin" style="background:chocolate">
+          <mat-card-title class="vitals-card-header-title">
+            <i style="color:white;" class="fas fa-weight-hanging"></i>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Body mass index</p>
+          <!--<hr>-->
+          <p>23.9 <strong>lb/in2</strong></p>
+        </mat-card-content>
+        <mat-card-footer>
+        </mat-card-footer>
+      </mat-card>
+
+    </div>
+    <div fxFlex>
+      <mat-card class="vitals-card mat-elevation-z6">
+        <mat-card-header class="vitals-card-header mat-elevation-z3 negative-top-margin" style="background:chocolate">
+          <mat-card-title class="vitals-card-header-title">
+            <i style="color:white;" class="fas fa-heartbeat"></i>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>blood pressure</p>
+          <!--<hr>-->
+          <p>61/135 <strong>mmHg</strong></p>
+        </mat-card-content>
+        <mat-card-footer>
+        </mat-card-footer>
+      </mat-card>
+
+    </div>
+    <div fxFlex>
+      <mat-card class="vitals-card mat-elevation-z6">
+        <mat-card-header class="vitals-card-header mat-elevation-z3 negative-top-margin" style="background:chocolate">
+          <mat-card-title class="vitals-card-header-title">
+            <i style="color:white;" class="fab fa-gratipay"></i>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Heart Rate</p>
+          <!--<hr>-->
+          <p>61 <strong>/min</strong></p>
+        </mat-card-content>
+        <mat-card-footer>
+        </mat-card-footer>
+      </mat-card>
+
+    </div>
+    <div fxFlex>
+      <mat-card class="vitals-card mat-elevation-z6">
+        <mat-card-header class="vitals-card-header mat-elevation-z3 negative-top-margin" style="background:chocolate">
+          <mat-card-title class="vitals-card-header-title">
+            <i style="color:white;" class="fas fa-atom"></i>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Respiratory Rate</p>
+          <!--<hr>-->
+          <p>18 <strong>/min</strong></p>
+        </mat-card-content>
+        <mat-card-footer>
+        </mat-card-footer>
+      </mat-card>
+
+    </div>
+
+  </div>
+
+  <!-- Container for first row of diagnostic and problems -->
+  <div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayout.lg="row" class="card-main-div">
+      <!-- Container for diagnosis card -->
+      <div fxFlex>
+        <mat-card class="mat-elevation-z8 max-height-overflow">
+          <mat-card-header class="negative-top-margin">
+            <mat-card-title>
+              <h4>Diagnosis <i class="fas fa-allergies"></i></h4>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-accordion>
+              <mat-expansion-panel *ngFor="let diagnosis of encounter.conditions">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <p> {{diagnosis.clinicalStatus}} </p>
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    <p> {{diagnosis.condition.displayText}} </p>
+
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <p><strong>Diagnosed By:</strong> {{diagnosis.assertedBy}} </p>
+                <p><strong>Date Recorded:</strong> {{diagnosis.dateRecorded}} </p>
+                <p><strong>Verification Status:</strong> {{diagnosis.verificationStatus}} </p>
+                <p><strong>On set Date And Time:</strong> {{diagnosis.onsetDateTime}} </p>
+                <p><strong>Notes:</strong> {{diagnosis.notes}} </p>
+                <p><strong>Severity:</strong> {{diagnosis.severity}} </p>
+              </mat-expansion-panel>
+            </mat-accordion>
+
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <!-- container for Problems card -->
+      <div fxFlex>
+        <mat-card class="mat-elevation-z8 max-height-overflow">
+          <mat-card-header>
+            <mat-card-title>
+              <h4>Problems</h4>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-accordion>
+              <mat-expansion-panel *ngFor="let diagnosis of problems">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <p> {{diagnosis.clinicalStatus}} </p>
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    <p> {{diagnosis.condition.displayText}} </p>
+
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <p><strong>Diagnosed By:</strong> {{diagnosis.assertedBy}} </p>
+                <p><strong>Date Recorded:</strong> {{diagnosis.dateRecorded}} </p>
+                <p><strong>Verification Status:</strong> {{diagnosis.verificationStatus}} </p>
+                <!-- <p><strong>On set Date And Time:</strong> {{diagnosis.onsetDateTime}} </p>
+                <p><strong>Notes:</strong> {{diagnosis.notes}} </p> -->
+                <p><strong>Severity:</strong> {{diagnosis.severity}} </p>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <!-- End Container for first row of diagnostic and problems -->
+
+  <!-- Start Container for second row of Medication and Allergies -->
+  <div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayout.lg="row" class="card-main-div">
+      <!-- Container for Medication card -->
+      <div fxFlex>
+        <mat-card class="mat-elevation-z8 max-height-overflow">
+          <mat-card-header>
+            <mat-card-title>
+              <h4>Medication </h4>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-accordion>
+              <mat-expansion-panel *ngFor="let medication of encounter.medications">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <p> {{medication.status}} </p>
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    <p> {{medication.medication}} </p>
+
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <p><strong>Prescriber</strong> {{medication.prescriber}} </p>
+                <p><strong>Date Written</strong> {{medication.dateWritten}} </p>
+                <p><strong>Last Updated</strong> {{medication.lastUpdated}} </p>
+                <!-- ////////////Start of dosage instruction accordian////////// -->
+                <mat-accordion>
+                  <mat-expansion-panel *ngFor="let dosage of medication.dosageInstruction">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <p> {{dosage.textShort}} </p>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <p><strong>Start</strong> {{dosage.timing.start}} </p>
+                    <p><strong>End</strong> {{dosage.timing.end}} </p>
+                    <p><strong>Frequency</strong> {{dosage.timing.frequency}} </p>
+
+                  </mat-expansion-panel>
+                </mat-accordion>
+
+                <!-- ////////////End of dosage instruction accordian////////// -->
+              </mat-expansion-panel>
+            </mat-accordion>
+
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <!-- container for Problems card -->
+      <div fxFlex>
+        <mat-card class="mat-elevation-z8 max-height-overflow">
+          <mat-card-header>
+            <mat-card-title>
+              <h4>Allergies</h4>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-accordion>
+              <mat-expansion-panel *ngFor="let allergy of patient.allergies">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <p> {{allergy.status}} <strong>( {{allergy.criticality}} )</strong></p>
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    <p> {{allergy.substance}} </p>
+
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <p><strong>Recorded Date:</strong> {{allergy.recordedDate}} </p>
+                <p><strong>Onset:</strong> {{allergy.onset}} </p>
+                <p><strong>Recorder:</strong> {{allergy.recorder}} </p>
+                <p><strong>Reporter:</strong> {{allergy.reporter}} </p>
+                <p><strong>Category:</strong> {{allergy.category}} </p>
+                <p><strong>Note:</strong> {{allergy.note}} </p>
+                <!-- //////////start of reaction accordian ///////// -->
+                <mat-accordion>
+                  <mat-expansion-panel *ngFor="let reaction of allergy.reaction">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <p> {{reaction.manifestation}} <strong>( {{reaction.certainty}} )</strong></p>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <p><strong>Reaction onset:</strong> {{reaction.onset}} </p>
+                    <p><strong>Note:</strong> {{reaction.note}} </p>
+
+                  </mat-expansion-panel>
+                </mat-accordion>
+
+                <!-- //////////end of reaction accordian ///////// -->
+              </mat-expansion-panel>
+            </mat-accordion>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <!-- End Container for second row of Medication and Allergies -->
+
+
+  <!-- Start Container for third row of Encounter and Providers -->
+  <div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayout.lg="row" class="card-main-div">
+      <!-- Container for Encounter card -->
+      <div fxFlex>
+        <mat-card class="mat-elevation-z8 max-height-overflow">
+          <mat-card-header>
+            <mat-card-title>
+              <h4>Encounter Information </h4>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p><strong>Status:</strong> {{encounter.status}} </p>
+            <p><strong>Patient Class:</strong> {{encounter.class}} </p>
+
+            <p *ngFor="let reason of encounter.reasonOfVisit"><strong>Reason of Visit:</strong> {{reason.text}} </p>
+
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <!-- container for Problems card -->
+      <div fxFlex>
+        <mat-card class="mat-elevation-z8 max-height-overflow">
+          <mat-card-header>
+            <mat-card-title>
+              <h4>Care Providers</h4>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-accordion>
+              <mat-expansion-panel *ngFor="let careprovider of patient.AllCareProviders">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <p> {{careprovider.display}} </p>
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    <p><strong>{{careprovider.id}}</strong></p>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <p><strong>Contact :</strong></p>
+                <p *ngFor="let tel of careprovider.telecom">{{tel.system}} <strong>{{tel.value}}</strong>( {{tel.use}} )
+                </p>
+                <p><strong>Address :</strong></p>
+                <p *ngFor="let address of careprovider.address">{{address.fullAddress}}</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <!-- End Container for third row of Encounter and Providers -->
+
+
+</div>

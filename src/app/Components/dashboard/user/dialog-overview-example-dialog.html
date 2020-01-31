@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Trilod</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Styles Sheets -->
+<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/style.css" rel="stylesheet"  type="text/css">
+</head>
+<body class="bg-01">
+<div class="container">
+  <div class="col-md-12">
+    <!-- <div class="logo"><a href="#"><img src="assets/images/logo.png" alt="logo"></a></div> -->
+    <!-- <div class="clear"></div> -->
+    <!-- <div class="mainimg"><img src="assets/images/signin-icon.png" alt="Signin"></div> -->
+    <div class="arrow-box login-screen">
+      <div class="box-left">
+        <div class="border"></div>
+      </div>
+      <div class="box-right">
+        <div class="border"></div>
+      </div>
+      <div class="arrow-container">
+        <div class="arrow"></div>
+      </div>
+      <div class="arrow-box-content">
+        <div class="form">
+          <label>User Name:*</label>
+          <input type="text" [(ngModel)]="userName" name="name" class="textfield" required placeholder="Name">
+          <label>First Name:*</label>
+          <input type="text" [(ngModel)]="firstName" name="name" class="textfield" required placeholder="First Name">
+          <label>Middle Name:</label>
+          <input type="text" [(ngModel)]="middleName" name="name" class="textfield" required placeholder="Middle Name">
+          <label>Last Name:*</label>
+          <input type="text" [(ngModel)]="lastName" name="name" class="textfield" required placeholder="Last Name">
+          <label>Email:*</label>
+          <input type="email" [(ngModel)]="email" name="name" class="textfield" required placeholder="example@example.com">
+          
+          
+           
+          <div class="text-box color-white text-16">
+            <input type="checkbox"  [(ngModel)]="isActive">
+            Active</div>
+            Select Role
+            
+           
+            <select  multiple="true" [(ngModel)]="selected">
+              
+                <option *ngFor="let object of rolesList; let i=index" >{{object.roleName}}</option>
+                 
+              </select>
+            <ng-container *ngFor="let object of rolesList; let i=index">
+              <input type="checkbox" (click)="changeValue(object.id, $event)" > {{object.roleName}}
+            </ng-container>
+          <a (click)="onYesClick()" class="button float-right">Save</a> <a (click)="onNoClick()" class="button float-left">Cancel</a>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="copyright">Copy Rights 2019, Trilod Automation Tool</div> -->
+  </div>
+</div>
+</body>
+</html>

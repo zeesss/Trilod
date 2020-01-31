@@ -1,0 +1,57 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+body {
+  margin: 0px;
+}
+
+.div-top-margin {
+  margin-top: 80px;
+}
+
+.mat-card-header .mat-card-title {
+  font-size: 18px;
+}
+.mat-expansion-indicator::after {
+  color: #ea1862;
+   
+}
+.div-top-margin {
+  margin-top: 120px;
+}
+.border{
+border-radius: 1em;
+}
+/* TOASTR BUGFIX */
+#toast-container > div {
+  opacity: 1;
+}
+.toast {
+  font-size: initial !important;
+  border: initial !important;
+  backdrop-filter: blur(0) !important;
+}
+.toast-success {
+  background-color: #51A351 !important;
+}
+.toast-error {
+  background-color: #BD362F !important;
+}
+.toast-info {
+  background-color: #2F96B4 !important;
+}
+.toast-warning {
+  background-color: #F89406 !important;
+}
+
+@media (max-width : 700px) {
+  .mat-expansion-panel-header{
+    height: fit-content !important;
+  }
+}
+
+
+
+.table-wrap {
+  height: 220px;
+  overflow-y: auto;
+}

@@ -1,0 +1,244 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Trilod</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Styles Sheets -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <!-- <header class="bg-01">
+  <div class="col-md-12">
+    <div class="content-box">
+      <a href="#" class="logout">Logout</a> 
+      <div class="logo logo-02"><a href="#"><img src="assets/images/logo.png" alt="logo"></a></div>
+    </div>
+  </div>
+</header> -->
+  <div class="clear"></div>
+  <div class="col-md-12">
+    <div class="content-box">
+      <div class="white-con">
+        <div class="breadcrumb">
+          <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Control Task Definition</a></li>
+          </ul>
+        </div>
+        <div class="side-menu" *ngIf="this.checkObject.canAdd">
+          <ul>
+            <li><a (click)=newControl()>New</a></li>
+            <!-- <li><a href="#">Edit</a></li>
+          <li><a href="#">Delete</a></li> -->
+          </ul>
+        </div>
+        <h1>Control Task Definition<span></span></h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="clear"></div> -->
+
+  <div class="main-table-con" *ngIf="this.checkObject.canView">
+    <div class="col-md-12">
+      <div class="content-box">
+        <!-- Editable table -->
+        <div class="table-outer-con">
+          <div id="table" class="table-editable">
+            <div *ngIf="this.personList.length==0">
+              <h1>
+                No Records Found
+              </h1>
+            </div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table mt-0"
+              *ngIf="this.personList.length>0">
+              <tr>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Business Rule</th>
+                <th>Rule Type</th>
+                <th>File Type</th>
+                <th align="center">Is Active</th>
+                <th>Creation Date</th>
+                <th *ngIf="this.checkObject.canDelete">Actions</th>
+
+              </tr>
+              <tr *ngFor="let person of this.personList; let id = index ">
+                <td valign="top">
+                  <div style='text-align:left;' (keyup)="changeValue(id, 'code', $event)"
+                    (blur)="updateList(person.id,id, 'code', $event)" *ngIf="!this.checkObject.canEdit">{{person.code}}</div>
+
+                  <div style='text-align:left;' (keyup)="changeValue(id, 'code', $event)"
+                    (blur)="updateList(person.id,id, 'code', $event)" contenteditable="true" *ngIf="this.checkObject.canEdit">{{person.code}}</div>
+
+                </td>
+                <td valign="top">
+                  <div style='text-align:left;' *ngIf="!this.checkObject.canEdit" (keyup)="changeValue(id, 'description', $event)"
+                    (blur)="updateList(person.id,id, 'description', $event)">{{person.description}}</div>
+
+                  <div style='text-align:left;' contenteditable="true" *ngIf="this.checkObject.canEdit" (keyup)="changeValue(id, 'description', $event)"
+                    (blur)="updateList(person.id,id, 'description', $event)">{{person.description}}</div>
+                </td>
+                <td valign="top">
+                  <!-- <select [(ngModel)]="person.condition1" class='form-control'  (onchange)="changeValue(id, 'condition1', $event)" (blur)="updateList(person.id,id, 'condition1', $event)">
+                    <option *ngFor="let businessRule of this.findBusinessRuleList" 
+                    [ngValue]="businessRule.id">{{businessRule.textToDisplay}}</option>
+                </select>
+                <select [(ngModel)]="person.condition2" class='form-control'  (onchange)="changeValue(id, 'condition2', $event)" (blur)="updateList(person.id,id, 'condition2', $event)">
+                    <option  value=">=">>=</option>
+                    <option  value="<="><=</option>
+                    <option  value="=">=</option>
+                    <option  value=">">></option>
+                    <option  value="<"><</option>
+                </select>
+                <select [(ngModel)]="person.condition3" class='form-control'  (onchange)="changeValue(id, 'condition3', $event)" (blur)="updateList(person.id,id, 'condition3', $event)">
+                    <option *ngFor="let businessRule of this.findBusinessRuleList" 
+                    [ngValue]="businessRule.id">{{businessRule.textToDisplay}}</option>
+                </select> -->
+                <span *ngIf="!this.checkObject.canEdit" (keyup)="changeValue(id, 'businessRule', $event)"
+                    (blur)="updateList(person.id,id, 'businessRule', $event)">
+                    <!-- {{person.businessRule.length>58?person.businessRule.substring(0, 57)+'...':person.businessRule}} -->
+                    {{person.businessRule}}
+                  </span>
+                  <span contenteditable="true" *ngIf="this.checkObject.canEdit" (keyup)="changeValue(id, 'businessRule', $event)"
+                    (blur)="updateList(person.id,id, 'businessRule', $event)">
+                    <!-- {{person.businessRule.length>58?person.businessRule.substring(0, 57)+'...':person.businessRule}} -->
+                    {{person.businessRule}}
+                  </span>
+                </td>
+                <!-- <td> -->
+                <td valign="top">
+                <div *ngIf="!this.checkObject.canEdit">{{person.ruleType}}</div>
+
+                  <select *ngIf="this.checkObject.canEdit" [(ngModel)]="person.ruleType" class='form-control'
+                    (onchange)="changeValue(id, 'ruleType', $event)"
+                    (blur)="updateList(person.id,id, 'ruleType', $event)">
+                    <option *ngFor="let ruleType of this.RuleTypeList" [ngValue]="ruleType.text">{{ruleType.text}}
+                    </option>
+                  </select>
+                  <!-- <select name="" class="field-style-list-01 custom-select" (onchange)="changeValue(id, 'ruleType', $event)" (blur)="updateList(person.id,id, 'ruleType', $event)">
+                    <option *ngFor="let ruleType of this.RuleTypeList; index as i" ngModel="ruleType" >{{ruleType.text}}</option>
+                  
+                  </select> -->
+
+
+                </td>
+                <!-- <span contenteditable="true" (keyup)="changeValue(id, 'ruleType', $event)" (blur)="updateList(person.id,id, 'ruleType', $event)">{{person.ruleType}}</span> -->
+                <!-- </td> -->
+                <td>
+                  <!-- <select name="" class="field-style-list-01 custom-select" (onchange)="changeValue(id, 'fileType', $event)" (blur)="updateList(person.id,id, 'fileType', $event)">
+                    <option *ngFor="let fileType of this.FileTypeList; index as i" ngModel="fileType" [attr.selected]="">{{fileType.name}}</option>
+                    
+                  </select> -->
+                  <div *ngIf="!this.checkObject.canEdit">{{person.fileTypeId.name}}</div>
+
+                  <select *ngIf="this.checkObject.canEdit" [(ngModel)]="person.fileTypeId.name" class='form-control'
+                    (onchange)="changeValue(id, 'fileType', $event)"
+                    (blur)="updateList(person.id,id, 'fileType', $event)">
+                    <option *ngFor="let fileType of this.FileTypeList" [ngValue]="fileType.name">{{fileType.name}}
+                    </option>
+                  </select>
+                  <!-- <span contenteditable="true" (keyup)="changeValue(id, 'fileTypeId.name', $event)" (blur)="updateList(person.id,id, 'fileTypeId.name', $event)">{{person.fileTypeId.name}}</span> -->
+                </td>
+                <td align="center" valign="top">
+                  <input type="checkbox" [(ngModel)]="person.isActive" *ngIf="!this.checkObject.canEdit">
+
+                  <input *ngIf="this.checkObject.canEdit" type="checkbox" [(ngModel)]="person.isActive"
+                    [ngModelOptions]="{standalone: true}" (onchange)="changeValue(id, 'isActive', $event)"
+                    (blur)="updateList(person.id,id, 'isActive', $event)">
+                </td>
+
+                <td>
+                  {{person.createDate}}
+                </td>
+
+                <td *ngIf="this.checkObject.canDelete">
+
+
+                  <a class="mt-delete-btn" (click)="remove(person.id, id)"></a>
+
+
+                </td>
+              </tr>
+            </table>
+
+
+          </div>
+        </div>
+        <!-- Editable table -->
+        <!-- <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
+        <tr>
+          <th>Control Task Code</th>
+          <th>Description</th>
+          <th>Business Rule</th>
+          <th>Rule Type</th>
+          <th>File Type</th>
+          <th align="center">Is Active</th>
+          <th>Creation Date</th>
+         <th>Actions</th>
+        </tr>
+        <tr *ngFor="let control of this.ControlTaskList; index as i">
+          <td valign="top"><select name="" class="field-style-list-01 custom-select" >
+              <option>{{control.code}}</option>
+           
+            </select></td>
+          <td valign="top"><input type="text" name="" class="field-style-01 form-control" placeholder="{{control.description}}" ></td>
+          <td valign="top"><textarea cols="" rows="" class="textarea-style-02 form-control" placeholder="{{control.businessRule}}" ></textarea></td>
+          <td valign="top"><select name="" class="field-style-list-01 custom-select">
+              <option *ngFor="let ruleType of this.RuleTypeList; index as i"  >{{ruleType.text}}</option>
+           
+            </select>
+            
+          
+          </td>
+          <td valign="top"><select name="" class="field-style-list-01 custom-select">
+              <option *ngFor="let fileType of this.FileTypeList; index as i" >{{fileType.name}}</option>
+              
+            </select></td>
+          <td align="center" valign="top"><input name="" type="checkbox" value="" checked="control.isActive" ></td>
+          <td valign="top">{{control.createDate}}</td>
+          <td><div class="side-menu">
+              <ul>
+            <li><a (click)=editControl(control.id)>Edit</a></li>
+          <li><a (click)=deleteControl(control.id)>Delete</a></li>
+        </ul>
+        </div>
+      </td>
+          
+        </tr>
+       
+       
+       
+       
+       
+      </table> -->
+        <div class="clear"></div>
+
+        <!-- <ul class="pagination t-pagination">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item active"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">4</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul> -->
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+<script>
+  jQuery(document).ready(function ($) {
+    $(window).load(function () {
+      setTimeout(function () {
+        $('#preloader').fadeOut('slow', function () {
+        });
+      }, 3000); // set the time here
+    });
+  });
+</script>

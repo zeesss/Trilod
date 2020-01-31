@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Trilod</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Styles Sheets -->
+<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/style.css" rel="stylesheet"  type="text/css">
+</head>
+<body>
+<!-- <header class="bg-01">
+  <div class="col-md-12">
+    <div class="content-box"><a href="#" class="logout">Logout</a>
+      <div class="logo logo-02"><a href="#"><img src="assets/images/logo.png" alt="logo"></a></div>
+    </div>
+  </div>
+</header> -->
+<div class="clear"></div>
+<div class="col-md-12">
+  <div class="content-box">
+    <div class="white-con">
+    <div class="breadcrumb">
+      <ul>
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Session Audit</a></li>
+        <li><a href="#">Add Template</a></li>
+      </ul>
+    </div>
+      <h1>Add Template<span></span></h1>
+      <div class="inner-white-box">
+          <form class="container" [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+          <!-- <form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()">   -->
+      <div class="form-con">
+            
+        <div class="col-md-6 float-left pl-0 pr-5">
+          <label>File Name:</label> <input type="text" maxlength="50" formControlName="file_name"  class="field-01 form-control" >
+          <div class="clear"></div>
+          <label>Format:</label> 
+          <select class="field-01 form-control" formControlName="format">
+            <option value="xls">Excel</option>
+          </select>
+          <!-- <input type="text"  class="field-01 form-control" formControlName="format"> -->
+          <div class="clear"></div>
+
+          <!-- <label>Type:</label> <input type="text" maxlength="30"  class="field-01 form-control" formControlName="type"> -->
+
+          <!-- <div class="clear"></div>
+          <label>Description</label> <input type="text"  class="field-01 form-control" formControlName="descmain">
+          -->
+        </div>
+         <div class="col-md-6 float-left pr-0 pl-4">
+          <!-- <label>Attribute 01:</label> <input type="text" class="field-01 form-control" formControlName="attribute1">
+          <div class="clear"></div>
+          <label>Attribute 02:</label> <input type="text"  class="field-01 form-control" formControlName="attribute2">
+          <div class="clear"></div>
+          <label>Attribute 03:</label> <input type="text"  class="field-01 form-control" formControlName="attribute3">
+          
+          <div class="clear"></div> -->
+          <div class="clear"></div>
+          <label>Description</label> <input type="text" maxlength="500"  class="field-01 form-control" formControlName="descmain">
+         
+          <label>Upload File</label> <input type="file"  class="upload-field form-control" placeholder="Upload file here..."  (change)="onFileSelect($event)" name="mainFile">
+          <!-- <div class="upload-btn"><a  >Upload</a></div> -->
+         </div>
+        <div class="clear"></div>
+        <table width="96%" border="0" cellspacing="0" cellpadding="0" class="main-table">
+        <tr>
+          <th width="50%">Description</th>
+          <th width="50%">Attach Supporting Documents</th>
+        </tr>
+        <tr>
+            <td>
+                <span contenteditable="true" class="upload-field form-control" ngDefaultControl  (keyup)="changeValue(id, 'desc', $event)" ></span>
+              </td>
+
+          <!-- <td><input type="text" name="" class="field-01 form-control"></td> -->
+          <td>
+              <input type="file"  class="upload-field form-control" placeholder="Upload file here..."  (change)="onFileSelect1($event)" name="file">
+
+            <!-- <input type="text" name="" class="upload-field form-control" placeholder="Attach file here..."><div class="upload-btn"><a href="#">Attach</a></div> -->
+          </td>
+        </tr>
+        <tr  *ngFor="let field of fieldArray; let id = index">
+          <td>
+              <span contenteditable="true" (keyup)="changeValue1(id, 'desc', $event)" (blur)="updateList(field.id,id, 'desc', $event)">{{field.desc}}</span>
+
+          </td>
+          <td>
+              <span  >{{field.file.name}}</span>
+              <!-- <input type="file"  class="upload-field form-control" placeholder="Upload file here..."  (change)="onFileSelect2($event)" name="file2"> -->
+
+          </td>
+        </tr>
+      </table>
+      <div class="clear"></div>
+      <a (click)="addFieldValue()" class="mt-add-row-btn"></a> 
+      <div class="clear"></div>
+      <div class="blue-btn mt-5">
+          <button type="submit">Upload</button>
+        <!-- <a href="#">Next</a> -->
+      </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Trilod</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Styles Sheets -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="clear"></div>
+  <div class="col-md-12">
+    <div class="content-box">
+      <div class="white-con">
+        <div class="breadcrumb">
+          <ul>
+            <li>
+              <a href="#">Dashboard</a>
+            </li>
+            <li>
+              <a href="#">Add Template</a>
+            </li>
+
+          </ul>
+        </div>
+        <h1>Add Template
+          <span></span>
+        </h1>
+        <div class="inner-white-box">
+          <form class="container" [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+            <!-- <form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()">   -->
+            <div class="form-con">
+              <div class="col-md-12">
+                <div class="col-md-4 float-left pl-0 pr-5">
+                  <label>File Name:</label>
+                  <input type="text" maxlength="50" formControlName="file_name" class="field-01 form-control">
+                </div>
+                <div class="col-md-4 float-left pl-0 pr-5">
+                  <label>Format:</label>
+                  <select (change)="onChange($event.target.value)" class="field-01 form-control" formControlName="format">
+                    <option selected value="">-SELECT-</option>
+                    <option *ngFor="let file of this.FileTypeList; index as i">{{file.name}}</option>
+                  </select>
+                </div>
+                <div class="col-md-4 float-left pl-0 pr-5">
+                  <label>Description</label>
+                  <input type="text" maxlength="500" class="field-01 form-control" formControlName="descmain">
+                </div>
+              </div>
+              <div class="clear"></div>
+              <div class="col-md-12">
+                <div class="col-md-4 float-left pl-0 pr-5">
+                  <label>Header Row:</label>
+                  <input type="number" min="0" class="field-01 form-control" formControlName="row">
+                </div>
+                <div class="col-md-4 float-left pl-0 pr-5">
+                  <label>Upload File</label>
+                  <input type="file" accept=".xlsx, .xls" class="upload-field form-control" placeholder="Upload file here..." (change)="onFileSelect($event)"
+                    name="mainFile">
+                </div>
+                <div class="col-md-4 float-left pl-0 pr-5">
+                 <label>
+                  <input type="radio" id="option" name="option" [(ngModel)]="option" value="percentage1" >Multi-Sheet</label>
+                  <input  type="number"  min="1" class="upload-field form-control" placeholder="Sheet to read here..." 
+                  formControlName="sheetNo" name="sheetNo">
+                </div>
+                
+              </div>
+              <div class="clear"></div>
+              <div class="col-md-12">
+                <div class="col-md-4 float-left pl-0 pr-5">
+                  <label>&nbsp;</label>
+                </div>
+                <div class="col-md-4 float-left pl-0 pr-5">
+                  <label>&nbsp;</label>
+                </div>
+                <div class="col-md-2 float-left pl-0 pr-5">
+                  <label>&nbsp;</label>
+                  <button class="field-01 form-control button float-left">Save</button>
+                </div>
+                <div class="col-md-2 float-left pl-0 pr-5">
+                  <label>&nbsp;</label>
+                  <button class="field-01 form-control button float-left">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

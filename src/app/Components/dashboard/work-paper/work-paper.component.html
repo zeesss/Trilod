@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Trilod</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Styles Sheets -->
+<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/style.css" rel="stylesheet"  type="text/css">
+
+</head>
+<body>
+<!-- <header class="bg-01">
+  <div class="col-md-12">
+    <div class="content-box"><a href="#" class="logout">Logout</a>
+      <div class="logo logo-02"><a href="#"><img src="assets/images/logo.png" alt="logo"></a></div>
+    </div>
+  </div>
+</header> -->
+<div class="clear"></div>
+<div class="col-md-12">
+  <div class="content-box">
+    <div class="white-con">
+      <div class="side-menu">
+        <ul>
+          <li><a (click)=export() *ngIf="getTable">Export</a></li>
+          <!-- <li><a href="#">Edit</a></li>
+          <li><a href="#">Delete</a></li> -->
+        </ul>
+      </div>
+        <!-- <a (click)="export()" class="">Export</a>  -->
+      <h1>Work Paper Template <span></span></h1>
+      <div class="inner-white-box">
+        <div class="main-search">
+          <div class="col-md-12">
+            <div class="content-box">
+              <!-- Editable table -->
+              <div class="col-md-6 float-left pl-0">
+                <label>Company:</label>
+              
+        
+               
+                <select (change)="onChange($event.target.value)" class="field-01 form-control" [(ngModel)]="company">
+                    <option selected value="">-SELECT-</option>
+                  <option *ngFor="let company of this.CompanyList; index as i " [(ngValue)]="company.id">{{company.clientName}}</option>
+              </select>
+              </div>
+              <div class="col-md-6 float-right pl-0">
+                <label>Audits:</label>
+            
+                <select (change)="onChangeAudit($event.target.value)" class="field-01 form-control" [(ngModel)]="audit">
+                    <option selected value="">-SELECT-</option>
+                  <option *ngFor="let audit of this.auditList; index as i" [(ngValue)]="audit.id">{{audit.auditName}}</option>
+              </select>
+              </div>
+         
+             
+            </div>
+          </div>
+         
+          <div class="col-md-6 float-left pr-0 pl-4" *ngIf="getDetails">
+            <label>Business Rule: </label>
+          </div>
+          <div class="col-md-6 float-left pr-0 pl-4" *ngIf="getDetails">
+            <select  class="form-control" (change)="changeRule($event)">
+              <option selected value="">-SELECT-</option>
+                <option *ngFor="let br of this.businessRule; index as i" >{{br.id}}:{{br.name}}</option>
+                 
+              </select>
+          </div>
+          <div class="clear"></div>
+
+
+
+          <!-- <label>Company:</label><span>{{this.session.clientId.clientName}}</span>
+          <div class="clear"></div>
+          <label>Audit Name: </label> <p>{{this.session.auditName}}</p>
+          <label>Business Rule:</label> 
+          <select  class="form-control" (change)="changeRule($event)" >
+            <option selected value="">-SELECT-</option>
+          <option *ngFor="let br of this.businessRule; index as i;">{{br.id}}:{{br.name}}</option>
+               
+            </select> -->
+
+          
+          <!-- <p>{{this.personList.name}}</p> -->
+          <!-- <input type="text" name="search" (keyup)="search()" placeholder="Search" [(ngModel)]="SearchCompanyAndAudit"> -->
+          <!-- <input type="text" name="search" placeholder="Search"> -->
+          </div>
+          
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
+<div class="main-table-con">
+  <div class="col-md-12">
+    <div class="content-box" id="myDiv">
+      <div class="col-md-6 float-left pr-0 pl-4" *ngIf="getTable" >
+        <label>Company:</label>
+      </div>
+      <div class="col-md-6 float-left pr-0 pl-4" *ngIf="getTable" >
+        <label><b>{{this.session.clientId.clientName}}</b></label>
+      </div>
+      <div class="clear"></div>
+      <div class="col-md-6 float-left pr-0 pl-4"*ngIf="getTable" >
+        <label>Audit Name: </label>
+      </div>
+      <div class="col-md-6 float-left pr-0 pl-4"*ngIf="getTable" >
+        <label><b>{{this.session.auditName}}</b></label>
+        
+      </div>
+      <div class="clear"></div>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table" *ngIf="getTable" >
+        <tr>
+          <th>User Name</th>
+          <th>User Full Name</th>
+          <th>Last LogOn Date</th>
+          <th>End Date</th>
+          <th>Start Date</th>
+          <th>Creation Date</th>
+        </tr>
+         <tr *ngFor="let person of this.personList.workPaperTemplateDetailList; let id = index">
+          <td>{{person.auditFileDataTransient.userName}}</td>
+          <td>{{person.auditFileDataTransient.userFullName}}</td>
+          <td>{{person.auditFileDataTransient.lastLogOnDate}}</td>
+          <td>{{person.auditFileDataTransient.userEndDate}}</td>
+          <td >{{person.auditFileDataTransient.startDate}}</td>
+          <td >{{person.auditFileDataTransient.userCreationDate}}</td>
+         
+        </tr> 
+       
+       
+      </table>
+      <div class="clear"></div>
+      </div>
+  </div>
+</div>
+
+</body>
+</html>
