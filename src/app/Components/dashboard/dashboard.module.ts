@@ -1,3 +1,4 @@
+import { MultisheetExcelTemplateComponent } from './multisheet-excel-template/multisheet-excel-template.component';
 import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component';
 import { RoleEditComponent } from './role-edit/role-edit.component';
 import { RiskControlMatrixComponent } from './risk-control-matrix/risk-control-matrix.component';
@@ -66,8 +67,7 @@ import { AddControlComponent } from './control/add-control/add-control.component
 import { AuditControlsComponent } from './audit/audit-controls/audit-controls.component';
 import { AddEvidencesComponent } from './add-evidences/add-evidences.component';
 import { OrganizationAddComponent } from './organization/organization-add/organization-add.component';
-import { MultisheetExcelTemplateComponent } from './multisheet-excel-template/multisheet-excel-template.component';
-
+import { ControlTemplateMappingComponent } from './control-template-mapping/control-template-mapping.component';
 const dashboardRoutes: Routes = [
   {
     path: '',
@@ -103,8 +103,10 @@ const dashboardRoutes: Routes = [
           { path: 'addControl', component: AddControlComponent },
           { path: 'auditControl', component: AuditControlsComponent },
           { path: 'addEvidences', component: AddEvidencesComponent },
-          { path:  'organization-add', component:OrganizationAddComponent},
-          { path:  'multisheetExcel', component:MultisheetExcelTemplateComponent},
+          { path: 'organization-add', component:OrganizationAddComponent},
+          { path:'controlTemplateMapping',component:ControlTemplateMappingComponent},
+          { path:'multisheetExcel', component:MultisheetExcelTemplateComponent}
+
           
         ]
       },
@@ -146,6 +148,7 @@ const dashboardRoutes: Routes = [
     AuditControlsComponent,
     AddEvidencesComponent,
     OrganizationAddComponent,
+    ControlTemplateMappingComponent,
     MultisheetExcelTemplateComponent
   ],
   entryComponents: [],

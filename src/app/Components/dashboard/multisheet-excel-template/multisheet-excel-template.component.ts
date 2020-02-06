@@ -1,10 +1,12 @@
 import { RestService } from 'src/app/Components/services/rest/rest.service';
-import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpErrorResponse } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { Component, OnInit, Inject, Input } from '@angular/core';
+
 @Component({
   selector: 'app-multisheet-excel-template',
   templateUrl: './multisheet-excel-template.component.html',
@@ -43,7 +45,7 @@ isActive1;
   uploadedFile: any;
   FileTypeList: any;
   client: number;
-  constructor(public toastr: ToastrService, public rest: RestService, public router: Router, public http: HttpClient, public formBuilder: FormBuilder, public formsModule: FormsModule, public reactiveFormsModule: ReactiveFormsModule) {
+  constructor(public dialog:MatDialog,public toastr: ToastrService, public rest: RestService, public router: Router, public http: HttpClient, public formBuilder: FormBuilder, public formsModule: FormsModule, public reactiveFormsModule: ReactiveFormsModule) {
 
   }
 
@@ -207,7 +209,49 @@ isActive1;
       this.newAttribute.file = file;
     }
   }
+  saveData(){
+this.openDialog();
+  }
 
+  openDialog(): void {
+    let dialogRef = this.dialog.open(DialogShowHeaders, {
+      width: '600px',
+      data: { name:'hi', animal: "hi" }
+    });
+  
+   
+  }
 
+}
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: 'dialog-overview-example-dialog.html'
+ 
+})
+export class DialogShowHeaders {
+ 
+ 
+  constructor(
+    private router: Router,
+    public http:HttpClient, public toastr:ToastrService,
+   
+    public rest:RestService,
+    public dialogRef: MatDialogRef<DialogShowHeaders>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+  
+     }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+    //this.auth.logout();
+  }
+  isEmpty(val){
+    return (val === undefined || val == null || val.length <= 0) ? true : false;
+}
+  onYesClick(): void {
+    this.toastr.success('', 'Sheets Uploaded Successfully!');
+    this.dialogRef.close();
+    location.reload();
+  }
 
 }

@@ -1,0 +1,106 @@
+<head>
+  <meta charset="utf-8">
+  <title>Trilod</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Styles Sheets -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="bg-01">
+  <div class="container">
+    <div class="col-md-12">
+      <!-- <div class="logo"><a href="#"><img src="assets/images/logo.png" alt="logo"></a></div> -->
+      <!-- <div class="clear"></div> -->
+      <!-- <div class="mainimg"><img src="assets/images/signin-icon.png" alt="Signin"></div> -->
+      <div class="">
+        
+        <div class="">
+          <div class="form">
+            <label>Template Name:</label>
+            <select class="field-01 form-control" [(ngModel)]="template_name1">
+              <option selected value="">-SELECT-</option>
+              <option value="Template Name 1" >Template Name 1</option>
+              <option value="Template Name 2" >Template Name 2</option>
+            </select>
+            <div class="clear"></div>
+            <label>Template Field Name:</label>
+            <select class="field-01 form-control" [(ngModel)]="template_field_name1">
+              <option selected value="">-SELECT-</option>
+              <option value="Template Field 1" >Template Field 1</option>
+              <option value="Template Field 2" >Template Field 2</option>
+            </select>
+            <div class="clear"></div>
+            <label>Template Name:</label>
+            <select class="field-01 form-control" [(ngModel)]="template_name2">
+              <option selected value="">-SELECT-</option>
+              <option value="Template Name 1" >Template Name 1</option>
+              <option value="Template Name 2" >Template Name 2</option>
+            </select>
+            <div class="clear"></div>
+            <label>Template Field Name:</label>
+            <select class="field-01 form-control" [(ngModel)]="template_field_name2">
+              <option selected value="">-SELECT-</option>
+              <option value="Template Field 1" >Template Field 1</option>
+              <option value="Template Field 2" >Template Field 2</option>
+            </select>
+            <a (click)="onClickAdd()" class="button float-right">Add</a>
+            <a  class="button float-left">Cancel</a>
+            <div class="clear"></div>
+          </div>
+        </div>
+        <!--start-->
+        <div class="clear"></div>
+        <div class="main-table-con">
+          <div class="col-md-12">
+            <div class="content-box">
+              <h2 class="mtc-heading">Template
+                <span></span>
+              </h2>
+              <div class="clear"></div>
+              <table width="75%" border="0" cellspacing="0" cellpadding="0" class="main-table-con">
+                <tr>
+                  <th>Template Name 1</th>
+                  <th>Template Field Name 1</th>
+                  <th>Template Name 2</th>
+                  <th>Template Field Name 2</th>
+                  <th align="center">Action</th>
+                </tr>
+                <tr *ngFor="let field of tableArray; let id = index" style="color: black;">
+                  <td>
+                    <span contenteditable="false">{{field.template_name}}</span>
+                  </td>
+                  <td>
+                    <span contenteditable="false">{{field.template_name2}}</span>
+                  </td>
+                  <td>
+                    <span contenteditable="false">{{field.template_field_name1}}</span>
+                  </td>
+                  <td>
+                    <span contenteditable="false">{{field.template_field_name2}}</span>
+                  </td>
+                  <td>
+                    <a class="mt-delete-btn" (click)="remove(field.id, id)"></a>
+                  </td>
+                </tr>
+              </table>
+              <div class="clear"></div>
+              <br />
+              <div class="side-menu">
+                <ul>
+                  <li>
+                    <a (click)="onNoClick()">Cancel</a>
+                  </li>
+                  <li>
+                    <a>Save</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--end-->
+      </div>
+      <!-- <div class="copyright">Copy Rights 2019, Trilod Automation Tool</div> -->
+    </div>
+  </div>

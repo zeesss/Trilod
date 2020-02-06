@@ -82,55 +82,69 @@
             </div>
           </form>
           <div *ngIf="show">
+            <form class="container" (ngSubmit)="saveData()">
             <div class="form-con">
               <div class="col-md-12">
-               <div class="col-md-2 float-left pl-0 pr-5">Sheets Found:2</div>
-                  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
-                    <tr>
-                      <th>Sheets</th>
-                      <th>Headers</th>
+                <div class="col-md-2 float-left pl-0 pr-5">Sheets Found:2</div>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
+                  <tr>
+                    <th>Sheets</th>
+                    <th>Header Row</th>
 
-                    </tr>
-                    <tr>
-                      <td>
-                        <input  type="checkbox" > Sheet 1
-                      </td>
-                      <td>
-                        <div><input  type="checkbox" > Id</div>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="checkbox"> Sheet 1
+                    </td>
+                    <td>
+                      <div class="col-md-4 float-left pl-0 pr-5">
+                        <label>Header Row:</label>
+                        <input type="number" min="0" class="field-01 form-control">
+                      </div>
+                      <!-- <div><input  type="checkbox" > Id</div>
                         <div class="clear"></div>
                         <div><input  type="checkbox" > Name</div>
                         <div class="clear"></div>
                         <div><input  type="checkbox" > Title</div>
-                        <div class="clear"></div>
-                      </td>
+                        <div class="clear"></div>-->
+                    </td>
 
-                    </tr>
-                    <tr>
-                      <td>
-                        <input  type="checkbox">Sheet 2
-                      </td>
-                      <td>
-                        <div><input  type="checkbox" > Employee Id</div>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="checkbox">Sheet 2
+                    </td>
+                    <td>
+                      <div class="col-md-4 float-left pl-0 pr-5">
+                        <label>Header Row:</label>
+                        <input type="number" min="0" class="field-01 form-control" >
+                      </div>
+                      <!-- <div><input  type="checkbox" > Employee Id</div>
                         <div class="clear"></div>
                         <div><input  type="checkbox" > Full Name</div>
                         <div class="clear"></div>
                         <div><input  type="checkbox" > Job Title</div>
-                        <div class="clear"></div>
-                      </td>
+                        <div class="clear"></div>-->
+                    </td>
 
-                    </tr>
-                  </table>
-                  <div class="col-md-2 float-left pl-0 pr-5">
-                  <label>&nbsp;</label>
-                  <button class="field-01 form-control button float-left">Upload Data</button>
-                </div>
+                  </tr>
+                </table>
               </div>
             </div>
+            <div class="col-md-4 float-left pl-0 pr-5">
+            <button  class="field-01 form-control button float-left">Upload Data</button>
           </div>
+            </form>
+
+            </div>
+          </div>
+      
+                  
+               
         </div>
       </div>
     </div>
-  </div>
+ 
 </body>
 
 </html>

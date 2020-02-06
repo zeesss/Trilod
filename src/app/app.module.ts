@@ -1,3 +1,5 @@
+import { control_template_mapping_MapTemplate } from './Components/dashboard/control-template-mapping/control-template-mapping.component';
+import { DialogShowHeaders } from './Components/dashboard/multisheet-excel-template/multisheet-excel-template.component';
 import { StartAudit } from './Components/dashboard/sessions/sessions.component';
 import { AddFile } from './Components/dashboard/session-audit/session-audit.component';
 import { MapTemplate } from './Components/dashboard/rule/add-rule/add-rule.component';
@@ -46,6 +48,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     DialogRoleAdd,
     DialogUserAdd,
     DialogUserEdit,
+    DialogShowHeaders,
+    control_template_mapping_MapTemplate,
     NgbdModalContent,
     AddFile,
     MapTemplate,
@@ -93,6 +97,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     DialogRoleAdd,
     DialogUserAdd,
     DialogUserEdit,
+    DialogShowHeaders,
+    control_template_mapping_MapTemplate,
     NgbdModalContent,
     AddFile,
     MapTemplate,
