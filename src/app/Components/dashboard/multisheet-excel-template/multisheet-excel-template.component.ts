@@ -14,7 +14,7 @@ import { Component, OnInit, Inject, Input } from '@angular/core';
 })
 export class MultisheetExcelTemplateComponent implements OnInit {
   show:Boolean=false;
-  
+  NoOfSheets;
 isActive;  
 isActive1;  
   i: any;
@@ -109,7 +109,7 @@ isActive1;
     return (val === undefined || val == null || val.length <= 0) ? true : false;
   }
   onSubmit() {
-    var client = 14;
+    //var client = 14;
     debugger;
     this.new_filename = this.uploadForm.get('file_name').value;
     this.new_mainFile = this.uploadForm.get('mainFile').value;
@@ -123,14 +123,14 @@ isActive1;
       && !this.isEmpty(this.new_descmain)
     ) {
       const formData = new FormData();
-     
+      const formDataCall1 = new FormData();
        //alert(this.uploadForm.get('sheetNo').value);
       // alert(this.new_mainFile);
       // alert(this.new_format);
       // alert(this.new_descmain);
       // alert(this.uploadForm.get('row').value);
      
-      this.client = 14;
+      this.client = 1;
       //formData.append('audit_session_id',localStorage.getItem('editSessionId'));
       formData.append('file', this.uploadForm.get('mainFile').value);
       formData.append('name', this.uploadForm.get('file_name').value);
@@ -138,13 +138,31 @@ isActive1;
       formData.append('sheetNo', this.uploadForm.get('sheetNo').value);
       formData.append('fileTypeId', this.format.id);
       formData.append('description', this.uploadForm.get('descmain').value);
-      formData.append('clientId', "14");
-      
+      formData.append('clientId', "1");
+      formDataCall1.append('file', this.uploadForm.get('mainFile').value);
 
       console.log(formData);
-     this.show=true;
+      console.log(formDataCall1);
+      // alert(this.uploadForm.get('mainFile').value);
+      // alert(formDataCall1.get('file'));
+     
 
-      // this.http.post<any>("http://192.168.52.182:8080/trilod/addfile/add", formData).subscribe(
+     this.rest.getSheetNames(formDataCall1).subscribe((data:any) => {
+      debugger;
+       //      alert(JSON.stringify(data));
+       if(data.responseCode==="00"){
+         
+         console.log(data);
+        this.show=true;
+        this.NoOfSheets=data.sheetNames.length;
+        //alert(this.NoOfSheets);
+        //data.data.length;
+       }
+       
+           
+         });
+   
+      // this.http.get<any>("http://192.168.52.182:8080/trilod/template/getSheetNames/",formDataCall1).subscribe(
       //   (res) => console.log(res),
 
       //   (err) => console.log(err)

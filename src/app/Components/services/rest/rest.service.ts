@@ -849,7 +849,20 @@ export class RestService {
   }
   //MultiSheetExcelUpload
   getSheetNames(formData){
-    return this.http.get(this.ApiLink + 'template/getSheetNames/', formData).pipe(map(res => { return res }));
+    let HttpHdr = {
+      headers: new HttpHeaders({ 'Content-Type': 'multipart/form-data' })
+    };
+    let myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'multipart/form-data');   
+    const httpOptions={
+      headers: new HttpHeaders({
+        'Content-Type':  'multipart/form-data'
+      }),
+      formData
+
+    } 
+    
+    return this.http.post(this.ApiLink + 'template/getSheetNames/', formData).pipe(map(res => { return res }));
 
   }
   addMultiSheets(formData){

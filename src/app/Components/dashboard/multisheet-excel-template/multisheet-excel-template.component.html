@@ -57,7 +57,7 @@
                 <div class="col-md-4 float-left pl-0 pr-5">
                   <label>Upload File</label>
                   <input type="file" accept=".xlsx, .xls" class="upload-field form-control"
-                    placeholder="Upload file here..." (change)="onFileSelect($event)" name="mainFile">
+                    placeholder="Upload file here..." (change)="onFileSelect($event)" name="mainFile" formControlName="mainFile">
                 </div>
 
 
@@ -85,7 +85,7 @@
             <form class="container" (ngSubmit)="saveData()">
             <div class="form-con">
               <div class="col-md-12">
-                <div class="col-md-2 float-left pl-0 pr-5">Sheets Found:2</div>
+                <div class="col-md-2 float-left pl-0 pr-5">Sheets Found:{{NoOfSheets}}</div>
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
                   <tr>
                     <th>Sheets</th>
