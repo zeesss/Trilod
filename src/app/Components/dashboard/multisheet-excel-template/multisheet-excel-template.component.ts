@@ -1,10 +1,10 @@
 import { RestService } from 'src/app/Components/services/rest/rest.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { HttpClient,HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Component, OnInit, Inject, Input } from '@angular/core';
 
 @Component({
@@ -13,10 +13,10 @@ import { Component, OnInit, Inject, Input } from '@angular/core';
   styleUrls: ['./multisheet-excel-template.component.scss']
 })
 export class MultisheetExcelTemplateComponent implements OnInit {
-  show:Boolean=false;
+  show: Boolean = false;
   NoOfSheets;
-isActive;  
-isActive1;  
+  isActive;
+  isActive1;
   i: any;
   option;
   size;
@@ -33,8 +33,8 @@ isActive1;
   file_name;
   audit_session_id;
   newAttribute = {
-    "desc": "",
-    "file": ""
+    "sheetNo": "",
+    "headerRow": ""
   };
   fieldArray = [];
   new_filename: any;
@@ -45,7 +45,10 @@ isActive1;
   uploadedFile: any;
   FileTypeList: any;
   client: number;
-  constructor(public dialog:MatDialog,public toastr: ToastrService, public rest: RestService, public router: Router, public http: HttpClient, public formBuilder: FormBuilder, public formsModule: FormsModule, public reactiveFormsModule: ReactiveFormsModule) {
+  sheetsList: any;
+   formData = new FormData();
+  sheetHeaderList: any;
+  constructor(public dialog: MatDialog, public toastr: ToastrService, public rest: RestService, public router: Router, public http: HttpClient, public formBuilder: FormBuilder, public formsModule: FormsModule, public reactiveFormsModule: ReactiveFormsModule) {
 
   }
 
@@ -74,7 +77,7 @@ isActive1;
       descmain: new FormControl()
     });
   }
- 
+
   onChange(value) {
     this.format = this.FileTypeList.filter((items) => items.name === value)[0];
 
@@ -105,6 +108,19 @@ isActive1;
       this.uploadForm.get('mainFile').setValue(file);
     }
   }
+  checkValue(event, id) {
+    // alert(event.target.checked);
+    // alert(++id);
+    var sheet=++id;
+    if(event.target.checked===true)
+    this.formData.append('sheetNo', sheet.toString() );
+  }
+  setHeaderRow(event, id) {
+    debugger;
+    // alert(event.target.value);
+    // alert(id);
+    this.formData.append('headerRow', event.target.value );
+  }
   isEmpty(val) {
     return (val === undefined || val == null || val.length <= 0) ? true : false;
   }
@@ -122,46 +138,47 @@ isActive1;
       && !this.isEmpty(this.new_format)
       && !this.isEmpty(this.new_descmain)
     ) {
-      const formData = new FormData();
+      
       const formDataCall1 = new FormData();
-       //alert(this.uploadForm.get('sheetNo').value);
+      //alert(this.uploadForm.get('sheetNo').value);
       // alert(this.new_mainFile);
       // alert(this.new_format);
       // alert(this.new_descmain);
       // alert(this.uploadForm.get('row').value);
-     
+
       this.client = 1;
       //formData.append('audit_session_id',localStorage.getItem('editSessionId'));
-      formData.append('file', this.uploadForm.get('mainFile').value);
-      formData.append('name', this.uploadForm.get('file_name').value);
-      formData.append('headerRow', this.uploadForm.get('row').value);
-      formData.append('sheetNo', this.uploadForm.get('sheetNo').value);
-      formData.append('fileTypeId', this.format.id);
-      formData.append('description', this.uploadForm.get('descmain').value);
-      formData.append('clientId', "1");
+      this.formData.append('file', this.uploadForm.get('mainFile').value);
+      this.formData.append('name', this.uploadForm.get('file_name').value);
+      //this.formData.append('headerRow', this.uploadForm.get('row').value);
+     // this.formData.append('sheetNo', this.uploadForm.get('sheetNo').value);
+      this.formData.append('fileTypeId', this.format.id);
+      this.formData.append('description', this.uploadForm.get('descmain').value);
+      this.formData.append('clientId', "1");
       formDataCall1.append('file', this.uploadForm.get('mainFile').value);
 
-      console.log(formData);
+      console.log(this.formData);
       console.log(formDataCall1);
       // alert(this.uploadForm.get('mainFile').value);
       // alert(formDataCall1.get('file'));
-     
 
-     this.rest.getSheetNames(formDataCall1).subscribe((data:any) => {
-      debugger;
-       //      alert(JSON.stringify(data));
-       if(data.responseCode==="00"){
-         
-         console.log(data);
-        this.show=true;
-        this.NoOfSheets=data.sheetNames.length;
-        //alert(this.NoOfSheets);
-        //data.data.length;
-       }
-       
-           
-         });
-   
+
+      this.rest.getSheetNames(formDataCall1).subscribe((data: any) => {
+        debugger;
+        //      alert(JSON.stringify(data));
+        if (data.responseCode === "00") {
+
+          console.log(data);
+          this.show = true;
+          this.NoOfSheets = data.sheetNames.length;
+          this.sheetsList = data.sheetNames;
+          //alert(this.NoOfSheets);
+          //data.data.length;
+        }
+
+
+      });
+
       // this.http.get<any>("http://192.168.52.182:8080/trilod/template/getSheetNames/",formDataCall1).subscribe(
       //   (res) => console.log(res),
 
@@ -176,96 +193,114 @@ isActive1;
       this.toastr.error('', 'Enter all required fields!');
     }
   }
-  changeValue(id: number, property: string, event: any) {
-    debugger;
-    this.editField = event.target.textContent;
-    if (property === "desc")
-      this.newAttribute.desc = this.editField;
+  // changeValue(id: number, property: string, event: any) {
+  //   debugger;
+  //   this.editField = event.target.textContent;
+  //   if (property === "desc")
+  //     this.newAttribute.desc = this.editField;
 
-  }
-  changeValue1(id: number, property: string, event: any) {
-    debugger;
-    this.editField = event.target.textContent;
+  // }
+  // changeValue1(id: number, property: string, event: any) {
+  //   debugger;
+  //   this.editField = event.target.textContent;
 
-  }
-  updateList(controlId: any, id: number, property: string, event: any) {
-    if (confirm("Are you sure to edit the record?")) {
+  // }
+  // updateList(controlId: any, id: number, property: string, event: any) {
+  //   if (confirm("Are you sure to edit the record?")) {
+  //     debugger;
+  //     const editField = event.target.textContent;
+  //     var selectField = event.target.value;
+  //     const checkField = event.target.checked;
+  //     this.fieldArray[id][property] = editField;
+
+  //     //this.updateBody.id=controlId;
+
+  //   }
+  // }
+
+  // addFieldValue() {
+
+  //   debugger;
+  //   if (!this.isEmpty(this.newAttribute.file) && !this.isEmpty(this.newAttribute.desc)) {
+  //     console.log(this.newAttribute);
+  //     this.fieldArray.push(this.newAttribute);
+
+  //     console.log(this.fieldArray);
+  //     this.newAttribute = {
+  //       "file": "",
+  //       "desc": "",
+  //     };
+  //     console.log(this.newAttribute);
+  //   }
+  //   else {
+  //     this.toastr.error('', 'You need to add supporting file details first!');
+  //   }
+  // }
+  // onFileSelect1(event) {
+  //   if (event.target.files.length > 0) {
+  //     debugger;
+  //     const file = event.target.files[0];
+  //     this.uploadForm.get('file').setValue(file);
+  //     this.newAttribute.file = file;
+  //   }
+  // }
+  saveData() {
+    this.rest.addMultiSheets(this.formData).subscribe((data: any) => {
       debugger;
-      const editField = event.target.textContent;
-      var selectField = event.target.value;
-      const checkField = event.target.checked;
-      this.fieldArray[id][property] = editField;
+      //      alert(JSON.stringify(data));
+      
+      if (data.responseCode === "00") {
 
-      //this.updateBody.id=controlId;
+        console.log(data);
+        this.sheetHeaderList=data.sheetHeaderList;
+        this.openDialog();
+        // this.NoOfSheets = data.sheetNames.length;
+        // this.sheetsList = data.sheetNames;
+        
+      }
 
-    }
-  }
 
-  addFieldValue() {
-
-    debugger;
-    if (!this.isEmpty(this.newAttribute.file) && !this.isEmpty(this.newAttribute.desc)) {
-      console.log(this.newAttribute);
-      this.fieldArray.push(this.newAttribute);
-
-      console.log(this.fieldArray);
-      this.newAttribute = {
-        "file": "",
-        "desc": "",
-      };
-      console.log(this.newAttribute);
-    }
-    else {
-      this.toastr.error('', 'You need to add supporting file details first!');
-    }
-  }
-  onFileSelect1(event) {
-    if (event.target.files.length > 0) {
-      debugger;
-      const file = event.target.files[0];
-      this.uploadForm.get('file').setValue(file);
-      this.newAttribute.file = file;
-    }
-  }
-  saveData(){
-this.openDialog();
+    });
+    
   }
 
   openDialog(): void {
     let dialogRef = this.dialog.open(DialogShowHeaders, {
-      width: '600px',
-      data: { name:'hi', animal: "hi" }
+      width: '700px',
+      data: this.sheetHeaderList
     });
-  
-   
+
+
   }
 
 }
 @Component({
   selector: 'dialog-overview-example-dialog',
   templateUrl: 'dialog-overview-example-dialog.html'
- 
+
 })
 export class DialogShowHeaders {
- 
- 
+  sheetHeaderList: any;
+
+
   constructor(
     private router: Router,
-    public http:HttpClient, public toastr:ToastrService,
-   
-    public rest:RestService,
+    public http: HttpClient, public toastr: ToastrService,
+
+    public rest: RestService,
     public dialogRef: MatDialogRef<DialogShowHeaders>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-  
-     }
+    this.sheetHeaderList=data;
+    console.log(this.sheetHeaderList);
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
     //this.auth.logout();
   }
-  isEmpty(val){
+  isEmpty(val) {
     return (val === undefined || val == null || val.length <= 0) ? true : false;
-}
+  }
   onYesClick(): void {
     this.toastr.success('', 'Sheets Uploaded Successfully!');
     this.dialogRef.close();

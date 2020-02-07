@@ -27,36 +27,19 @@
               <th>Headers</th>
 
             </tr>
-            <tr>
+            <tr *ngFor="let sheet of this.sheetHeaderList" >
               <td>
-                Sheet 1
+              
               </td>
               <td>
                
                 <div> Id</div>
                   <div class="clear"></div>
-                  <div> Name</div>
-                  <div class="clear"></div>
-                  <div> Title</div>
-                  <div class="clear"></div>
+                  
               </td>
 
             </tr>
-            <tr>
-              <td>
-               Sheet 2
-              </td>
-              <td>
-                
-                <div>Employee Id</div>
-                  <div class="clear"></div>
-                  <div>Full Name</div>
-                  <div class="clear"></div>
-                  <div> Job Title</div>
-                  <div class="clear"></div>
-              </td>
-
-            </tr>
+          
           </table>
             
           <a (click)="onYesClick()" class="button float-right">Save</a>

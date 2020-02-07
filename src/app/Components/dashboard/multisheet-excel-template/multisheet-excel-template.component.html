@@ -92,42 +92,20 @@
                     <th>Header Row</th>
 
                   </tr>
-                  <tr>
+                  <tr *ngFor="let sheet of this.sheetsList; index as i;">
                     <td>
-                      <input type="checkbox"> Sheet 1
+                      <input type="checkbox" (change)="checkValue($event ,sheet.id)"  > {{sheet.textToDisplay}}
                     </td>
                     <td>
                       <div class="col-md-4 float-left pl-0 pr-5">
                         <label>Header Row:</label>
-                        <input type="number" min="0" class="field-01 form-control">
+                        <input type="number" min="0" class="field-01 form-control" (change)="setHeaderRow($event ,i)">
                       </div>
-                      <!-- <div><input  type="checkbox" > Id</div>
-                        <div class="clear"></div>
-                        <div><input  type="checkbox" > Name</div>
-                        <div class="clear"></div>
-                        <div><input  type="checkbox" > Title</div>
-                        <div class="clear"></div>-->
+                  
                     </td>
 
                   </tr>
-                  <tr>
-                    <td>
-                      <input type="checkbox">Sheet 2
-                    </td>
-                    <td>
-                      <div class="col-md-4 float-left pl-0 pr-5">
-                        <label>Header Row:</label>
-                        <input type="number" min="0" class="field-01 form-control" >
-                      </div>
-                      <!-- <div><input  type="checkbox" > Employee Id</div>
-                        <div class="clear"></div>
-                        <div><input  type="checkbox" > Full Name</div>
-                        <div class="clear"></div>
-                        <div><input  type="checkbox" > Job Title</div>
-                        <div class="clear"></div>-->
-                    </td>
-
-                  </tr>
+               
                 </table>
               </div>
             </div>

@@ -42,7 +42,7 @@
                   <label>Format:</label>
                   <select (change)="onChange($event.target.value)" class="field-01 form-control" formControlName="format">
                     <option selected value="">-SELECT-</option>
-                    <option *ngFor="let file of this.FileTypeList; index as i">{{file.name}}</option>
+                    <option *ngFor="let file of this.FileTypeList; index as i;">{{file.name}}</option>
                   </select>
                 </div>
                 <div class="col-md-4 float-left pl-0 pr-5">
