@@ -31,7 +31,7 @@
               <a href="#">Dashboard</a>
             </li>
             <li>
-              <a href="#">Add Organization</a>
+              <a href="#">Edit Organization</a>
             </li>
           </ul>
         </div>
@@ -42,7 +42,7 @@
                 <label>Name</label>
               </div>
               <div class="col-md-4 float-left pl-0 pr-5">
-                <input type="text" class="field-01 form-control" name="Name" placeholder="Name" [(ngModel)]="name">
+                <input type="text" class="field-01 form-control" name="Name" placeholder="Name" [(ngModel)]="this.editBody.name">
               </div>
               <div class="col-md-4 float-left pl-0 pr-5">
                 <span></span>
@@ -55,7 +55,7 @@
                   <label>Street</label>
                 </div>
                 <div class="col-md-4 float-left pl-0 pr-5">
-                  <input type="text" class="field-01 form-control" name="Street" placeholder="Street" [(ngModel)]="street">
+                  <input type="text" class="field-01 form-control" name="Street" placeholder="Street" [(ngModel)]="this.editBody.street">
                 </div>
                 <div class="col-md-4 float-left pl-0 pr-5">
                   <span></span>
@@ -68,7 +68,7 @@
                     <label>City</label>
                   </div>
                   <div class="col-md-4 float-left pl-0 pr-5">
-                    <input type="text" class="field-01 form-control" name="City" placeholder="City" [(ngModel)]="city">
+                    <input type="text" class="field-01 form-control" name="City" placeholder="City" [(ngModel)]="this.editBody.city">
                   </div>
                   <div class="col-md-4 float-left pl-0 pr-5">
                     <span></span>
@@ -81,7 +81,7 @@
                       <label>State</label>
                     </div>
                     <div class="col-md-4 float-left pl-0 pr-5">
-                      <input type="text" class="field-01 form-control" name="State" placeholder="State" [(ngModel)]="state">
+                      <input type="text" class="field-01 form-control" name="State" placeholder="State" [(ngModel)]="this.editBody.state">
                     </div>
                     <div class="col-md-4 float-left pl-0 pr-5">
                       <span></span>
@@ -94,7 +94,7 @@
                         <label>Country</label>
                       </div>
                       <div class="col-md-4 float-left pl-0 pr-5">
-                        <input type="text" class="field-01 form-control" name="Country" placeholder="Country" [(ngModel)]="country">
+                        <input type="text" class="field-01 form-control" name="Country" placeholder="Country" [(ngModel)]="this.editBody.country">
                       </div>
                       <div class="col-md-4 float-left pl-0 pr-5">
                         <span></span>
@@ -107,7 +107,7 @@
                           <label>Zip/Postal Code</label>
                         </div>
                         <div class="col-md-4 float-left pl-0 pr-5">
-                          <input type="text" class="field-01 form-control" name="Zip/Postal Code" placeholder="Zip/Postal Code" [(ngModel)]="postalcode">
+                          <input type="text" class="field-01 form-control" name="Zip/Postal Code" placeholder="Zip/Postal Code" [(ngModel)]="this.editBody.postalCode">
                         </div>
                         <div class="col-md-4 float-left pl-0 pr-5">
                           <span></span>
@@ -120,7 +120,7 @@
                             <label>Email</label>
                           </div>
                           <div class="col-md-4 float-left pl-0 pr-5">
-                            <input type="text" class="field-01 form-control" name="Email" placeholder="Email" [(ngModel)]="email">
+                            <input type="text" class="field-01 form-control" name="Email" placeholder="Email" [(ngModel)]="this.editBody.email">
                           </div>
                           <div class="col-md-4 float-left pl-0 pr-5">
                             <span></span>
@@ -130,7 +130,7 @@
                           <!--col end-->
                           <div class="col-md-12">
                             <div class="col-md-2 float-right pl-0">
-                            <button (click)="onSaveButton()" class="field-01 form-control button float-left">Save</button>
+                            <button (click)="onUpdateClick()" class="field-01 form-control button float-left">Update</button>
                             </div>
                           </div>
                           

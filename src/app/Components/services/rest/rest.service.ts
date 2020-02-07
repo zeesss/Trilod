@@ -869,7 +869,27 @@ export class RestService {
     return this.http.post(this.ApiLink + "template/addMultiple/", formData);
 
   }
+  addOrganization(formData)
+  {
+    return this.http.post(this.ApiLink + "organization/add/", formData);
+  }
+  listOrganization()
+  {
+    return this.http.get(this.ApiLink + 'organization/').pipe(map(res => { return res }));
+  }
+  organization_findById(id)
+  {
+    
+    return this.http.get(this.ApiLink + 'organization/findById/'+id).pipe(map(res => { return res }));
+  }
   
+  organization_update(id,body): Observable<any> {
 
-
+  
+    return this.http.put(this.ApiLink + "organization/update/" + id, body);
+  }
+  
+  organization_delete(id): Observable<any> {
+    return this.http.delete(this.ApiLink + "organization/delete/" + id);
+  }
 }

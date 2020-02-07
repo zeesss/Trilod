@@ -17,6 +17,7 @@ import { SearchComponent } from './search/search.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 
+
 import {
   MatTabsModule,
   MatButtonModule,
@@ -68,6 +69,9 @@ import { AuditControlsComponent } from './audit/audit-controls/audit-controls.co
 import { AddEvidencesComponent } from './add-evidences/add-evidences.component';
 import { OrganizationAddComponent } from './organization/organization-add/organization-add.component';
 import { ControlTemplateMappingComponent } from './control-template-mapping/control-template-mapping.component';
+import { ClientAddComponent } from './client/client-add/client-add.component';
+import { OrganizationListComponent } from './organization/organization-list/organization-list.component';
+import { OrganizationEditComponent } from './organization/organization-edit/organization-edit.component';
 const dashboardRoutes: Routes = [
   {
     path: '',
@@ -105,7 +109,10 @@ const dashboardRoutes: Routes = [
           { path: 'addEvidences', component: AddEvidencesComponent },
           { path: 'organization-add', component:OrganizationAddComponent},
           { path:'controlTemplateMapping',component:ControlTemplateMappingComponent},
-          { path:'multisheetExcel', component:MultisheetExcelTemplateComponent}
+          { path:'multisheetExcel', component:MultisheetExcelTemplateComponent},
+          {path: 'client-add', component:ClientAddComponent},
+          {path: 'organization', component:OrganizationListComponent},
+          {path: 'organization-edit', component:OrganizationEditComponent}
 
           
         ]
@@ -149,7 +156,10 @@ const dashboardRoutes: Routes = [
     AddEvidencesComponent,
     OrganizationAddComponent,
     ControlTemplateMappingComponent,
-    MultisheetExcelTemplateComponent
+    MultisheetExcelTemplateComponent,
+    ClientAddComponent,
+    OrganizationListComponent,
+    OrganizationEditComponent
   ],
   entryComponents: [],
   imports: [
