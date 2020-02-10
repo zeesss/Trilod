@@ -29,12 +29,12 @@
             </tr>
             <tr *ngFor="let sheet of this.sheetHeaderList" >
               <td>
-              
+              {{sheet.sheetName}}
               </td>
-              <td>
+              <td *ngFor="let header of sheet.headers">
                
-                <div> Id</div>
-                  <div class="clear"></div>
+                <div> {{header}}</div>
+                  
                   
               </td>
 
@@ -42,7 +42,7 @@
           
           </table>
             
-          <a (click)="onYesClick()" class="button float-right">Save</a>
+          <a (click)="onYesClick()" class="button float-right">OK</a>
           <a (click)="onNoClick()" class="button float-left">Cancel</a>
           <div class="clear"></div>
         </div>
