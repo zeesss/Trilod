@@ -1,108 +1,112 @@
 <!doctype html>
-<html>
+<!-- <html> -->
+
 <head>
-<meta charset="utf-8">
-<title>Trilod</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Styles Sheets -->
-<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link href="assets/css/style.css" rel="stylesheet"  type="text/css">
+  <meta charset="utf-8">
+  <title>AuditorAX</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
-<!-- <header class="bg-01">
+  <div class="clear"></div>
   <div class="col-md-12">
     <div class="content-box">
-      <a href="#" class="logout">Logout</a> 
-      <div class="logo logo-02"><a href="#"><img src="assets/images/logo.png" alt="logo"></a></div>
-    </div>
-  </div>
-</header> -->
-<div class="clear"></div>
-<div class="col-md-12">
-  <div class="content-box">
-    <div class="white-con">
-      <div class="breadcrumb">
-        <ul>
-          <li><a href="#">Dashboard</a></li>
-          <li><a href="#">User Roles</a></li>
-        </ul>
+      <div class="">
+        <div class="">
+          <div class="breadcrumb">
+            <ul>
+              <li><a href="#">Dashboard > </a></li>
+              <li>
+                <a href="#">User Roles</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+          <div class="side-menu align-self-center">
+            <ul>
+              <li><a  class="new" data-toggle="modal" data-target="#myModal">New</a></li>
+            </ul>
+          </div>
       </div>
-      <div class="side-menu"  *ngIf="this.checkObject.canAdd" >
-        <ul>
-          <li><a (click)=newRole()>New</a></li>
-          <!-- <li><a href="#">Edit</a></li>
-          <li><a href="#">Delete</a></li> -->
-        </ul>
+
+      <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header border-0">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+              <!-- <label>Name:*</label>
+              <input type="text" [(ngModel)]="roleName" name="name" class="textfield" required placeholder="Name">
+              <div class="text-box color-white text-16">
+                <input type="checkbox"  [(ngModel)]="isActive">
+                Active</div>    -->
+                <div class="col-md-12 float-left pl-0 pr-5">
+                  <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Name*:</label></div>
+                  <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+                    <input type="text" name="" class="field-01 form-control" placeholder="Name" [(ngModel)]="roleName" required > 
+                  </div>
+                
+                  <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Status:</label></div>
+                  <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+                    
+                    <label class="cc" >
+                      <input type="checkbox"[(ngModel)]="isActive" >
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+                </div> 
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn green-btn" data-dismiss="modal" (click)="onYesClick()">Save</button>
+              <button type="button" class="btn blue-btn" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
       </div>
-      <h1>User Roles<span></span></h1>
-    </div>
-  </div>
-</div>
-
-<!-- <div class="clear"></div> -->
-
-<div class="main-table-con" *ngIf="this.checkObject.canView" >
-  <div class="col-md-12">
-    <div class="content-box">
-      <!-- Editable table -->
-<div class="card">
-    <div class="card-body">
-      <div id="table" class="table-editable">
-        <div class="table-outer-con">
-          <div id="table" class="table-editable">
-        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table mt-0" >
+      <div class="clear"></div>
+      <div class="main-table-con">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
           <tr>
-              <th>Sr.No.</th>
+            <th>Sr.No.</th>
               <th>Name</th>
-              
               <th align="center">Is Active</th>
-              
-          
-            
+           
           </tr>
           <tr *ngFor="let person of this.personList; let id = index " >
             <td>
-              <span  >{{id+1}}</span>
+              <span>{{id+1}}</span>
             </td>
             <td>
               <span contenteditable="false" *ngIf="!this.checkObject.canEdit" (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(person.id,id, 'name', $event)">{{person.roleName}}</span>
 
               <span contenteditable="true" *ngIf="this.checkObject.canEdit" (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(person.id,id, 'name', $event)">{{person.roleName}}</span>
             </td>
-           
-            <td align="center" valign="top">
-              <input  type="checkbox" [(ngModel)]="person.isActive" *ngIf="!this.checkObject.canEdit" >
+            <td >
+              <!-- <input  type="checkbox" [(ngModel)]="person.isActive" *ngIf="!this.checkObject.canEdit" > -->
+              <label class="cc" *ngIf="!this.checkObject.canEdit">
+                <input type="checkbox"[(ngModel)]="person.isActive" >
+                <span class="checkmark"></span>
+              </label>
+              <label class="cc" *ngIf="this.checkObject.canEdit" >
+                <input type="checkbox"[(ngModel)]="person.isActive"  [ngModelOptions]="{standalone: true}" (onchange)="changeValue(id, 'isActive', $event)" (blur)="updateList(person.id,id, 'isActive', $event)">
+                <span class="checkmark"></span>
+              </label>
+<!-- 
               <input  type="checkbox" [(ngModel)]="person.isActive" *ngIf="this.checkObject.canEdit"
-              [ngModelOptions]="{standalone: true}"  (onchange)="changeValue(id, 'isActive', $event)" (blur)="updateList(person.id,id, 'isActive', $event)" >
+              [ngModelOptions]="{standalone: true}"  (onchange)="changeValue(id, 'isActive', $event)" (blur)="updateList(person.id,id, 'isActive', $event)" > -->
            
             </td>
 
-           
-           
+            
           </tr>
         </table>
-        </div>
-        </div>
-        
-       
       </div>
     </div>
   </div>
-  
-      <div class="clear"></div>
-      
-    </div>
-  </div>
-</div>
+  <div class="clear"></div>
 </body>
-</html>
-<script>
-jQuery(document).ready(function ($) {
-    $(window).load(function () {
-        setTimeout(function(){
-            $('#preloader').fadeOut('slow', function () {
-            });
-        },3000); // set the time here
-    });  
-});
-</script>
+

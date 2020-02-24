@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>AuditorAX</title>
+  <meta name="viewport" concc float-lefttent="width=device-width, initial-scale=1">
+  <!-- Styles Sheets -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+  <div class="clear"></div>
+  <div class="col-md-12">
+    <div class="content-box">
+      <div class="breadcrumb">
+        <ul>
+          <li><a href="#">Dashboard ></a></li>
+          <li><a href="#">Process ></a></li>
+          <li><a href="#">Edit Process</a></li>
+        </ul>
+      </div>
+      <h2>Edit Process</h2>
+      <div class="form-con">
+        <div class="col-md-6 float-left pl-0 pr-5">
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Process Name*:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <input type="text" name="" class="field-01 form-control" placeholder="Process Name" [(ngModel)]="this.editBody.name" required> 
+          </div>
+        </div>
+
+        <div class="col-md-6 float-left pl-5 pr-0">
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Description:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <input type="text" name="description" class="field-01 form-control" [(ngModel)]="this.editBody.description" placeholder="Description" >
+          </div>
+        </div>
+        <div class="clear"></div>
+
+        <div class="grey-seprator"></div>
+        <div class="rt-btn aax-green-btn float-right mt-0 mt-4"><a (click)="onUpdateClick()">Update</a></div>
+
+
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+</body>
+</html>

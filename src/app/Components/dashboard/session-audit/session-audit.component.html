@@ -3,90 +3,97 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Trilod</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AuditorAX</title>
+  <meta name="viewport" concc float-lefttent="width=device-width, initial-scale=1">
   <!-- Styles Sheets -->
   <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="assets/css/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-
+  
   <div class="clear"></div>
   <div class="col-md-12">
     <div class="content-box">
-      <div class="white-con">
-        <div class="breadcrumb">
-          <ul>
-            <li>
-              <a href="#">Dashboard</a>
-            </li>
-            <li>
-              <a href="#"> Audit Session</a>
-            </li>
-          </ul>
+      <div class="breadcrumb">
+        <ul>
+          <li><a href="#">Dashboard ></a></li>
+          <li><a href="#">Audit Session </a></li>
+          <!-- <li><a href="#">Add Organization</a></li> -->
+        </ul>
+      </div>
+      <h2>Audit Session</h2>
+      <div class="form-con">
+        <div class="col-md-6 float-left pl-0 pr-5">
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Audit Name:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <input type="text" name="" class="field-01 form-control" placeholder="Name" [(ngModel)]="name" maxlength="80"> 
+          </div>
+          <div class="clear"></div>
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Address:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <input type="text" name="" class="field-01 form-control" placeholder="Address" [(ngModel)]="address" > 
+        
+            <!-- <select id="state" class="field-01 form-control" [(ngModel)]="process" required>
+              <option selected class=""  value="">-SELECT-</option>
+              <option *ngFor="let p of this.processList" [ngValue]="p.name">{{p.name}}</option>
+            </select> -->
+          </div>
+       
         </div>
-        <h1>Audit Session
-          <span></span>
-        </h1>
-        <div class="inner-white-box">
-          <div class="form-con">
-            <div class="col-md-12">
-              <div class="col-md-4 float-left pl-0">
-                <label>Audit Name:</label>
-                <input type="text" maxlength="80" name="" class="field-01 form-control" [(ngModel)]="name">
-              </div>
-              <div class="col-md-4 float-left pl-0">
-                <label>Address:</label>
-                <input type="text" name="" class="field-01 form-control" [(ngModel)]="address">
-              </div>
-              <div class="col-md-4 float-left pl-0">
-                <label>City:</label>
-                <input type="text" maxlength="80" name="" class="field-01 form-control" [(ngModel)]="city">
-              </div>
-            </div>
-            <div class="clear"></div>
-            <div class="col-md-12">
-              <div class="col-md-4 float-left pl-0">
-                <label>State:</label>
-                <input type="text" maxlength="80" name="" class="field-01 form-control" [(ngModel)]="state">
-              </div>
-              <div class="col-md-4 float-left pl-0">
-                <label>Zip:</label>
-                <input type="text" maxlength="80" name="" class="field-01 form-control" [(ngModel)]="zip">
-              </div>
-              <div class="col-md-4 float-left pl-0">
-                <label>Fiscal Start Date:</label>
-                <input name="" value="Start Date:" placeholder="Start Date" class="field-01 form-control" (click)="picker.open()" onfocus="(this.value == 'Start Date:') && (this.value = '')"
+
+        <div class="col-md-6 float-left pl-0 pr-5">
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>City:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <input type="text" name="" class="field-01 form-control" placeholder="City" [(ngModel)]="city" > 
+          </div>
+          <div class="clear"></div>
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>State:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <input type="text" name="" class="field-01 form-control" placeholder="State" [(ngModel)]="state" maxlength="80"> 
+     
+          </div>
+       
+        </div>
+        <div class="col-md-6 float-left pl-0 pr-5">
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Zip:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <input type="text" name="" class="field-01 form-control" placeholder="Zip" [(ngModel)]="zip"  maxlength="80" > 
+          </div>
+       
+        </div>
+        <div class="col-md-6 float-left pl-0 pr-5">
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Fiscal Start Date:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <input name="" value="Start Date:" placeholder="Start Date" class="field-01 form-control calendar-icon" (click)="picker.open()" onfocus="(this.value == 'Start Date:') && (this.value = '')"
                   onblur="(this.value == '') && (this.value = 'Start Date:')" [(ngModel)]="startDate" [matDatepicker]="picker"
                 />
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </div>
-            </div>
-            <div class="clear"></div>
-            <div class="col-md-12">
-              <div class="col-md-4 float-left pl-0">
-                <label>Fiscal End Date:</label>
-                <input name="" value="End Date:" placeholder="End Date" class="field-01 form-control" (click)="pickers.open()" onfocus="(this.value == 'End Date:') && (this.value = '')"
-                  onblur="(this.value == '') && (this.value = 'End Date:')" [(ngModel)]="endDate" [matDatepicker]="pickers"
-                />
-                <mat-datepicker-toggle matSuffix [for]="pickers"></mat-datepicker-toggle>
-                <mat-datepicker #pickers></mat-datepicker>
-              </div>
-              <div class="col-md-4 float-left pl-0">
-                <div class="col-md-6 float-left pr-0">
-                  <label>&nbsp;</label>
-                  <button class="field-01 form-control button float-left" (click)="saveAudit()" >Save</button>
-                </div>
-                <div class="col-md-6 float-left pr-0">
-                  <label>&nbsp;</label>
-                  <button class="field-01 form-control button float-left">Cancel</button>
-                </div>
-              </div>
-            </div>
+                <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle> -->
+                <mat-datepicker #picker></mat-datepicker> 
+          </div>
+        
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Fiscal End Date:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <input name="" value="End Date:" placeholder="End Date" class="field-01 form-control calendar-icon" (click)="pickers.open()" onfocus="(this.value == 'End Date:') && (this.value = '')"
+            onblur="(this.value == '') && (this.value = 'End Date:')" [(ngModel)]="endDate" [matDatepicker]="pickers"
+          />
+          <!-- <mat-datepicker-toggle matSuffix [for]="pickers"></mat-datepicker-toggle> -->
+          <mat-datepicker #pickers></mat-datepicker> 
           </div>
         </div>
+
+     
+
+        <div class="clear"></div>
+
+        <div class="grey-seprator"></div>
+        <div class="lt-btn aax-blue-btn  float-right mt-0 mt-4 ml-3"><a href="#">CANCEL</a></div>
+        <div class="rt-btn aax-green-btn float-right mt-0 mt-4"><a (click)="saveAudit()">Save</a></div>
+        
+       
+
+
+        <div class="clear"></div>
       </div>
     </div>
   </div>

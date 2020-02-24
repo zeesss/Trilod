@@ -31,8 +31,13 @@ saveBody=
 
   ngOnInit() {
   }
+  isEmpty(val) {
+    return (val === undefined || val == null || val.length <= 0) ? true : false;
+  }
 onSaveButton()
 {
+  if (!this.isEmpty(this.name) && !this.isEmpty(this.email)&& !this.isEmpty(this.country))
+  {
   this.saveBody=
 {
   "city":"",
@@ -67,6 +72,11 @@ this.rest.addOrganization(this.saveBody).subscribe((data:any) => {
   
   }
 );
+  }
+  else
+  {
+    this.toastr.warning("","Empty Fields!!");
+  }
 }
 }
 

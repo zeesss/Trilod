@@ -45,12 +45,15 @@ orgList;
   }
   delete(id)
   {
-    this.rest.organization_delete(localStorage.getItem("edit-organization-id")).subscribe((data:any) => {
+    //alert(id);
+    if(confirm("Are you sure to delete the record?"))
+    {
+    this.rest.organization_delete(id).subscribe((data:any) => {
 
       if(data.responseCode=="00")
       {
         this.toastr.success('', 'Deleted');
-        this.router.navigate(['dashboard/organization/']);
+        location.reload();
       }
      
     }
@@ -59,5 +62,6 @@ orgList;
       this.toastr.error('', 'Failed!');
       }
     );
+    }
   }
 }

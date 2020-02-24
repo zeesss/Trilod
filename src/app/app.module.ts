@@ -1,8 +1,9 @@
-import { control_template_mapping_MapTemplate } from './Components/dashboard/control-template-mapping/control-template-mapping.component';
+import { control_template_mapping_MapTemplate } from './Components/dashboard/control/add-control/add-control.component';
+//import { control_template_mapping_MapTemplate } from './Components/dashboard/control-template-mapping/control-template-mapping.component';
 import { DialogShowHeaders } from './Components/dashboard/multisheet-excel-template/multisheet-excel-template.component';
 import { StartAudit } from './Components/dashboard/sessions/sessions.component';
 import { AddFile } from './Components/dashboard/session-audit/session-audit.component';
-import { MapTemplate } from './Components/dashboard/rule/add-rule/add-rule.component';
+//import { MapTemplate } from './Components/dashboard/rule/add-rule/add-rule.component';
 import { AddFileAuditDialog } from './Components/dashboard/audit/audit-controls/audit-controls.component';
 import { DialogUserAdd, DialogUserEdit } from './Components/dashboard/user/user.component';
 import { DialogRoleAdd } from './Components/dashboard/roles/roles.component';
@@ -40,6 +41,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
+    
     DialogOverviewExampleDialog,
     DialogOverviewExampleDialog2,
     DialogOverviewExampleDialog3,
@@ -52,13 +54,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     control_template_mapping_MapTemplate,
     NgbdModalContent,
     AddFile,
-    MapTemplate,
+    //MapTemplate,
     AddFileAuditDialog,
     StartAudit,
     ConfirmationComponent
   ],
   imports: [
     NgbModule,
+  
     NgxPaginationModule,
     BrowserModule,
     FormsModule,
@@ -101,7 +104,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     control_template_mapping_MapTemplate,
     NgbdModalContent,
     AddFile,
-    MapTemplate,
+    //MapTemplate,
     AddFileAuditDialog,
     StartAudit,
     ConfirmationComponent]

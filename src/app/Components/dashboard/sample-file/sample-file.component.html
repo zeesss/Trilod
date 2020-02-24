@@ -39,14 +39,14 @@
                 <label>Audit</label>
                 <select id="audit_select" name="" class="field-01 form-control" [(ngModel)]="audit" (change)="auditSelectOnchange()">
                   <option value="" selected>-select-</option>
-                  <option *ngFor="let audit of this.auditList; index as i">{{audit.auditName}}</option>
+                  <option *ngFor="let audit of this.auditList; index as i;">{{audit.auditName}}</option>
                 </select>
               </div>
               <div class="col-md-4 float-left pl-0 pr-5" *ngIf="this.control_hidden">
                 <label>Control</label>
                 <select id="control_select" name="" class="field-01 form-control" [(ngModel)]="control" (change)="controlSelectOnchange()">
                   <option value="" selected>-select-</option>
-                  <option *ngFor="let c of this.controlList" [ngValue]="c.name">{{c.name}}</option>
+                  <option *ngFor="let c of this.controlList;" [ngValue]="c.name">{{c.name}}</option>
                 </select>
               </div>
               <div class="col-md-2 float-left pl-0">
@@ -102,11 +102,9 @@
               <!-- <input *ngIf="size==='percentage'" type="text" name="" class="field-01 form-control"  > -->
               <div class="col-md-4 float-left pl-0 pr-5">
                 <div class="blue-btn">
-                  <a>Save</a>
+                  <a (click)="addSampling()" >Save</a>
                 </div>
-                <div class="blue-btn">
-                  <a>Cancel</a>
-                </div>
+                
               </div>
               <!-- <div class="blue-btn"><a (click)="addSampling()">Process</a></div> -->
 
@@ -120,25 +118,31 @@
   <div class="main-table-con-scroll">
     <div class="col-md-12">
       <div class="content-box">
-        <div class="records">No of Records: {{this.fileData.length}}</div>
+        <div class="records">No of Records: {{this.dataList.length}}</div>
         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
-          <tr *ngFor="let row of this.fileData; let id = index">
+          <!-- <tr *ngFor="let row of this.fileData; let id = index;"> -->
+            <tr >
             <th>Sr. No</th>
             <th width="150" class="text-center"></th>
-            <th class="text-center">row.header</th>
+            <!-- <th class="text-center">row.header</th> -->
+            <th class="text-center" *ngFor="let row of this.mapList; let id = index;">{{this.mapData[row]}}</th>
           </tr>
-          <tr *ngFor="let row of this.fileData; let id = index">
+          <tr *ngFor="let row of this.dataList; let id = index;">
             <td>{{id+1}}</td>
             <td align="center">
               <input type="checkbox" [(ngModel)]="row.isProcessable" [ngModelOptions]="{standalone: true}" (onchange)="changeValue(id, 'isProcessable', $event)"
                 (blur)="updateList(row.id,id, 'isProcessable', $event)">
             </td>
-            <td align="center">{{row.userName}}</td>
-            <td align="center">{{row.userFullName}}</td>
+            <!-- <td align="center" *ngFor="let row of row; let id = index;">{{row1.col0}}</td> -->
+            <!-- <td align="center">{{row.col0}}</td> -->
+            
+            <td class="text-center" *ngFor="let row1 of this.mapList; let i = index;">{{row[row1]}}</td>
+
+            <!-- <td align="center">{{row.userFullName}}</td>
             <td align="center">{{row.lastLogOnDate}}</td>
             <td align="center">{{row.createdDate}}</td>
             <td align="center">{{row.userEndDate}}</td>
-            <td align="center">{{row.startDate}}</td>
+            <td align="center">{{row.startDate}}</td> -->
 
           </tr>
 

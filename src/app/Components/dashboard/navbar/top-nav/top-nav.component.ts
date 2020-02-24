@@ -203,7 +203,7 @@ export class TopNavComponent implements OnInit {
     this.router.navigate(['dashboard/controlTask']);
   }
   sessions() {
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['dashboard/newSessionAudit']);
   }
   config() {
     this.router.navigate(['dashboard/config']);

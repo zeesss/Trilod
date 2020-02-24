@@ -1,11 +1,11 @@
 <!doctype html>
-<html>
+<!-- <html> -->
 
 <head>
   <meta charset="utf-8">
-  <title>Trilod</title>
+  <title>AuditorAX</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Styles Sheets -->
+
   <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="assets/css/style.css" rel="stylesheet" type="text/css">
 </head>
@@ -14,105 +14,71 @@
   <div class="clear"></div>
   <div class="col-md-12">
     <div class="content-box">
-      <div class="white-con">
-        <div class="breadcrumb">
-          <ul>
-            <li>
-              <a href="#">Dashboard</a>
-            </li>
-            <li>
-              <a href="#">Organization</a>
-            </li>
-          </ul>
-        </div>
-        <div class="side-menu">
-          <ul>
-            <li>
-              <a (click)=openAddNew()>New</a>
-            </li>
-          </ul>
-        </div>
-        <h1>Organization
-          <span></span>
-        </h1>
-      </div>
-    </div>
-  </div>
-  <div class="main-table-con">
-    <div class="col-md-12">
-      <div class="content-box">
-        <!-- Editable table -->
+      <div class="">
         <div class="">
-          <div class="table-outer-con">
-            <div id="table" class="table-editable">
-              <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table  mt-0">
-                <tr>
-                  <th>Sr.No.</th>
-                  <th>Name</th>
-                  <th>Street</th>
-                  <th>City</th>
-                  <th>State</th>
-                  <th>Country</th>
-                  <th>Zip/Postal Code</th>
-                  <th>Email</th>
-                  <th>Action</th>
-                </tr>
-                <tr *ngFor="let organization of this.organizationList; let id = index ">
-                  <td>
-                    <span>{{id+1}}</span>
-                  </td>
-                  <td>
-                    <span>{{organization.name}}</span>
-                  </td>
-                  <td>
-                    <span>{{organization.street}}</span>
-                  </td>
-                  <td>
-                    <span>{{organization.city}}</span>
-                  </td>
-                  <td>
-                    <span>{{organization.state}}</span>
-                  </td>
-                  <td>
-                    <span>{{organization.country}}</span>
-                  </td>
-                  <td>
-                    <span>{{organization.postalCode}}</span>
-                  </td>
-                  <td>
-                    <span>{{organization.email}}</span>
-                  </td>
-                  
-                 
-               
-              
-                  <td>
-                    <!-- <span>
-                      <a class="mt-view-btn" (click)=editUserRole(control.id)></a>
-                    </span> -->
-                    <a class="mt-edit-btn" (click)=editOrganization(organization.id)></a>
-                    &nbsp;&nbsp;
-                    <a class="mt-delete-btn" (click)=delete(organization.id)></a>
-                  </td>
-                </tr>
-              </table>
-            </div>
+          <div class="breadcrumb">
+            <ul>
+              <li><a href="#">Dashboard > </a></li>
+              <li>
+                <a href="#">Organization</a>
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="clear"></div>
+          <div class="side-menu align-self-center">
+            <ul>
+              <li><a  class="new" (click)=openAddNew()>New</a></li>
+            </ul>
+          </div>
+      </div>
+      <div class="clear"></div>
+      <div class="main-table-con">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
+          <tr>
+            <th>Sr.No.</th>
+            <th>Name</th>
+            <th>Street</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Country</th>
+            <th>Zip/Postal Code</th>
+            <th>Email</th>
+            <th>&nbsp; &nbsp; </th>
+           
+          </tr>
+          <tr *ngFor="let organization of this.organizationList; let id = index ">
+            <td>
+              <span>{{id+1}}</span>
+            </td>
+            <td>
+              <span>{{organization.name}}</span>
+            </td>
+            <td>
+              <span>{{organization.street}}</span>
+            </td>
+            <td>
+              <span>{{organization.city}}</span>
+            </td>
+            <td>
+              <span>{{organization.state}}</span>
+            </td>
+            <td>
+              <span>{{organization.country}}</span>
+            </td>
+            <td>
+              <span>{{organization.postalCode}}</span>
+            </td>
+            <td>
+              <span>{{organization.email}}</span>
+            </td>
+            <td><a class="mt-delete-btn" (click)=delete(organization.id)></a>
+              <a class="mt-edit-btn" (click)=editOrganization(organization.id)></a>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
+  <div class="clear"></div>
 </body>
 
-</html>
-<script>
-  jQuery(document).ready(function ($) {
-    $(window).load(function () {
-      setTimeout(function () {
-        $('#preloader').fadeOut('slow', function () {
-        });
-      }, 3000); // set the time here
-    });
-  });
-</script>

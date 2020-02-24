@@ -533,6 +533,9 @@ export class RestService {
   applyRule(sessionId, fileId) {
     return this.http.get(this.ApiLink + 'ruleengine/apply/' + sessionId + '/' + fileId).pipe(map(res => { return res }));
   }
+  sendProcessable(processableBody) {
+    return this.http.post(this.ApiLink + "dataTable/updateProcessable/", processableBody);
+    }
   getWorkPaperTemplateById(id) {
     return this.http.get(this.ApiLink + 'wpt/findByAuditSession/' + id).pipe(map(res => { return res }));
   }
@@ -749,6 +752,9 @@ export class RestService {
   getTemplateList(clientId) {
     return this.http.get(this.ApiLink + 'template/findByClient/' + clientId);
   }
+  getTemplateListDropDown() {
+    return this.http.get(this.ApiLink + 'template/dropDown/');
+  }
 
   //Get Tempalte Details
   getTemplateDetails(templateId) {
@@ -781,11 +787,11 @@ export class RestService {
   }
 
   getRuleList(clientId) {
-    return this.http.get(this.ApiLink + 'rule/findByClient/' + clientId);
+    return this.http.get(this.ApiLink + 'rule/' );
   }
   getControlList(clientId)
   {
-    return this.http.get(this.ApiLink + 'control/findByClientId/' + clientId).pipe(map(res => { return res }));
+    return this.http.get(this.ApiLink + 'control/').pipe(map(res => { return res }));
    // return this.http.get(this.ApiLink + 'control/findByClientId/' + clientId);
   }
   getControlFieldName(clientId)
@@ -891,5 +897,85 @@ export class RestService {
   
   organization_delete(id): Observable<any> {
     return this.http.delete(this.ApiLink + "organization/delete/" + id);
+  }
+  client_add(saveBody)
+  {
+    return this.http.post(this.ApiLink + "client/add/", saveBody);
+  }
+  getAllClient()
+  {
+    return this.http.get(this.ApiLink + 'client/').pipe(map(res => { return res }));
+  }
+  deleteClient(id): Observable<any> 
+  {
+    return this.http.delete(this.ApiLink + "client/delete/" + id);
+  }
+  client_findById(id)
+  {
+    return this.http.get(this.ApiLink + 'client/findById/'+id).pipe(map(res => { return res }));
+  }
+  client_update(id,body): Observable<any> {
+
+    return this.http.put(this.ApiLink + "client/update/" + id, body);
+  }
+  process_add(saveBody)
+  {
+    return this.http.post(this.ApiLink + "process/add/", saveBody);
+  }
+  process_getAll()
+  {
+    return this.http.get(this.ApiLink + 'process/').pipe(map(res => { return res }));
+  }
+  process_delete(id): Observable<any> 
+  {
+    return this.http.delete(this.ApiLink + "process/delete/" + id);
+  }
+  process_findById(id)
+  {
+    return this.http.get(this.ApiLink + 'process/findById/'+id).pipe(map(res => { return res }));
+  }
+  process_update(id,body): Observable<any> {
+
+    return this.http.put(this.ApiLink + "process/update/" + id, body);
+  }
+  subProcess_add(saveBody)
+  {
+    return this.http.post(this.ApiLink + "subprocess/add/", saveBody);
+  }
+  subProcess_getAll()
+  {
+    return this.http.get(this.ApiLink + 'subprocess/').pipe(map(res => { return res }));
+  }
+  subProcess_delete(id): Observable<any> 
+  {
+    return this.http.delete(this.ApiLink + "subprocess/delete/" + id);
+  }
+  subProcess_findById(id)
+  {
+    return this.http.get(this.ApiLink + 'subprocess/findById/'+id).pipe(map(res => { return res }));
+  }
+  subProcess_update(id,body): Observable<any> {
+
+    return this.http.put(this.ApiLink + "subprocess/update/" + id, body);
+  }
+  getEvidenceFileNames()
+  {
+    return this.http.get(this.ApiLink + 'template/fileNamesDropDown').pipe(map(res => { return res }));
+  }
+  getTemplateByFileName(fileName)
+  {
+    return this.http.get(this.ApiLink + 'template/dropDownByFileNames/'+fileName).pipe(map(res => { return res }));
+  }
+  getSamplingRows(AUDIT_SESSION_ID,CONTROL_ID)
+  {
+    return this.http.get(this.ApiLink + 'template/getHeaderNames/' + AUDIT_SESSION_ID+"/"+CONTROL_ID+"/").pipe(map(res => { return res }));
+  }
+  samplingByAuditAndControl(formData){
+    return this.http.post(this.ApiLink + "dataTable/addsamplingaudit/", formData);
+
+  }
+  getProcessableRows(AUDIT_SESSION_ID,CONTROL_ID)
+  {
+    return this.http.get(this.ApiLink + 'dataTable/findAllProcessableRowsByTemplateId/' + AUDIT_SESSION_ID+"/"+CONTROL_ID+"/").pipe(map(res => { return res }));
   }
 }

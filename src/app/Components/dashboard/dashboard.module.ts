@@ -16,9 +16,10 @@ import { DashTabsComponent } from './dash-tabs/dash-tabs.component';
 import { SearchComponent } from './search/search.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-
+//import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 import {
+  
   MatTabsModule,
   MatButtonModule,
   MatMenuModule,
@@ -72,6 +73,14 @@ import { ControlTemplateMappingComponent } from './control-template-mapping/cont
 import { ClientAddComponent } from './client/client-add/client-add.component';
 import { OrganizationListComponent } from './organization/organization-list/organization-list.component';
 import { OrganizationEditComponent } from './organization/organization-edit/organization-edit.component';
+import { ClientListComponent } from './client/client-list/client-list.component';
+import { ClientEditComponent } from './client/client-edit/client-edit.component';
+import { ProcessAddComponent } from './process/process-add/process-add.component';
+import { ProcessListComponent } from './process/process-list/process-list.component';
+import { ProcessEditComponent } from './process/process-edit/process-edit.component';
+import { SubProcessAddComponent } from './sub-process/sub-process-add/sub-process-add.component';
+import { SubProcessListComponent } from './sub-process/sub-process-list/sub-process-list.component';
+import { SubProcessEditComponent } from './sub-process/sub-process-edit/sub-process-edit.component';
 const dashboardRoutes: Routes = [
   {
     path: '',
@@ -100,7 +109,8 @@ const dashboardRoutes: Routes = [
           { path: 'convertToExcel', component: ConvertToExcelComponent },
           { path: 'assignForms', component: RoleEditComponent },
           { path: 'template', component: TemplateListComponent },
-          { path: 'addTemplate', component: AddTemplateComponent },
+          //{ path: 'addTemplate', component: AddTemplateComponent },
+          { path: 'addTemplate', component: MultisheetExcelTemplateComponent },
           { path: 'rule', component: RuleListComponent },
           { path: 'addRule', component: AddRuleComponent },
           { path: 'control', component: ControlListComponent },
@@ -112,7 +122,15 @@ const dashboardRoutes: Routes = [
           { path:'multisheetExcel', component:MultisheetExcelTemplateComponent},
           {path: 'client-add', component:ClientAddComponent},
           {path: 'organization', component:OrganizationListComponent},
-          {path: 'organization-edit', component:OrganizationEditComponent}
+          {path: 'organization-edit', component:OrganizationEditComponent},
+          {path:'client',component:ClientListComponent},
+          {path:'client-edit', component:ClientEditComponent},
+          {path:'process-add',component:ProcessAddComponent},
+          {path: 'process-edit', component:ProcessEditComponent},
+          {path: 'process', component:ProcessListComponent},
+          {path: 'sub-process-add', component:SubProcessAddComponent},
+          {path: 'sub-process-edit', component:SubProcessEditComponent},
+          {path: 'sub-process', component:SubProcessListComponent}
 
           
         ]
@@ -159,12 +177,21 @@ const dashboardRoutes: Routes = [
     MultisheetExcelTemplateComponent,
     ClientAddComponent,
     OrganizationListComponent,
-    OrganizationEditComponent
+    OrganizationEditComponent,
+    ClientListComponent,
+    ClientEditComponent,
+    ProcessAddComponent,
+    ProcessListComponent,
+    ProcessEditComponent,
+    SubProcessAddComponent,
+    SubProcessListComponent,
+    SubProcessEditComponent
   ],
   entryComponents: [],
   imports: [
     RouterModule.forChild(dashboardRoutes),
     FormsModule,
+    //PdfViewerModule,
     ReactiveFormsModule,
     MatTabsModule,
     CommonModule,

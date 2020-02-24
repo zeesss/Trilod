@@ -25,6 +25,8 @@ export class AddEvidencesComponent implements OnInit {
   selectedAuditId: any;
   selectedControl: any;
   selectedControlId: any;
+  evidenceFiles: any;
+  templateListEvidence: any;
    constructor(public dialog: MatDialog, public toastr: ToastrService, public router: Router, public rest: RestService, public formBuilder: FormBuilder, public formsModule: FormsModule, public reactiveFormsModule: ReactiveFormsModule) { }
 
   ngOnInit() {
@@ -48,6 +50,11 @@ export class AddEvidencesComponent implements OnInit {
         console.log(this.templateList);
       }
     });
+    this.rest.getEvidenceFileNames().subscribe((data: any) => {
+
+      this.evidenceFiles = data.data;
+      console.log(this.evidenceFiles);
+    });
   }
   onChange(value) {
     debugger;
@@ -68,6 +75,10 @@ export class AddEvidencesComponent implements OnInit {
     console.log(this.selectedTemplate.id);
     this.formData.append('template_id', this.selectedTemplate.id);
   }
+  onChangeEvidenceFile(value){
+    //alert(value);
+    this.formData.append('file_name', value);
+      }
   onFileSelect(event) {
     // if (event.target.files.length > 0) {
     //   const file = event.target.files[0];
@@ -81,6 +92,7 @@ export class AddEvidencesComponent implements OnInit {
       console.log(fileItem.name);
       //this.uploadForm.get('evFile').setValue(fileItem);
       this.formData.append('file', fileItem);
+      //this.formData.append('file_name', fileItem.name);
       // alert(fileItem.name);
      // data.append('fileSeq', 'seq'+j);
       //data.append( 'dataType', this.uploadForm.controls.type.value);
@@ -97,7 +109,7 @@ export class AddEvidencesComponent implements OnInit {
 
       }
       else {
-        this.toastr.error('', "Some Error Occurred");
+        this.toastr.error('Some Error Occurred', data.error);
 
       }
 

@@ -224,6 +224,16 @@ export class SessionAuditComponent implements OnInit {
   }
   saveAudit() {
     //alert(this.utils.dateFormat(this.endDate));
+    // alert(this.name);
+    // alert(this.address);
+    // alert(this.startDate);
+    // alert(this.endDate);
+
+    // alert(this.city);
+    // alert(this.state);
+    // alert(this.zip);
+
+
     if (!this.isEmpty(this.name) && !this.isEmpty(this.address) && !this.isEmpty(this.startDate)
       && !this.isEmpty(this.endDate) && !this.isEmpty(this.city) && !this.isEmpty(this.state) && !this.isEmpty(this.zip)) {
       this.auditbody.address = this.address;

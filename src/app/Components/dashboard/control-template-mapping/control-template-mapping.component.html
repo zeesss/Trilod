@@ -37,10 +37,7 @@
                 <select class="field-01 form-control" [(ngModel)]="template1">
                   <option selected value="">-SELECT-</option>
                   <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
+                  <option value=">=">2</option>
                   
                 </select>
               </div>
@@ -48,15 +45,14 @@
                 <label *ngIf="template1!==''">Template Field Name:</label>
                 <select *ngIf="template1!==''" class="field-01 form-control" [(ngModel)]="fieldType1" >
                   <option selected value="">-SELECT-</option>
-                  <option value="Template Field Name 1">Template Field Name 1</option>
-                  <option value="Template Field Name 2">Template Field Name 2</option>
-                  <option value="Template Field Name 3">Template Field Name 3</option>
+                  <option value="Value">Template Field 1</option>
+                  <option value="Control_field">Template Field 2</option>
                 </select>
               </div>
             
             </div>
             <div class="clear"></div>
-            <!-- <div class="col-md-12">
+            <div class="col-md-12">
               <div class="col-md-4 float-left pl-0">
                 <label>Template:</label>
                 <select class="field-01 form-control" [(ngModel)]="template2">
@@ -70,12 +66,12 @@
                 <label *ngIf="template2!==''">Template Field Name:</label>
                 <select *ngIf="template2!==''" class="field-01 form-control" [(ngModel)]="fieldType2" >
                   <option selected value="">-SELECT-</option>
-                  <option value="Value">Value</option>
-                  <option value="Control_field">Control Field</option>
+                  <option value="Value">Template Field 1</option>
+                  <option value="Control_field">Template Field 2</option>
                 </select>
               </div>
             
-            </div> -->
+            </div>
             <div class="col-md-12">
               <!-- <div class="col-md-4 float-left pl-0">
                 <label *ngIf="condition!==''">Control Field Name:</label>
@@ -100,7 +96,7 @@
               </div> -->
               <div class="col-md-2 float-left pr-0">
                 <label>&nbsp;</label>
-                <button *ngIf="template1!==''" (click)="onClickAdd()" class="field-01 form-control button float-left">Add</button>
+                <button *ngIf="template1!==''"  class="field-01 form-control button float-left">Save</button>
               </div>
             </div>
 
@@ -110,25 +106,33 @@
     </div>
   </div>
   <div class="clear"></div>
-  <div class="main-table-con">
+  <!-- <div class="main-table-con">
     <div class="col-md-12">
       <div class="content-box">
-        <h2 class="mtc-heading">Template
+        <h2 class="mtc-heading">Rules
           <span></span>
         </h2>
         <div class="clear"></div>
         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
           <tr>
-            <th>Template Name</th>
-            <th>Template Field Name</th>
+            <th>Rule Name</th>
+            <th>Field Name</th>
+            <th>Condition</th>
+            <th>Field Name / Value</th>
             <th align="center">Action</th>
           </tr>
-          <tr *ngFor="let field of tableArray; let id = index">
+          <tr *ngFor="let field of fieldArray; let id = index">
             <td>
-              <span contenteditable="false">{{field.template_name}}</span>
+              <span contenteditable="false">{{field.name}}</span>
             </td>
             <td>
-              <span contenteditable="false">{{field.template_field_name}}</span>
+              <span contenteditable="false">{{field.field1Name}}</span>
+            </td>
+            <td>
+              <span contenteditable="false">{{field.operator}}</span>
+            </td>
+            <td valign="top">
+              <span contenteditable="false">{{field.field2Name}}</span>
             </td>
             <td>
               <a class="mt-delete-btn" (click)="remove(field.id, id)"></a>
@@ -140,16 +144,16 @@
         <div class="side-menu">
           <ul>
             <li>
-              <a (click)="onNoClick()">Cancel</a>
+              <a>Cancel</a>
             </li>
             <li>
-              <a (click)="openDialog()">Save</a>
+              <a (click)=saveRule()>Save</a>
             </li>
           </ul>
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </body>
 
 </html>

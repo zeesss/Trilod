@@ -1,24 +1,23 @@
 
 <head>
-<meta charset="utf-8">
-<title>Trilod</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Styles Sheets -->
-<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link href="assets/css/style.css" rel="stylesheet"  type="text/css">
+  <meta charset="utf-8">
+  <title>AuditorAX</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Styles Sheets -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
 </head>
 
-<header class="bg-02">
+<header>
   <div class="content-box">
-  <div class="col-xl-4 float-left">
+    <div class="col-md-4 float-left">
+    <div class="logo logo-02"><a href="#"><img src="assets/images/logo.png" alt="logo" class="img-fluid"></a></div>
 
-      <div class="logo logo-02"><a href="#"><img src="assets/images/logo.png" alt="logo"></a></div>
+      <!-- <div class="logo logo-02"><a href="#"><img src="assets/images/logo.png" alt="logo"></a></div> -->
 
   </div>
-  <div class="col-xl-8 float-right">
-
-    <a (click)="logout()" class="logout">Logout</a>
-
+ 
+  <div class="col-md-8 float-left">
     <nav class="navbar navbar-expand-lg navbar-light">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -35,7 +34,6 @@
               <a class="dropdown-item" (click)="assignForms()">Assign Forms to Roles</a>
               <a class="dropdown-item" id="2" *ngIf="matchKey('2')" (click)="users()">Users</a>
               <a class="dropdown-item" id="4" *ngIf="matchKey('4')" (click)="fileType()">File Type</a>
-              <!-- <a class="dropdown-item" href="#">Assign Roles to Users</a> -->
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -67,9 +65,9 @@
               AUDIT SESSION
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" id="6" *ngIf="matchKey('6')" (click)="sessions()">Audit</a>
-              <a class="dropdown-item" id="6" *ngIf="matchKey('6')" (click)="auditControl()">Audit Controls</a>
-              <a class="dropdown-item" id="6" *ngIf="matchKey('6')" (click)="sampleFile()">Sample Source</a>
+              <a class="dropdown-item" id="6"  (click)="sessions()">Audit</a>
+              <a class="dropdown-item" id="6"  (click)="auditControl()">Audit Controls</a>
+              <a class="dropdown-item" id="6"  (click)="sampleFile()">Sample Source</a>
             </div>
           </li>
           <!-- <li class="nav-item dropdown">
@@ -85,6 +83,10 @@
         </ul>
       </div>
     </nav>
+    <div class="logout"><a (click)="logout()">Logout: Adnan</a></div>
+    <!-- <a (click)="logout()" class="logout">Logout</a> -->
+
+    
 
   </div>
 

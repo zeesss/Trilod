@@ -23,15 +23,18 @@ export class RuleListComponent implements OnInit {
 
   ngOnInit() {
     this.getAllRules(localStorage.getItem("clientId"));
+    
   }
 
   getAllRules(cleintId) {
-    this.rest.getRuleList(cleintId).subscribe((data: {}) => {
-      if (data['responseCode'] === '00') {
-        this.dataSource = data['data'];
+    this.rest.getRuleList(cleintId).subscribe((data: any) => {
+      if (data.responseCode === '00') {
+        this.dataSource = data.data;
+        console.log(this.dataSource);
       }
     }
     );
+    
   }
 
   openAddNew() {

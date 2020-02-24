@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>AuditorAX</title>
+  <meta name="viewport" concc float-lefttent="width=device-width, initial-scale=1">
+  <!-- Styles Sheets -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <!-- <header>
+    <div class="content-box">
+      <div class="col-md-4 float-left">
+        <div class="logo logo-02"><a href="#"><img src="assets/images/logo.png" alt="logo" class="img-fluid"></a></div>
+      </div>
+      <div class="col-md-8 float-left">
+        <div class="logout"><a href="#">Logout: Adnan</a></div>
+      </div>
+    </div>
+  </header> -->
+  <div class="clear"></div>
+  <div class="col-md-12">
+    <div class="content-box">
+      <div class="breadcrumb">
+        <ul>
+          <li><a href="#">Dashboard ></a></li>
+          <li><a href="#">Process ></a></li>
+          <li><a href="#">Add Process</a></li>
+        </ul>
+      </div>
+      <h2>Add Process</h2>
+      <div class="form-con">
+        <div class="col-md-6 float-left pl-0 pr-5">
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Process Name*:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <input type="text" name="" class="field-01 form-control" placeholder="Process Name" [(ngModel)]="process_name" required> 
+          </div>
+          <div class="clear"></div>
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Client*:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <select id="state" class="field-01 form-control" [(ngModel)]="client" required>
+              <option selected class=""  value="">-SELECT-</option>
+              <option *ngFor="let c of this.clientList" [ngValue]="c.clientName">{{c.clientName}}</option>
+            </select>
+          </div>
+       
+        </div>
+
+        <div class="col-md-6 float-left pl-5 pr-0">
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Description:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <input type="text" name="description" class="field-01 form-control" [(ngModel)]="description" placeholder="Description" >
+          </div>
+        </div>
+        <div class="clear"></div>
+
+        <div class="grey-seprator"></div>
+        <div class="rt-btn aax-green-btn float-right mt-0 mt-4"><a (click)="onSaveClick()">Save</a></div>
+
+
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+</body>
+
+</html>

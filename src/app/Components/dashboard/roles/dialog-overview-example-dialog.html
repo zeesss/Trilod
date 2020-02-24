@@ -1,47 +1,19 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Trilod</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Styles Sheets -->
-<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link href="assets/css/style.css" rel="stylesheet"  type="text/css">
-</head>
-<body class="bg-01">
-<div class="container">
-  <div class="col-md-12">
-    <!-- <div class="logo"><a href="#"><img src="assets/images/logo.png" alt="logo"></a></div> -->
-    <!-- <div class="clear"></div> -->
-    <!-- <div class="mainimg"><img src="assets/images/signin-icon.png" alt="Signin"></div> -->
-    <div class="arrow-box login-screen">
-      <div class="box-left">
-        <div class="border"></div>
-      </div>
-      <div class="box-right">
-        <div class="border"></div>
-      </div>
-      <div class="arrow-container">
-        <div class="arrow"></div>
-      </div>
-      <div class="arrow-box-content">
-        <div class="form">
-          <label>Name:*</label>
-          <input type="text" [(ngModel)]="roleName" name="name" class="textfield" required placeholder="Name">
-          
-          
-           
-          <div class="text-box color-white text-16">
-            <input type="checkbox"  [(ngModel)]="isActive">
-            Active</div>
-            
-          <a (click)="onYesClick()" class="button float-right">Save</a> <a (click)="onNoClick()" class="button float-left">Cancel</a>
-          <div class="clear"></div>
+<!DOCTYPE html>
+<body>
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Lorem Ipsum is simply dummy text of the printing industry.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn green-btn" data-dismiss="modal">Save</button>
+          <button type="button" class="btn blue-btn" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
-    <!-- <div class="copyright">Copy Rights 2019, Trilod Automation Tool</div> -->
   </div>
-</div>
 </body>
-</html>

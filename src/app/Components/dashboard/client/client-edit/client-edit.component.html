@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>AuditorAX</title>
+  <meta name="viewport" concc float-lefttent="width=device-width, initial-scale=1">
+  <!-- Styles Sheets -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  
+  <div class="clear"></div>
+  <div class="col-md-12">
+    <div class="content-box">
+      <div class="breadcrumb">
+        <ul>
+          <li><a href="#">Dashboard ></a></li>
+          <li><a href="#">Client ></a></li>
+          <li><a href="#">Edit Client</a></li>
+        </ul>
+      </div>
+      <h2>Edit Client</h2>
+      <div class="form-con">
+        <div class="col-md-6 float-left pl-0 pr-5">
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Name*:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <input type="text" name="" class="field-01 form-control" placeholder="Name" [(ngModel)]="this.editBody.clientName" required> 
+          </div>
+          <div class="clear"></div>
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Address:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <input type="text" name="" class="field-01 form-control" placeholder="Address" [(ngModel)]="this.editBody.address" > 
+          </div>
+       
+        </div>
+
+        <div class="col-md-6 float-left pl-0 pr-5">
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>City:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <input type="text" name="" class="field-01 form-control" placeholder="City" [(ngModel)]="this.editBody.city" > 
+          </div>
+          <div class="clear"></div>
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>State:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <input type="text" name="" class="field-01 form-control" placeholder="State" [(ngModel)]="this.editBody.state" maxlength="2"> 
+     
+          </div>
+       
+        </div>
+        <div class="col-md-6 float-left pl-0 pr-5">
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Zip/Postal Code:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <input type="text" name="" class="field-01 form-control" placeholder="Postal Code" [(ngModel)]="this.editBody.zip"  > 
+          </div>
+
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Description:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <input type="text" name="" class="field-01 form-control" placeholder="Description" [(ngModel)]="this.editBody.description"  > 
+          </div>
+        
+         
+        </div>
+
+        <div class="col-md-6 float-left pl-0 pr-5">
+          <div class="clear"></div>
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Email*:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <input type="text" name="" class="field-01 form-control" placeholder="Email" [(ngModel)]="this.editBody.email" required> 
+     
+          </div>
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Status:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4" >
+            <!-- <input type="checkbox"  [(ngModel)]="this.editBody.status">Active</div>  -->
+            <label class="cc" >
+              <input type="checkbox"[(ngModel)]="this.editBody.status">
+              <span class="checkmark"></span>
+            </label>
+     
+          </div>
+          </div>
+       
+        <!-- </div> -->
+        
+        <div class="clear"></div>
+
+        <div class="grey-seprator"></div>
+        <div class="rt-btn aax-green-btn float-right mt-0 mt-4"><a (click)="onUpdateClick()">Update</a></div>
+
+
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+</body>
+
+</html>

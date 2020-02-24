@@ -26,7 +26,10 @@ export class TemplateListComponent implements OnInit {
   }
 
   getAllTemplates(cleintId) {
-    this.rest.getTemplateList(cleintId).subscribe((data: {}) => {
+    
+    this.rest.getTemplateListDropDown().subscribe((data: {}) => {
+
+   // this.rest.getTemplateList(cleintId).subscribe((data: {}) => {
       if (data['responseCode'] === '00') {
         this.dataSource = data['data'];
       }

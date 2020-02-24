@@ -71,7 +71,7 @@
                 </td>
                 <td>
                   <!-- <a *ngIf="person.status===0 && this.checkObject.canEdit" (click)="abort(person.id)" class="">Abort</a> -->
-                  <a *ngIf="person.status===0 && this.checkObject.canEdit" (click)="startAudit(person.id)" class="">Start Audit</a>
+                  <a *ngIf="person.status===0" (click)="startAudit(person.id)" class="">Start Audit</a>
                   <!-- <a *ngIf="person.status!==2 && this.checkObject.canEdit" (click)="editSession(person.id)" class="mt-edit-btn"></a> -->
                 </td>
               </tr>

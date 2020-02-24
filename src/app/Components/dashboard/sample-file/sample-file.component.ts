@@ -26,6 +26,11 @@ size1;
 option;
 audit_file_id: string;
   samplingBody: { "audit_file_id": any; "size": any; "percentage": any; };
+  processableBody= { 
+    "auditSessionId": "",
+    "controlId": "",
+    "processableIdsList": []
+  };
   fileData: any;
   processedData: any;
   sessionId: string;
@@ -34,6 +39,11 @@ audit_file_id: string;
   audit:any;
   control:any;
   template:any;
+  mapData: any;
+  mapList: any;
+  responseData: any;
+  dataList: any;
+  arrayToSend: Array<any> = [];
   constructor(public router:Router,public formBuilder:FormBuilder,public toastr:ToastrService,public rest:RestService) { }
 
   ngOnInit() {
@@ -51,7 +61,7 @@ audit_file_id: string;
     });
   }
   addSampling(){
-    //alert('Hello');
+    
     
     if(this.size=== undefined && this.percentage===undefined)
     {
@@ -73,29 +83,34 @@ audit_file_id: string;
 // "percentage":this.percentage
 //     }
     const formData = new FormData();
-    formData.append('audit_file_id',this.audit_file_id);
+    formData.append('audit_session_id', this.selected_audit_id);
+    formData.append('control_id', this.selected_control_id);
     formData.append('size',this.size);
     formData.append('percentage',this.percentage);
-    this.rest.addSampling(formData).subscribe((data: {}) => {
+    
+    this.rest.samplingByAuditAndControl(formData).subscribe((data: any) => {
+    //this.rest.addSampling(formData).subscribe((data: {}) => {
      
             console.log(data);
-            if(data){
+            this.dataList=data.data[0];
+            console.log(this.dataList);
+            // if(data){
              
-              this.rest.getRowsAfterSampling(this.audit_file_id).subscribe((data: {}) => {
+            //   this.rest.getRowsAfterSampling(this.audit_file_id).subscribe((data: {}) => {
                 
-                      console.log(data);
-                      if(data){
-                        console.log(data);
-                        this.fileData=data;
-                        // this.toastr.success('', 'Done!');
+            //           console.log(data);
+            //           if(data){
+            //             console.log(data);
+            //             this.fileData=data;
+            //             // this.toastr.success('', 'Done!');
                         
-                      }
+            //           }
                       
                       
-                    }
-                    );
+            //         }
+            //         );
 
-            }
+            // }
             
             
           }
@@ -140,15 +155,29 @@ audit_file_id: string;
   }
   processData(){
     debugger;
-    this.processedData = this.fileData.filter(items => items.isProcessable === true);
+    //alert('Hello');
+    this.processedData = this.dataList.filter(items => items.isProcessable === true);
     console.log(this.processedData);
-    this.rest.applyRule(this.sessionId,this.audit_file_id).subscribe((data: any) => {
+    this.arrayToSend = this.processedData.map(a => a.id);
+    console.log(this.arrayToSend);
+    // for(let i=0;i<=this.processedData.length;i++){
+    //   debugger;
+    //   alert(this.processedData[i].id);
+    //   this.arrayToSend.push(this.processedData[i]);
+    //   console.log(this.arrayToSend);
+    // }
+    
+   this.processableBody.auditSessionId=this.selected_audit_id;
+   this.processableBody.controlId=this.selected_control_id;
+   this.processableBody.processableIdsList=this.arrayToSend;
+   console.log(this.processableBody);
+    this.rest.sendProcessable(this.processableBody).subscribe((data: any) => {
       debugger;
         //      alert(JSON.stringify(data));
             
        // alert(data);
             console.log(data);
-            if(data.processRuleEngine==='success'){
+            if(data.responseCode==='00'){
               console.log(data);
               //localStorage.setItem('auditFileId',data.auditFileId);
               this.toastr.success('', 'Rule Applied Successfully!');
@@ -190,7 +219,7 @@ audit_file_id: string;
     this.template_hidden=true;
   }
   selectControl() {
-    alert();
+    //alert();
     debugger;
     //alert(this.audit);
     this.auditList.forEach(element => {
@@ -208,9 +237,15 @@ audit_file_id: string;
      //   alert(this.selected_control_id);
       }
     });
-    this.rest.findAllRowsByAuditFileId(this.selected_audit_id,this.selected_control_id).subscribe((data: any) => {
-       alert((data.responseCode));
+    //alert(this.selected_audit_id);
+    //alert(this.selected_control_id);
+    this.rest.getSamplingRows(this.selected_audit_id,this.selected_control_id).subscribe((data: any) => {
+       //alert((data.responseCode));
+      this.responseData=data.data;
+      this.mapList=this.responseData.colNamesList;
+      this.mapData=this.responseData.colNamesMap;
        console.log(data);
+       //alert(this.matchKey("col1"));
     });
     
     // this.disableAll = true;
@@ -225,11 +260,27 @@ audit_file_id: string;
     //   this.controlFieldName = this.controlFN.data;
     // });
   }
+  matchKey(id: string) {
+    var myKeys = Object.keys(this.mapData);
+    console.log("keys===="+myKeys);
+    var matchingKey = myKeys.indexOf(id) !== -1;
+   console.log(matchingKey);
+    var matchingKeys: any = myKeys.filter(function (key) { return key.indexOf(id) !== -1 });
+    //return this.mapList[matchingKeys] ;
+    return matchingKeys;
+  }
   deselectControl() {
     this.control_hidden=false;
     this.control="";
     this.audit="";
     // this.disableAll = false;
     // this.showcard = false;
+  }
+  getData(){
+    const formData = new FormData();
+    formData.append('size', this.size);
+    formData.append('percentage', this.percentage);
+    formData.append('audit_session_id', this.selected_audit_id);
+    formData.append('control_id', this.selected_control_id);
   }
 }

@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>AuditorAX</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Styles Sheets -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="clear"></div>
+  <div class="col-md-12">
+    <div class="content-box">
+      <div class="">
+        <div class="">
+          <div class="breadcrumb">
+            <ul>
+              <li><a href="#">Dashboard > </a></li>
+              <li>
+                <a href="#">SubProcess</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+          <div class="side-menu align-self-center">
+            <ul>
+              <li><a  class="new" (click)=openAddNew()>New</a></li>
+            </ul>
+          </div>
+      </div>
+      <div class="clear"></div>
+      <div class="main-table-con">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
+          <tr>
+            <th>Sr.No.</th>
+            <th>Name</th>
+            <th align="center">Description</th>
+            <th align="center">Process</th>
+            
+            <th>&nbsp; &nbsp; </th>
+           
+          </tr>
+          <tr *ngFor="let subprocess of this.subprocessList; let id = index ">
+            <td>{{id+1}}</td>
+            <td>{{subprocess.name}}</td>
+            <td align="center">{{subprocess.description}}</td>
+            <td align="center">{{subprocess.process.name}}</td>
+            <td><a class="mt-delete-btn" (click)=delete(subprocess.id)></a>
+              <a class="mt-edit-btn" (click)=editsubProcess(subprocess.id)></a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+</body>
+
+</html>

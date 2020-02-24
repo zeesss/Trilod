@@ -79,6 +79,8 @@ export class AuditControlsComponent implements OnInit {
   selectedTemplateField1: any;
   selectedTemplateField2: any;
   uploadedFile: any;
+  evidenceFiles: any;
+  templateListEvidence: any;
   constructor(public dialog: MatDialog, public toastr: ToastrService, public router: Router, public rest: RestService, public formBuilder: FormBuilder, public formsModule: FormsModule, public reactiveFormsModule: ReactiveFormsModule) { }
 
   ngOnInit() {
@@ -96,13 +98,28 @@ export class AuditControlsComponent implements OnInit {
       this.controlList = data.data;
       console.log(this.controlList);
     });
-    this.rest.getTemplateList(localStorage.getItem("clientId")).subscribe((data: any) => {
+    
+    //this.rest.getTemplateList(localStorage.getItem("clientId")).subscribe((data: any) => {
+      this.rest.getTemplateListDropDown().subscribe((data: any) => {
+
       this.templateList = data.data;
       console.log(this.templateList);
+    });
+    this.rest.getEvidenceFileNames().subscribe((data: any) => {
+
+      this.evidenceFiles = data.data;
+      console.log(this.evidenceFiles);
     });
 
 
 
+  }
+  onChangeEvidenceFile(value){
+//alert(value);
+this.rest.getTemplateByFileName(value).subscribe((data: any) => {
+  this.templateListEvidence = data.data;
+  console.log(this.templateListEvidence);
+});
   }
   onChange(value) {
     debugger;

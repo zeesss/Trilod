@@ -3,126 +3,225 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Trilod</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AuditorAX</title>
+  <meta name="viewport" concc float-lefttent="width=device-width, initial-scale=1">
   <!-- Styles Sheets -->
   <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="assets/css/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
+  
   <div class="clear"></div>
   <div class="col-md-12">
     <div class="content-box">
-      <div class="white-con">
-        <div class="breadcrumb">
-          <ul>
-            <li>
-              <a href="#">Dashboard</a>
-            </li>
-            <li>
-              <a href="#">Add Template</a>
-            </li>
-
-          </ul>
+      <div class="breadcrumb">
+        <ul>
+          <li><a href="#">Dashboard ></a></li>
+          <li><a href="#">Template ></a></li>
+          <li><a href="#">Add Template</a></li>
+        </ul>
+      </div>
+      <h2>Add Template</h2>
+      <form class="container" [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+      <div class="form-con">
+        <div class="col-md-6 float-left pl-0 pr-5">
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>File Name:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <input type="text" name="" class="field-01 form-control" maxlength="50" formControlName="file_name" > 
+          </div>
+          <div class="clear"></div>
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Format:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <select (change)="onChange($event.target.value)" class="field-01 form-control"
+            formControlName="format">
+            <option selected value="">-SELECT-</option>
+            <option *ngFor="let file of this.FileTypeList; index as i">{{file.name}}</option>
+          </select>
+          </div>
+       
         </div>
-        <h1>Add Template
-          <span></span>
-        </h1>
-        <div class="inner-white-box">
-          <form class="container" [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
-            <!-- <form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()">   -->
-            <div class="form-con">
-              <div class="col-md-12">
-                <div class="col-md-4 float-left pl-0 pr-5">
-                  <label>File Name:</label>
-                  <input type="text" maxlength="50" formControlName="file_name" class="field-01 form-control">
-                </div>
-                <div class="col-md-4 float-left pl-0 pr-5">
-                  <label>Format:</label>
-                  <select (change)="onChange($event.target.value)" class="field-01 form-control"
-                    formControlName="format">
-                    <option selected value="">-SELECT-</option>
-                    <option *ngFor="let file of this.FileTypeList; index as i">{{file.name}}</option>
-                  </select>
-                </div>
-                <div class="col-md-4 float-left pl-0 pr-5">
-                  <label>Description</label>
-                  <input type="text" maxlength="500" class="field-01 form-control" formControlName="descmain">
-                </div>
-              </div>
-              <div class="clear"></div>
-              <div class="col-md-12">
 
-                <div class="col-md-4 float-left pl-0 pr-5">
-                  <label>Upload File</label>
-                  <input type="file" accept=".xlsx, .xls" class="upload-field form-control"
-                    placeholder="Upload file here..." (change)="onFileSelect($event)" name="mainFile" formControlName="mainFile">
-                </div>
+        <div class="col-md-6 float-left pl-0 pr-5">
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Description:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <input type="text" name="" class="field-01 form-control"  formControlName="descmain" maxlength="500" > 
+          </div>
+          <!-- <div class="clear"></div>
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>State:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <input type="text" name="" class="field-01 form-control"> 
+     
+          </div> -->
+       
+        </div>
+        <div class="col-md-6 float-left pl-0 pr-5" *ngIf="fileFormat==='Excel'">
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Upload File:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <!-- <input type="text" name="" class="field-01 form-control" placeholder="Country" [(ngModel)]="country" required >  -->
+            <input  type="file" accept=".xlsx, .xls" class="upload-field form-control" placeholder="Upload file here..." (change)="onFileSelect($event)" name="mainFile" formControlName="mainFile">
+          </div>
+        </div>
+
+        <div class="col-md-6 float-left pl-0 pr-5" *ngIf="fileFormat==='PDF'">
+          <div class="clear"></div>
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Upload File:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <input  type="file" accept=".pdf" class="upload-field form-control"
+            placeholder="Upload file here..." (change)="onFileSelect($event)" name="mainFile" formControlName="mainFile"> 
+          </div>
+        </div>
 
 
+
+        <div class="clear"></div>
+
+        <div class="grey-seprator"></div>
+        <!-- <div class="rt-btn aax-green-btn float-right mt-0 mt-4"><a (click)="onSaveButton()">Save</a></div> -->
+              <!-- <div class="rt-btn aax-green-btn float-right mt-0 mt-4">
+                <a>
+                 Save
+                </a>
+            </div> -->
+            <button class=" blue-btn btn-01 float-right ml-1 mt-3">Cancel</button>
+            <button class="green-btn btn-01  float-right mt-3" >Process</button>
+           
+        <div class="clear"></div>
+    
+
+        <div class="clear"></div>
+      </div> <!--form-con-->
+      </form>
+
+      <div *ngIf="showPDF && fileFormat==='PDF'">
+        <form class="container" (ngSubmit)="saveDataPDF()">
+        <div class="form-con">
+          <div class="col-md-12">
+            <div class="col-md-9 float-left pl-0 pr-0 mt-7 ml-3">
+             <div id="myDiv" class="mt-6">Hello</div> 
               </div>
-              <div class="clear"></div>
-              <div class="col-md-12">
-                <div class="col-md-4 float-left pl-0 pr-5">
-                  <label>&nbsp;</label>
-                </div>
-                <div class="col-md-4 float-left pl-0 pr-5">
-                  <label>&nbsp;</label>
-                </div>
-                <div class="col-md-2 float-left pl-0 pr-5">
-                  <label>&nbsp;</label>
-                  <button class="field-01 form-control button float-left">Process</button>
-                </div>
-                <div class="col-md-2 float-left pl-0 pr-5">
-                  <label>&nbsp;</label>
-                  <button class="field-01 form-control button float-left">Cancel</button>
-                </div>
-              </div>
+            <!-- </div> -->
+          <!-- </div> -->
+          <!-- <div class="col-md-12"> -->
+          <div class="col-md-3">
+        <button  class="green-btn btn-01  float-right mt-3">Show PDF</button>
+      </div>
+    </div>
+  </div>
+
+        </form>
+       
+
+        </div>
+<!--end-->
+<!--start-->
+<div *ngIf="show && fileFormat==='Excel'">
+  <form class="container"  (ngSubmit)="saveData()">
+    <!-- (ngSubmit)="saveData()" -->
+  <div class="form-con">
+    <div class="col-md-12">
+      <div class="col-md-3 float-left pl-0 pr-0 mt-4">Sheets Found:{{NoOfSheets}}</div>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
+        <tr>
+          <th>Sheets</th>
+          <th>Header Row</th>
+
+        </tr>
+        <tr *ngFor="let sheet of this.sheetsList; index as i;">
+          <td>
+            <!-- <input type="checkbox" (change)="checkValue($event ,sheet.id)"  > {{sheet.textToDisplay}} -->
+            
+            <label class="cc float-left" >
+              <input type="checkbox"  (change)="checkValue($event ,sheet.id)" >
+              <span class="checkmark mt-0 ml-0"></span>
+              {{sheet.textToDisplay}}
+            </label>
+         
+          </td>
+          <td>
+            <div class="col-md-4 float-left pl-0 pr-5">
+              <label>Header Row:</label>
+              <input type="number" min="0" class="field-01 form-control" (change)="setHeaderRow($event ,i)">
             </div>
-          </form>
-          <div *ngIf="show">
-            <form class="container" (ngSubmit)="saveData()">
-            <div class="form-con">
-              <div class="col-md-12">
-                <div class="col-md-2 float-left pl-0 pr-5">Sheets Found:{{NoOfSheets}}</div>
+        
+          </td>
+
+        </tr>
+     
+      </table>
+    </div>
+  </div>
+  <div class="col-md-12  pl-0 pr-5">
+  <button  class="blue-btn btn-01  float-right mt-4" data-toggle="modal" data-target="#myModal">Upload Data</button>
+  <!-- <a  class="new" data-toggle="modal" data-target="#myModal">New</a> -->
+</div>
+  </form>
+
+  </div>
+<!--end-->
+    </div>
+  </div>
+  <div class="clear"></div>
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog custom-dialog">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+         
+            <!-- <div class="col-md-12 float-left pl-0 pr-5">
+              <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Name*:</label></div>
+              <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+                <input type="text" name="" class="field-01 form-control" placeholder="Name" [(ngModel)]="roleName" required > 
+              </div>
+            
+              <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Status:</label></div>
+              <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+                
+                <label class="cc" >
+                  <input type="checkbox"[(ngModel)]="isActive" >
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>  -->
+            <!-- <div class="arrow-box-content">
+              <div class="form"> -->
+                
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
                   <tr>
                     <th>Sheets</th>
-                    <th>Header Row</th>
-
-                  </tr>
-                  <tr *ngFor="let sheet of this.sheetsList; index as i;">
-                    <td>
-                      <input type="checkbox" (change)="checkValue($event ,sheet.id)"  > {{sheet.textToDisplay}}
-                    </td>
-                    <td>
-                      <div class="col-md-4 float-left pl-0 pr-5">
-                        <label>Header Row:</label>
-                        <input type="number" min="0" class="field-01 form-control" (change)="setHeaderRow($event ,i)">
-                      </div>
-                  
-                    </td>
-
-                  </tr>
-               
-                </table>
-              </div>
-            </div>
-            <div class="col-md-4 float-left pl-0 pr-5">
-            <button  class="field-01 form-control button float-left">Upload Data</button>
-          </div>
-            </form>
-
-            </div>
-          </div>
+                    <th>Headers</th>
       
+                  </tr>
+                  <tr *ngFor="let sheet of this.sheetHeaderList" >
+                    <td>
+                    {{sheet.sheetName}}
+                    </td>
+                    <td *ngFor="let header of sheet.headers">
+                     
+                      <div> {{header}}</div>
+                        
+                        
+                    </td>
+      
+                  </tr>
+                
+                </table>
                   
-               
+                <!-- <a (click)="onYesClick()" class="button float-right">OK</a>
+                <a (click)="onNoClick()" class="button float-left">Cancel</a> -->
+                <div class="clear"></div>
+              <!-- </div>
+            </div> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn green-btn" data-dismiss="modal" (click)="onYesClick()">Save</button>
+          <button type="button" class="btn blue-btn" data-dismiss="modal" (click)="onNoClick()">Close</button>
         </div>
       </div>
     </div>
- 
+  </div>
 </body>
 
 </html>

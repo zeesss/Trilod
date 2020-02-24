@@ -22,17 +22,18 @@ export class ControlListComponent implements OnInit {
     public http: HttpClient, private router: Router) { }
 
   ngOnInit() {
-    this.getAllRules(localStorage.getItem("clientId"));
+    //alert(localStorage.getItem("clientId"));
+      this.rest.getControlList(localStorage.getItem("clientId")).subscribe((data: any) => {
+        if (data.responseCode === '00') {
+          this.dataSource = data.data;
+        }
+      }
+      );
+    
+   
   }
 
-  getAllRules(cleintId) {
-    this.rest.getControlList(cleintId).subscribe((data: {}) => {
-      if (data['responseCode'] === '00') {
-        this.dataSource = data['data'];
-      }
-    }
-    );
-  }
+  
 
   openAddNew() {
     this.router.navigate(['dashboard/addControl']);
@@ -43,7 +44,7 @@ export class ControlListComponent implements OnInit {
   }
 
   openEdit(val) {
-
+    this.router.navigate(['dashboard/editControl']);
   }
 
   deleteRecord(i, rowId) {

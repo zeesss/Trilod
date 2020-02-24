@@ -31,6 +31,16 @@ export class RolesComponent implements OnInit {
   editField: any;
   controlList: any;
   checkObject: any;
+
+  code;
+  roleName;
+  
+  isActive;
+  filtered;
+  saveBody={
+    "roleName":"",
+  "isActive":true
+};
   constructor(public auth:AuthService,public confirmationService:ConfirmationService, public toastr:ToastrService, public dialog:MatDialog,public rest:RestService, public http:HttpClient) { }
 
   ngOnInit() {
@@ -111,18 +121,67 @@ console.log(this.updateBody);
         }
   }
  
-  newRole(){
-    this.openDialog();
-  }
-  openDialog(): void {
-    let dialogRef = this.dialog.open(DialogRoleAdd, {
-      width: '600px',
-      data: { name:'hi', animal: "hi" }
-    });
+  // newRole(){
+  //   this.openDialog();
+  // }
+  // openDialog(): void {
+  //   let dialogRef = this.dialog.open(DialogRoleAdd, {
+  //     width: '600px',
+  //     data: { name:'hi', animal: "hi" }
+  //   });
   
    
+  // }
+  onYesClick(): void {
+    if(!this.isEmpty(this.roleName) )
+
+    {
+      this.saveBody.roleName=this.roleName;
+      if(this.isActive===undefined)
+      this.saveBody.isActive=false;
+      else if(this.isActive===false)
+      this.saveBody.isActive=false;
+      else
+      this.saveBody.isActive=true;
+      
+      console.log(this.saveBody);
+      debugger;
+     
+    this.rest.addRole(this.saveBody).subscribe((data : any)=>{
+      console.log(data);
+      debugger;
+      if(data.error===null){
+        //this.dialogRef.close();
+        this.toastr.success('', 'Record Saved!');
+        location.reload();
+        
+      }
+      else{
+        //this.dialogRef.close();
+        this.toastr.error('', 'Sorry! Something went wrong!');
+      }
+      
+
+}
+,
+(err : HttpErrorResponse)=>{
+
+
+this.toastr.error('', 'Failed!');
+
+});
+  
   }
 
+  else
+  {
+    this.toastr.error('', 'Enter all required fields!');
+  }
+  }
+ 
+  isEmpty(val){
+    return (val === undefined || val == null || val.length <= 0) ? true : false;
+}
 }
 @Component({
   selector: 'dialog-overview-example-dialog',
@@ -152,7 +211,7 @@ export class DialogRoleAdd {
 
   onNoClick(): void {
     this.dialogRef.close();
-    //this.auth.logout();
+  
   }
   isEmpty(val){
     return (val === undefined || val == null || val.length <= 0) ? true : false;

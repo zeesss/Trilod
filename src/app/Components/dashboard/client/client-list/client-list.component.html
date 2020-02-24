@@ -1,0 +1,96 @@
+<!doctype html>
+<!-- <html> -->
+
+<head>
+  <meta charset="utf-8">
+  <title>AuditorAX</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="clear"></div>
+  <div class="col-md-12">
+    <div class="content-box">
+      <div class="">
+        <div class="">
+          <div class="breadcrumb">
+            <ul>
+              <li><a href="#">Dashboard > </a></li>
+              <li>
+                <a href="#">Client</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+          <div class="side-menu align-self-center">
+            <ul>
+              <li><a  class="new" (click)=openAddNew()>New</a></li>
+            </ul>
+          </div>
+      </div>
+      <div class="clear"></div>
+      <div class="main-table-con">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
+          <tr>
+            <th>Sr.No.</th>
+                  <th>Name</th>
+                  <th>Organization</th>
+                  <th>Email</th>
+                  <th>Address</th>
+                  <th>City</th>
+                  <th>State</th>
+                  <th>Zip/Postal Code</th>
+                  <th>Description</th>
+                  <th>Status</th>
+            <th>&nbsp; &nbsp; </th>
+           
+          </tr>
+          <tr *ngFor="let client of this.clientList; let id = index ">
+            <td>
+              <span>{{id+1}}</span>
+            </td>
+            <td>
+              <span>{{client.clientName}}</span>
+            </td>
+            <td>
+              <span>{{client.organization.name}}</span>
+            </td>
+            <td>
+              <span>{{client.email}}</span>
+            </td>
+            <td>
+              <span>{{client.address}}</span>
+            </td>
+            <td>
+              <span>{{client.city}}</span>
+            </td>
+            <td>
+              <span>{{client.state}}</span>
+            </td>
+            <td>
+              <span>{{client.zip}}</span>
+            </td>
+            <td>
+              <span>{{client.description}}</span>
+            </td>
+            <td>
+              <!-- <input name="checkbox" type="checkbox" id="checkbox"  [(ngModel)]="client.status"
+          [ngModelOptions]="{standalone: true}" > -->
+          <label class="cc" >
+            <input type="checkbox"[(ngModel)]="client.status" [ngModelOptions]="{standalone: true}">
+            <span class="checkmark"></span>
+          </label>
+            </td>
+            <td><a class="mt-delete-btn" (click)=delete(client.id)></a>
+              <a class="mt-edit-btn" (click)=editClient(client.id)></a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+</body>

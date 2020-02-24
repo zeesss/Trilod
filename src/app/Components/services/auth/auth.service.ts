@@ -52,7 +52,7 @@ isLoginError : boolean = false;
             {
               localStorage.setItem("token", data.token);
               localStorage.setItem("userId", data.userId);
-              localStorage.setItem("clientId", "14");
+              localStorage.setItem("clientId", "1");
        this.router.navigate(['dashboard']);
        //this.router.navigate(['dashboard/sessions']);
       this.toastr.success('Welcome ', 'Success!');

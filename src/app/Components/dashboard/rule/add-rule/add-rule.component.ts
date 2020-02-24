@@ -61,7 +61,7 @@ export class AddRuleComponent implements OnInit {
       "templateId1": "",
       "templateId2": ""
     };
-  newAttribute = {
+      newAttribute = {
     //   "field_name":"",
     //   "condition":"",
     // "field_name2":"",
@@ -162,38 +162,7 @@ export class AddRuleComponent implements OnInit {
 
   // }
 
-  updateList(controlId: any, id: number, property: string, event: any) {
-    if (confirm("Are you sure to edit the record?")) {
-      debugger;
-      const editField = event.target.textContent;
-      var selectField = event.target.value;
-      const checkField = event.target.checked;
-      this.personList[id][property] = editField;
-      this.updateBody = this.ControlTaskList.filter((items) => items.id === controlId)[0];
-      if (property === "code") {
-        this.updateBody.code = editField;
-      }
-      if (property === "businessRule") {
-        this.updateBody.businessRule = editField;
-      }
-      if (property === "description") {
-        this.updateBody.description = editField;
-      }
-      if (property === "ruleType") {
-        selectField = selectField.split(": ").pop();
-        this.updateBody.ruleType = selectField;
-      }
-      if (property === "fileType") {
-        selectField = selectField.split(": ").pop();
-        this.file = this.FileTypeList.filter((items) => items.name === selectField)[0];
-        this.updateBody.fileTypeId.id = this.file.id;
-        this.updateBody.fileTypeId.name = this.file.name;
-      }
-      if (property === "isActive") {
-        this.updateBody.isActive = checkField;
-      }
-    }
-  }
+ 
 
   addFieldValue() {
     if (!this.isEmpty(this.rule_name) && !this.isEmpty(this.condition) && !this.isEmpty(this.fieldType)
@@ -222,47 +191,48 @@ export class AddRuleComponent implements OnInit {
           }
         });
 
-        if (cfn1_template_id != cfn2_template_id) {
-          this.checkMapping =
-            {
-              "controlId": this.controlID,
-              "templateId1": cfn1_template_id,
-              "templateId2": cfn2_template_id
-            };
+        //if (cfn1_template_id != cfn2_template_id) {
+          // this.checkMapping =
+          //   {
+          //     "controlId": this.controlID,
+          //     "templateId1": cfn1_template_id,
+          //     "templateId2": cfn2_template_id
+          //   };
 
-          this.rest.check_Template_Mapping(this.checkMapping).subscribe((data: any) => {
-            if (data.responseCode == "00") {
-              if (data.isExist == "false") {
-                this.openDialog(this.controlID, cfn1_template_id, cfn2_template_id);
-                //Adding to Table after mapping
-                this.newAttribute.type = this.fieldTypeValue;
-                this.fieldArray.push(this.newAttribute);
-                this.newAttribute = {
-                  "field1": "",
-                  "field1Name": "",
-                  "field2": "",
-                  "field2Name": "",
-                  "type": "",
-                  "operator": "",
-                  "name": ""
-                };
-              }
-              else {
-                this.newAttribute.type = this.fieldTypeValue;
-                this.fieldArray.push(this.newAttribute);
-                this.newAttribute = {
-                  "field1": "",
-                  "field1Name": "",
-                  "field2": "",
-                  "field2Name": "",
-                  "type": "",
-                  "operator": "",
-                  "name": ""
-                };
-              }
-            }
-          });
-        } else {
+          // this.rest.check_Template_Mapping(this.checkMapping).subscribe((data: any) => {
+          //   if (data.responseCode == "00") {
+          //     if (data.isExist == "false") {
+          //       this.openDialog(this.controlID, cfn1_template_id, cfn2_template_id);
+          //       //Adding to Table after mapping
+          //       this.newAttribute.type = this.fieldTypeValue;
+          //       this.fieldArray.push(this.newAttribute);
+          //       this.newAttribute = {
+          //         "field1": "",
+          //         "field1Name": "",
+          //         "field2": "",
+          //         "field2Name": "",
+          //         "type": "",
+          //         "operator": "",
+          //         "name": ""
+          //       };
+          //     }
+          //     else {
+          //       this.newAttribute.type = this.fieldTypeValue;
+          //       this.fieldArray.push(this.newAttribute);
+          //       this.newAttribute = {
+          //         "field1": "",
+          //         "field1Name": "",
+          //         "field2": "",
+          //         "field2Name": "",
+          //         "type": "",
+          //         "operator": "",
+          //         "name": ""
+          //       };
+          //     }
+          //   }
+          // });
+        // } 
+        // else {
           this.newAttribute.type = this.fieldTypeValue;
           this.fieldArray.push(this.newAttribute);
           this.newAttribute = {
@@ -274,11 +244,11 @@ export class AddRuleComponent implements OnInit {
             "operator": "",
             "name": ""
           };
-        }
+        //}
       }
       if (this.fieldType === 'Value') {
         this.newAttribute.field2 = this.value;
-
+        //alert(this.value);
         this.newAttribute.type = this.fieldTypeValue;
         this.fieldArray.push(this.newAttribute);
         this.newAttribute = {
@@ -295,16 +265,16 @@ export class AddRuleComponent implements OnInit {
       this.toastr.error('', "Enter All Required Fields!");
     }
   }
-  openDialog(controlId, tempId1, tempId2): void {
-    let dialogRef = this.dialog.open(MapTemplate, {
-      width: '600px',
-      data: {
-        controlId: controlId,
-        template_id1: tempId1,
-        template_id2: tempId2
-      }
-    });
-  }
+  // openDialog(controlId, tempId1, tempId2): void {
+  //   let dialogRef = this.dialog.open(MapTemplate, {
+  //     width: '600px',
+  //     data: {
+  //       controlId: controlId,
+  //       template_id1: tempId1,
+  //       template_id2: tempId2
+  //     }
+  //   });
+  // }
   deleteControl(i, rowId) {
     if (confirm("Are you sure to delete the record?")) {
       this.toastr.success('', 'Record deleted!');
@@ -321,126 +291,130 @@ export class AddRuleComponent implements OnInit {
     if (true) {
       this.ruleSaveBody.controlId = this.controlID;
       this.ruleSaveBody.rules = this.fieldArray;
+      console.log(this.ruleSaveBody);
+      //alert(JSON.stringify(this.ruleSaveBody));
       // this.fieldArray.forEach(element => {
       //   this.ruleSaveBody.rules.push(element);
       // });
 
       console.log(this.ruleSaveBody);
       this.rest.saveRule(this.ruleSaveBody).subscribe((data: any) => {
+        debugger;
+        console.log("response");
+        console.log(data);
         if (data.responseCode === "00") {
+          
           this.toastr.success('', 'Rule Saved!');
           this.router.navigate(['dashboard/rule']);
         } else {
           this.toastr.error('', "Some error ocurred!");
         }
       });
-    } else {
-      this.toastr.error('', "Some error ocurred!");
-    }
+    } 
   }
 
-  addSessionAudit() {
-    this.fieldArray.forEach(element => {
-      this.ruleSaveBody.rules.push(element);
-    });
+  // addSessionAudit() {
+  //   this.fieldArray.forEach(element => {
+  //     this.ruleSaveBody.rules.push(element);
+  //   });
 
-    this.ruleSaveBody.controlId = this.controlID;
-    this.rest.saveRule(this.ruleSaveBody).subscribe((data: any) => {
-      var reponse = data;
-      //  alert(JSON.stringify(data));
-      if (data.responseCode === "00") {
-        this.toastr.success('', 'Record Saved!');
-      }
-    });
-  }
+  //   this.ruleSaveBody.controlId = this.controlID;
+  //   this.rest.saveRule(this.ruleSaveBody).subscribe((data: any) => {
+  //     var reponse = data;
+  //     //  alert(JSON.stringify(data));
+  //     if (data.responseCode === "00") {
+  //       this.toastr.success('', 'Record Saved!');
+  //     }
+  //   });
+  // }
 }
 
-@Component({
-  selector: 'dialog-overview-example-dialog',
-  templateUrl: 'dialog-overview-example-dialog.html'
+// @Component({
+//   selector: 'dialog-overview-example-dialog',
+//   templateUrl: 'dialog-overview-example-dialog.html'
 
-})
-export class MapTemplate {
-  controlFN;
-  controlFieldName: Array<any> = [];
-  templateList1: Array<any> = [];
-  templateL1;
-  templateList2: Array<any> = [];
-  templateL2;
-  templateid1;
-  templateid2;
-  controlId;
+// })
+// export class MapTemplate {
+//   controlFN;
+//   controlFieldName: Array<any> = [];
+//   templateList1: Array<any> = [];
+//   templateL1;
+//   templateList2: Array<any> = [];
+//   templateL2;
+//   templateid1;
+//   templateid2;
+//   controlId;
 
-  selectedTemplateField1: any;
-  selectedTemplateField2: any;
+//   selectedTemplateField1: any;
+//   selectedTemplateField2: any;
 
-  mappingEvidence =
-    {
-      "controlId": "",
-      "evidenceMapping":
-        {
-          "templateId1": "",
-          "templateField1": "",
-          "templateId2": "",
-          "templateField2": "",
-        }
-    };
+//   mappingEvidence =
+//     {
+//       "controlId": "",
+//       "evidenceMapping":
+//         {
+//           "templateId1": "",
+//           "templateField1": "",
+//           "templateId2": "",
+//           "templateField2": "",
+//         }
+//     };
 
-  constructor(
-    private router: Router,
-    public http: HttpClient, public toastr: ToastrService,
+//   constructor(
+//     private router: Router,
+//     public http: HttpClient, public toastr: ToastrService,
 
-    public rest: RestService,
-    public dialogRef: MatDialogRef<MapTemplate>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-    this.controlId = this.data.controlId;
-    this.templateid1 = this.data.template_id1;
-    this.templateid2 = this.data.template_id2;
+//     public rest: RestService,
+//     public dialogRef: MatDialogRef<MapTemplate>,
+//     @Inject(MAT_DIALOG_DATA) public data: any) {
+//     this.controlId = this.data.controlId;
+//     this.templateid1 = this.data.template_id1;
+//     this.templateid2 = this.data.template_id2;
 
 
-    this.rest.getTemplateDetails(this.templateid1).subscribe((data1: any) => {
-      this.templateL1 = data1.data;
-      this.templateList1 = this.templateL1;
-    });
-    this.rest.getTemplateDetails(this.templateid2).subscribe((data1: any) => {
-      this.templateL2 = data1.data;
-      this.templateList2 = this.templateL2;
-    });
-  }
+//     this.rest.getTemplateDetails(this.templateid1).subscribe((data1: any) => {
+//       this.templateL1 = data1.data;
+//       this.templateList1 = this.templateL1;
+//     });
+//     this.rest.getTemplateDetails(this.templateid2).subscribe((data1: any) => {
+//       this.templateL2 = data1.data;
+//       this.templateList2 = this.templateL2;
+//     });
+//   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
+//   onNoClick(): void {
+//     this.dialogRef.close();
+//   }
 
-  isEmpty(val) {
-    return (val === undefined || val == null || val.length <= 0) ? true : false;
-  }
+//   isEmpty(val) {
+//     return (val === undefined || val == null || val.length <= 0) ? true : false;
+//   }
 
-  onTF1Change(value) {
-    this.selectedTemplateField1 = this.templateList1.filter((items) => items.columnName === value)[0];
-  }
+//   onTF1Change(value) {
+//     this.selectedTemplateField1 = this.templateList1.filter((items) => items.columnName === value)[0];
+//   }
 
-  onTF2Change(value) {
-    this.selectedTemplateField2 = this.templateList2.filter((items) => items.columnName === value)[0];
-  }
+//   onTF2Change(value) {
+//     this.selectedTemplateField2 = this.templateList2.filter((items) => items.columnName === value)[0];
+//   }
 
-  onYesClick(): void {
-    this.mappingEvidence = {
-      "controlId": this.controlId,
-      "evidenceMapping":
-        {
-          "templateId1": this.templateid1,
-          "templateField1": this.selectedTemplateField1.id,
-          "templateId2": this.templateid2,
-          "templateField2": this.selectedTemplateField2.id,
-        }
-    };
+//   onYesClick(): void {
+//     this.mappingEvidence = {
+//       "controlId": this.controlId,
+//       "evidenceMapping":
+//         {
+//           "templateId1": this.templateid1,
+//           "templateField1": this.selectedTemplateField1.id,
+//           "templateId2": this.templateid2,
+//           "templateField2": this.selectedTemplateField2.id,
+//         }
+//     };
 
-    this.rest.saveTemplateMapping(this.mappingEvidence).subscribe((data: any) => {
-      if (data.responseCode == "00") {
-        this.toastr.success('', 'Record Saved!');
-        this.dialogRef.close();
-      }
-    });
-  }
-}
+//     this.rest.saveTemplateMapping(this.mappingEvidence).subscribe((data: any) => {
+//       if (data.responseCode == "00") {
+//         this.toastr.success('', 'Record Saved!');
+//         this.dialogRef.close();
+//       }
+//     });
+//   }
+// }

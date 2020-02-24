@@ -322,8 +322,11 @@ export class StartAudit {
 
      }
      executeControl(controlId){
+      alert(localStorage.getItem('startSessionId'));
+      alert(controlId);
       let executeBody={
-        'controlId':controlId
+        'controlId':controlId,
+        'auditSessionId':localStorage.getItem('startSessionId')
       };
        //alert(executeBody.controlId);
       this.rest.executeControl(executeBody).subscribe((data:any) => {
@@ -334,6 +337,7 @@ export class StartAudit {
              if(data.responseCode==="00"){
               this.toastr.success('', 'Audit Has been Started!');
               this.dialogRef.close();
+              location.reload();
              }
            });
      }

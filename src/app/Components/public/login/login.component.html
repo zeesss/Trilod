@@ -1,9 +1,46 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>AuditorAX</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Styles Sheets -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="col-md-12">
+      <div class="logo"><a href="#"><img src="assets/images/logo.png" alt="logo" class="img-fluid"></a></div>
+      <div class="clear"></div>
+      <div class="login-box">
+        <form [formGroup]="uploadForm1" (ngSubmit)="login()">
+        <div class="form">
+          <input type="text" formControlName="username" name="username" class="textfield" placeholder="User Name" maxlength="12">
+          <input type="password" formControlName="password" class="textfield" placeholder="Password" maxlength="18">
+          <div class="forgot-password"><a (click)="forgotpassword()">Forgot password?</a></div>
+          <div class="terms-conditions"><a href="#">Terms & Conditions</a></div>
+          <div class="login-btn"><a (click)="login()">LOGIN</a></div>
+          <div class="signup-btn"><a href="#">SIGN UP</a></div>
+          <div class="clear"></div>
+        </div>
+      </form>
+      </div>
+    </div>
+    <div class="copyright">Copyrights 2020, AuditorAX</div>
+  </div>
+</body>
+
+</html>
+<!-- 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>My Medi Port</title>
-<!-- Bootstrap Core CSS -->
+
 <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-<!-- Custom CSS -->
+
 <link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body class="bg-01">
@@ -33,7 +70,6 @@
           <div class="text-box"><a (click)="forgotpassword()">Forgot password?</a></div>
           
           <button type="submit"  class="button float-left">Sign In</button>
-          <!-- <a (click)="login()" class="button float-left">sign in</a> -->
           <div class="clear"></div>
           </div>
         </form>
@@ -41,7 +77,7 @@
     </div>
     <div class="copyright">Copy Rights 2019, Trilod Automation Tool</div>
   </div>
-</div>
+</div> -->
 
 <!-- <div class="container">
   <div class="login-container">
@@ -63,12 +99,12 @@
     </div>
   </div>
 </div> -->
-
-<div class="clear"></div>
+<!-- 
+<div class="clear"></div> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> 
 <script src="assets/js/popper.min.js"></script> 
 <script src="assets/js/bootstrap.min.js"></script>
-</body>
+<!-- </body> -->
 <!-- <div fxFlex fxLayout="column">
   <div>
     <mat-toolbar color="primary" class="sticky-top">

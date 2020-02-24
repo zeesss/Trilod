@@ -1,13 +1,17 @@
 import { Router } from '@angular/router';
 import { RestService } from 'src/app/Components/services/rest/rest.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-control',
   templateUrl: './add-control.component.html',
   styleUrls: ['./add-control.component.scss']
 })
 export class AddControlComponent implements OnInit {
+  templateListToSendToDialog=[];
   process;
   field_name;
   RequestedData;
@@ -39,10 +43,10 @@ export class AddControlComponent implements OnInit {
     "templateField": ""
   };
   cDetailBody = {
-    "controlIdTransient": "",
+    //"controlIdTransient": "",
     "fieldName": "",
     "fieldType": "",
-    "templateDetailEntityIdTransient": ""
+    "templateDetailId": ""
     // ,
     // "template_field_name": ""
   };
@@ -65,24 +69,101 @@ export class AddControlComponent implements OnInit {
     "name": "",
     "description": "",
     "frequency": "",
-    "subProcessId": ""
+    "subprocessId": "",
+    "controlDetail":[]
   };
   selectedTemplate: any;
   templateFieldList: any;
   selectedTemplateField: any;
   cDetailArray: Array<any> = [];
-  constructor(public toastr: ToastrService, public router: Router, public rest: RestService) { }
+  subProcessList: any;
+  selectedSubProcess: any;
+
+
+  //dialog variables
+  template_name1="";
+  template_name2="";
+  template_field_name1="";
+  template_field_name2="";
+  newAttribute1={
+    "template_name":"",
+    "template_name2":"",
+    "template_field_name1":"",
+    "template_field_name2":""
+  };
+  // newAttributeWithIds={
+  //   "template_name":"",
+  //   "template_name2":"",
+  //   "template_field_name1":"",
+  //   "template_field_name2":""
+  // };
+  newAttributeWithIds={
+    "templateId1":"",
+    "templateId2":"",
+    "templateField1":"",
+    "templateField2":""
+  };
+  tableArray=Array<any>();
+  mappingList=Array<any>();
+
+
+
+
+  tfn1="";
+  tfn2="";
+  controlFN;
+  controlFieldName: Array<any> = [];
+  templateList_dialog: Array<any> = [];
+  templateList1: Array<any> = [];
+  templateL1;
+  templateList2: Array<any> = [];
+  templateL2;
+  templateid1;
+  templateid2;
+  controlId;
+
+  selectedTemplateField1: any;
+  selectedTemplateField2: any;
+
+  mappingEvidence =
+    {
+      "controlId": "",
+      "evidenceMapping":[]
+        // {
+        //   "templateId1": "",
+        //   "templateField1": "",
+        //   "templateId2": "",
+        //   "templateField2": "",
+        // }
+    };
+  selectedTemplate1: any;
+  selectedTemplate2: any;
+  templateFieldList1: any;
+  templateFieldList2: any;
+
+  constructor(public dialog: MatDialog,public toastr: ToastrService, public router: Router, public rest: RestService) { }
 
   ngOnInit() {
     //Has to changed with Session Value of Logged in Client Id
     //var clientId = '14';
-    this.rest.getTemplateList(localStorage.getItem("clientId")).subscribe((data: any) => {
+    this.rest.getTemplateListDropDown().subscribe((data: any) => {
       this.templateList = data.data;
       console.log(this.templateList);
+    //  alert(JSON.stringify(this.templateList));
     });
+    this.rest.subProcess_getAll().subscribe((data: any) => {
+      this.subProcessList = data.data;
+      console.log(this.subProcessList);
+    });
+  }
+  onChangeSubProcess(value){
+    this.selectedSubProcess = this.subProcessList.filter((items) => items.name === value)[0];
+    this.controlBody.subprocessId=this.selectedSubProcess.id;
+    //alert(this.controlBody.subProcessId);
   }
   onChange(value) {
     this.selectedTemplate = this.templateList.filter((items) => items.name === value)[0];
+    
     this.newAttribute.selectedTemplate = this.selectedTemplate.name;
     //this.cDetailBody.templateDetailEntityIdTransient=this.selectedTemplate.id;
     console.log("selectedTemplate=====");
@@ -98,7 +179,7 @@ export class AddControlComponent implements OnInit {
 
     console.log(this.selectedTemplateField.id);
     this.newAttribute.templateField = this.selectedTemplateField.columnName;
-    this.cDetailBody.templateDetailEntityIdTransient = this.selectedTemplateField.id;
+    this.cDetailBody.templateDetailId = this.selectedTemplateField.id;
 
     //  this.cDetailBody.template_field_name=this.selectedTemplateField.id;
 
@@ -160,12 +241,14 @@ export class AddControlComponent implements OnInit {
   addFieldValue() {
     if (!this.isEmpty(this.newAttribute.fieldName) && !this.isEmpty(this.newAttribute.fieldType) &&
       !this.isEmpty(this.newAttribute.selectedTemplate) && !this.isEmpty(this.newAttribute.templateField)) {
+        this.templateListToSendToDialog.push(this.selectedTemplate);
+    console.log(this.templateListToSendToDialog);
       this.cDetailBody.fieldName = this.newAttribute.fieldName;
       this.cDetailBody.fieldType = this.newAttribute.fieldType;
-      console.log(this.newAttribute);
+      //console.log(this.newAttribute);
       this.fieldArray.push(this.newAttribute);
       this.cDetailArray.push(this.cDetailBody);
-      console.log(this.fieldArray);
+      //console.log(this.fieldArray);
       this.newAttribute = {
         "fieldName": "",
         "fieldType": "",
@@ -175,16 +258,16 @@ export class AddControlComponent implements OnInit {
       };
       this.cDetailBody = {
 
-        "controlIdTransient": "",
+       // "controlIdTransient": "",
         "fieldName": "",
         "fieldType": "",
-        "templateDetailEntityIdTransient": ""
+        "templateDetailId": ""
         // ,
         // "template_field_name": ""
       };
 
-      console.log(this.newAttribute);
-      console.log(this.cDetailArray);
+      //console.log(this.newAttribute);
+      //console.log(this.cDetailArray);
       // document.getElementById("template").innerHTML="";
       // document.getElementById("templateField").innerHTML="";
 
@@ -219,27 +302,39 @@ export class AddControlComponent implements OnInit {
       this.controlBody.name = this.name;
       this.controlBody.frequency = this.frequency;
       this.controlBody.description = this.description;
-      this.controlBody.subProcessId = "2";
+      //this.controlBody.subProcessId = "2";
+      this.controlBody.controlDetail=this.cDetailArray;
       console.log(this.controlBody);
+      //this.openDialog();
       this.rest.saveControl(this.controlBody).subscribe((data: any) => {
         console.log(data);
-        console.log(data.data[0].id);
+        //alert(data.data[0].controlId);
+       
         if (data.responseCode === "00") {
-          for (var i = 0; i < this.cDetailArray.length; i++) {
-            this.cDetailArray[i].controlIdTransient = data.data[0].id;
-          }
-          console.log(this.cDetailArray);
-          this.rest.saveControlDetail(this.cDetailArray).subscribe((data: any) => {
-            console.log(data);
-            if (data.responseCode === "00") {
+          //alert(data.responseCode);
+          this.toastr.success('', 'Map Controls!');
+          // this.templateList=data.list;
+          // this.controlId=data.id;
+          //dialog related
+         
+          this.templateList_dialog=this.templateListToSendToDialog;
+          this.controlId=data.data[0].controlId;
+         // this.openDialog(data.data[0].controlId);
+          // for (var i = 0; i < this.cDetailArray.length; i++) {
+          //   this.cDetailArray[i].controlIdTransient = data.data[0].id;
+          // }
+          // console.log(this.cDetailArray);
+          // this.rest.saveControlDetail(this.cDetailArray).subscribe((data: any) => {
+          //   console.log(data);
+          //   if (data.responseCode === "00") {
 
-              this.toastr.success('', 'Control Saved!');
-              this.router.navigate(['dashboard/control']);
-            }
-            else {
-              this.toastr.error('', "Some Error Occurred");
-            }
-          });
+          //     this.toastr.success('', 'Control Saved!');
+          //     this.router.navigate(['dashboard/control']);
+          //   }
+          //   else {
+          //     this.toastr.error('', "Some Error Occurred");
+          //   }
+          // });
         }
       });
     }
@@ -247,6 +342,14 @@ export class AddControlComponent implements OnInit {
       this.toastr.error('', "Enter Complete Detail!");
     }
   }
+  // openDialog(controlId): void {
+  //   let dialogRef = this.dialog.open(control_template_mapping_MapTemplate, {
+  //     width: '800px',
+  //     data: {list:this.templateListToSendToDialog,id:controlId}
+      
+  //   });
+  // }
+ 
   addSessionAudit() {
     //   if(!this.isEmpty(this.company) && !this.isEmpty(this.name) && !this.isEmpty(this.address) && !this.isEmpty(this.startDate)
     //     && !this.isEmpty(this.endDate) && this.fieldArray.length>0 )
@@ -326,7 +429,334 @@ export class AddControlComponent implements OnInit {
 
     // }
   }
+  //dialog functions
+
+  onChangeTemplate1(value) {
+;
+   //alert(value);
+    this.selectedTemplate1 = this.templateList_dialog.filter((items) => items.name === value)[0];
+   //alert(JSON.stringify(this.templateList_dialog.filter((items) => items.name === value)[0]));
+   // alert("enter");
+    //alert(this.selectedTemplate1);
+    this.newAttribute1.template_name = this.selectedTemplate1.name;
+    this.newAttributeWithIds.templateId1=this.selectedTemplate1.id;
+    //this.cDetailBody.templateDetailEntityIdTransient=this.selectedTemplate.id;
+    console.log("selectedTemplate=====");
+    console.log(this.selectedTemplate1);
+    //alert(this.selectedTemplate1.id);
+    //alert();
+    //alert(this.selectedTemplate1.id);
+  
+    this.rest.getTemplateDetails(this.selectedTemplate1.id).subscribe((data: any) => {
+
+      this.templateFieldList1 = data.data;
+
+      debugger;
+      //alert(JSON.stringify(this.templateFieldList1));
+      console.log("Template field 1");
+      console.log(this.templateFieldList1);
+    });
+
+  }
+  onChangeTemplate2(value) {
+  
+    this.selectedTemplate2 = this.templateList_dialog.filter((items) => items.name === value)[0];
+    
+    this.newAttribute1.template_name2 = this.selectedTemplate2.name;
+    this.newAttributeWithIds.templateId2=this.selectedTemplate2.id;
+    //this.cDetailBody.templateDetailEntityIdTransient=this.selectedTemplate.id;
+    console.log("selectedTemplate=====");
+    console.log(this.selectedTemplate2);
+    this.rest.getTemplateDetails(this.selectedTemplate2.id).subscribe((data: any) => {
+      this.templateFieldList2 = data.data;
+      console.log(this.templateFieldList2);
+    });
+
+  }
+  onChangeTemplateField1(value) {
+  
+    this.selectedTemplateField1 = this.templateFieldList1.filter((items) => items.columnName === value)[0];
+
+    console.log(this.selectedTemplateField1.id);
+    this.newAttribute1.template_field_name1 = this.selectedTemplateField1.columnName;
+    this.newAttributeWithIds.templateField1 = this.selectedTemplateField1.id;
+    //this.cDetailBody.templateDetailEntityIdTransient = this.selectedTemplateField1.id;
+
+    //  this.cDetailBody.template_field_name=this.selectedTemplateField.id;
+
+  }
+  onChangeTemplateField2(value) {
+  
+    this.selectedTemplateField2 = this.templateFieldList2.filter((items) => items.columnName === value)[0];
+
+    console.log(this.selectedTemplateField2.id);
+    this.newAttribute1.template_field_name2 = this.selectedTemplateField2.columnName;
+    this.newAttributeWithIds.templateField2 = this.selectedTemplateField2.id;
+    //this.cDetailBody.templateDetailEntityIdTransient = this.selectedTemplateField2.id;
+
+    //  this.cDetailBody.template_field_name=this.selectedTemplateField.id;
+
+  }
+  onClickAdd()
+  {
+    
+    
+    // this.newAttribute.template_name=this.template_name1;
+    // this.newAttribute.template_name2=this.template_name2;
+    // this.newAttribute.template_field_name1=this.template_field_name1;
+    // this.newAttribute.template_field_name2=this.template_field_name2;
+    this.tableArray.push(this.newAttribute1);
+    this.mappingList.push(this.newAttributeWithIds);
+    this.newAttribute1={
+      "template_name":"",
+      "template_name2":"",
+      "template_field_name1":"",
+      "template_field_name2":""
+    };
+    // this.newAttributeWithIds={
+    //   "template_name":"",
+    //   "template_name2":"",
+    //   "template_field_name1":"",
+    //   "template_field_name2":""
+    // };
+    this.newAttributeWithIds={
+      "templateId1":"",
+      "templateId2":"",
+      "templateField1":"",
+      "templateField2":""
+    };
+   console.log(this.mappingList);
+  }
+  onNoClick(): void {
+  //  this.dialogRef.close();
+  }
+  saveMapping(){
+this.mappingEvidence.controlId=this.controlId;
+this.mappingEvidence.evidenceMapping=this.mappingList;
+debugger;
+console.log(this.mappingEvidence);
+this.rest.saveTemplateMapping(this.mappingEvidence).subscribe((data: any) => {
+  console.log(data);
+ 
+  if (data.responseCode === "00") {
+    this.toastr.success('', 'Mapping Done Successfully!');
+    location.reload();
+   
+  }
+});
+  }
 
 
 
 }
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: 'dialog-overview-example-dialog.html'
+
+})
+export class control_template_mapping_MapTemplate {
+  template_name1="";
+  template_name2="";
+  template_field_name1="";
+  template_field_name2="";
+  newAttribute={
+    "template_name":"",
+    "template_name2":"",
+    "template_field_name1":"",
+    "template_field_name2":""
+  };
+  newAttributeWithIds={
+    "template_name":"",
+    "template_name2":"",
+    "template_field_name1":"",
+    "template_field_name2":""
+  };
+  tableArray=Array<any>();
+  mappingList=Array<any>();
+
+
+
+
+  tfn1="";
+  tfn2="";
+  controlFN;
+  controlFieldName: Array<any> = [];
+  templateList: Array<any> = [];
+  templateList1: Array<any> = [];
+  templateL1;
+  templateList2: Array<any> = [];
+  templateL2;
+  templateid1;
+  templateid2;
+  controlId;
+
+  selectedTemplateField1: any;
+  selectedTemplateField2: any;
+
+  mappingEvidence =
+    {
+      "controlId": "",
+      "evidenceMapping":[]
+        // {
+        //   "templateId1": "",
+        //   "templateField1": "",
+        //   "templateId2": "",
+        //   "templateField2": "",
+        // }
+    };
+  selectedTemplate1: any;
+  selectedTemplate2: any;
+  templateFieldList1: any;
+  templateFieldList2: any;
+
+  constructor(
+    private router: Router,
+    public http: HttpClient, public toastr: ToastrService,
+
+    public rest: RestService,
+    public dialogRef: MatDialogRef<control_template_mapping_MapTemplate>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+      this.templateList=data.list;
+      this.controlId=data.id;
+      console.log(this.templateList.length);
+      console.log(this.controlId);
+    // this.controlId = this.data.controlId;
+    // this.templateid1 = this.data.template_id1;
+    // this.templateid2 = this.data.template_id2;
+
+
+    // this.rest.getTemplateDetails(this.templateid1).subscribe((data1: any) => {
+    //   this.templateL1 = data1.data;
+    //   this.templateList1 = this.templateL1;
+    // });
+    // this.rest.getTemplateDetails(this.templateid2).subscribe((data1: any) => {
+    //   this.templateL2 = data1.data;
+    //   this.templateList2 = this.templateL2;
+    // });
+  }
+  onChangeTemplate1(value) {
+    this.selectedTemplate1 = this.templateList.filter((items) => items.name === value)[0];
+    
+    this.newAttribute.template_name = this.selectedTemplate1.name;
+    this.newAttributeWithIds.template_name=this.selectedTemplate1.id;
+    //this.cDetailBody.templateDetailEntityIdTransient=this.selectedTemplate.id;
+    console.log("selectedTemplate=====");
+    console.log(this.selectedTemplate1);
+    this.rest.getTemplateDetails(this.selectedTemplate1.id).subscribe((data: any) => {
+      this.templateFieldList1 = data.data;
+      console.log(this.templateFieldList1);
+    });
+
+  }
+  onChangeTemplate2(value) {
+    this.selectedTemplate2 = this.templateList.filter((items) => items.name === value)[0];
+    
+    this.newAttribute.template_name2 = this.selectedTemplate2.name;
+    this.newAttributeWithIds.template_name2=this.selectedTemplate2.id;
+    //this.cDetailBody.templateDetailEntityIdTransient=this.selectedTemplate.id;
+    console.log("selectedTemplate=====");
+    console.log(this.selectedTemplate2);
+    this.rest.getTemplateDetails(this.selectedTemplate2.id).subscribe((data: any) => {
+      this.templateFieldList2 = data.data;
+      console.log(this.templateFieldList2);
+    });
+
+  }
+  onChangeTemplateField1(value) {
+    this.selectedTemplateField1 = this.templateFieldList1.filter((items) => items.columnName === value)[0];
+
+    console.log(this.selectedTemplateField1.id);
+    this.newAttribute.template_field_name1 = this.selectedTemplateField1.columnName;
+    this.newAttributeWithIds.template_field_name1 = this.selectedTemplateField1.id;
+    //this.cDetailBody.templateDetailEntityIdTransient = this.selectedTemplateField1.id;
+
+    //  this.cDetailBody.template_field_name=this.selectedTemplateField.id;
+
+  }
+  onChangeTemplateField2(value) {
+    this.selectedTemplateField2 = this.templateFieldList2.filter((items) => items.columnName === value)[0];
+
+    console.log(this.selectedTemplateField2.id);
+    this.newAttribute.template_field_name2 = this.selectedTemplateField2.columnName;
+    this.newAttributeWithIds.template_field_name2 = this.selectedTemplateField2.id;
+    //this.cDetailBody.templateDetailEntityIdTransient = this.selectedTemplateField2.id;
+
+    //  this.cDetailBody.template_field_name=this.selectedTemplateField.id;
+
+  }
+  onClickAdd()
+  {
+    
+    
+    // this.newAttribute.template_name=this.template_name1;
+    // this.newAttribute.template_name2=this.template_name2;
+    // this.newAttribute.template_field_name1=this.template_field_name1;
+    // this.newAttribute.template_field_name2=this.template_field_name2;
+    this.tableArray.push(this.newAttribute);
+    this.mappingList.push(this.newAttributeWithIds);
+    this.newAttribute={
+      "template_name":"",
+      "template_name2":"",
+      "template_field_name1":"",
+      "template_field_name2":""
+    };
+    this.newAttributeWithIds={
+      "template_name":"",
+      "template_name2":"",
+      "template_field_name1":"",
+      "template_field_name2":""
+    };
+   console.log(this.mappingList);
+  }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+  saveMapping(){
+this.mappingEvidence.controlId=this.controlId;
+this.mappingEvidence.evidenceMapping=this.mappingList;
+debugger;
+console.log(this.mappingEvidence);
+this.rest.saveTemplateMapping(this.mappingEvidence).subscribe((data: any) => {
+  console.log(data);
+ 
+  if (data.responseCode === "00") {
+    this.toastr.success('', 'Mapping Done Successfully!');
+    location.reload();
+   
+  }
+});
+  }
+
+  // isEmpty(val) {
+  //   return (val === undefined || val == null || val.length <= 0) ? true : false;
+  // }
+
+  // onTF1Change(value) {
+  //   this.selectedTemplateField1 = this.templateList1.filter((items) => items.columnName === value)[0];
+  // }
+
+  // onTF2Change(value) {
+  //   this.selectedTemplateField2 = this.templateList2.filter((items) => items.columnName === value)[0];
+  // }
+
+  // onYesClick(): void {
+  //   this.mappingEvidence = {
+  //     "controlId": this.controlId,
+  //     "evidenceMapping":
+  //       {
+  //         "templateId1": this.templateid1,
+  //         "templateField1": this.selectedTemplateField1.id,
+  //         "templateId2": this.templateid2,
+  //         "templateField2": this.selectedTemplateField2.id,
+  //       }
+  //   };
+
+  //   this.rest.saveTemplateMapping(this.mappingEvidence).subscribe((data: any) => {
+  //     if (data.responseCode == "00") {
+  //       this.toastr.success('', 'Record Saved!');
+  //       this.dialogRef.close();
+  //     }
+  //   });
+  // }
+}
+
