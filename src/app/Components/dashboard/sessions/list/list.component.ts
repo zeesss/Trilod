@@ -22,7 +22,12 @@ import { RestService } from './../../../services/rest/rest.service';
 })
 export class ListComponent implements OnInit {
   headers: any;
-
+//displayedColumns = ['Sno', 'Name', 'TextRule', 'Rule1', 'Rule2'];
+displayedColumns: Array<any> ;
+  
+dataSource: MatTableDataSource<UserData>;
+countRows: number = 0;
+loadCount: number = 0;
   ngOnInit() {
 
     let executeBody={
@@ -35,17 +40,14 @@ export class ListComponent implements OnInit {
       
            console.log(data);
            if(data.responseCode==="00"){
-            this.headers=data.headers;
+            this.displayedColumns=data.headers;
+            console.log( this.displayedColumns);
             //location.reload();
            }
          });
   }
 
-  //displayedColumns = ['Sno', 'Name', 'TextRule', 'Rule1', 'Rule2'];
-  displayedColumns=this.headers;
-  dataSource: MatTableDataSource<UserData>;
-  countRows: number = 0;
-  loadCount: number = 0;
+  
 
   constructor(public rest:RestService) {
     const users: UserData[] = [];
@@ -109,6 +111,7 @@ const TextSentences = ['Open the door', 'Cloth is wet',
   'we got the winner', 'I may see you soon'];
 
 export interface UserData {
+  
   id: string;
   Sno: number;
   Name: string;
