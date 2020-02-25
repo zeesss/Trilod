@@ -44,6 +44,7 @@ audit_file_id: string;
   responseData: any;
   dataList: any;
   arrayToSend: Array<any> = [];
+  tableshow=false;
   constructor(public router:Router,public formBuilder:FormBuilder,public toastr:ToastrService,public rest:RestService) { }
 
   ngOnInit() {
@@ -115,6 +116,11 @@ audit_file_id: string;
             
           }
           );
+          if(this.dataList.length>0)
+          {
+           
+            this.tableshow=true;
+          }
   }
   changeValue(id: number, property: string, event: any) {
     const checkField = event.target.checked;

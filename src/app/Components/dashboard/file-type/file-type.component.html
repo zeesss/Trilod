@@ -1,99 +1,78 @@
 <!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Trilod</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Styles Sheets -->
-<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link href="assets/css/style.css" rel="stylesheet"  type="text/css">
-</head>
-<body>
-<!-- <header class="bg-01">
-  <div class="col-md-12">
-    <div class="content-box">
-      <a href="#" class="logout">Logout</a> 
-      <div class="logo logo-02"><a href="#"><img src="assets/images/logo.png" alt="logo"></a></div>
-    </div>
-  </div>
-</header> -->
-<div class="clear"></div>
-<div class="col-md-12">
-  <div class="content-box">
-    <div class="white-con">
-      <div class="breadcrumb">
-        <ul>
-          <li><a href="#">Dashboard</a></li>
-          <li><a href="#">File Types</a></li>
-        </ul>
-      </div>
-      <div class="side-menu" *ngIf="this.checkObject.canAdd" >
-        <ul>
-          <li><a (click)=newFile()>New</a></li>
-          <!-- <li><a href="#">Edit</a></li>
-          <li><a href="#">Delete</a></li> -->
-        </ul>
-      </div>
-      <h1>File Types<span></span></h1>
-    </div>
-  </div>
-</div>
-<div class="clear"></div>
-<div class="main-table-con" *ngIf="this.checkObject.canView">
-  <div class="col-md-12">
-    <div class="content-box">
-      <div class="table-outer-con">
-        <div id="table" class="table-editable">
-      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table mt-0">
-        <tr>
-          <th>Sr.No.</th>
-          <th>Name</th>
-          
-         <!-- <th>Actions</th> -->
-        </tr>
-        <tr *ngFor="let person of personList; let id = index">
-          <td valign="top">{{id+1}}
-            <!-- <select name="" class="field-style-list-01 custom-select">
-              <option>{{id+1}}</option>
-            </select> -->
-          </td>
-          <td valign="top"> 
-            <span *ngIf="!this.checkObject.canEdit"  (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(person.id,id, 'name', $event)">{{person.name}}</span>
+<!-- <html> -->
 
-            <span contenteditable="true" *ngIf="this.checkObject.canEdit"  (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(person.id,id, 'name', $event)">{{person.name}}</span>
-          </td>
-         
-          
-        
-          
-          <!-- <td><div class="side-menu">
-              <ul>
-            <li><a (click)=edit(file.id)>Edit</a></li>
-          <li><a (click)=delete(file.id)>Delete</a></li>
-        </ul>
+<head>
+  <meta charset="utf-8">
+  <title>AuditorAX</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="clear"></div>
+  <div class="col-md-12">
+    <div class="content-box">
+      <div class="">
+        <div class="">
+          <div class="breadcrumb">
+            <ul>
+              <li><a href="#">Dashboard > </a></li>
+              <li>
+                <a href="#">File Types</a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </td> -->
-          
-        </tr>
-       
-       
-       
-       
-       
-      </table>
+          <div class="side-menu align-self-center" *ngIf="this.checkObject.canAdd">
+            <ul>
+              <li><a  class="new" data-toggle="modal" data-target="#myModal" >New</a></li>
+            </ul>
+          </div>
       </div>
+      <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header border-0">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">     
+                <div class="col-md-12 float-left pl-0 pr-5">
+                  <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Name*:</label></div>
+                  <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+                    <input type="text" name="" class="field-01 form-control" placeholder="Name" [(ngModel)]="name" required maxlength="50"> 
+                  </div>
+                </div> 
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn green-btn" data-dismiss="modal" (click)="onYesClick()">Save</button>
+              <button type="button" class="btn blue-btn" data-dismiss="modal" (click)="onNoClick()">Close</button>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="clear"></div>
-      <!-- <ul class="pagination t-pagination">
-        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">4</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-      </ul> -->
+      <div class="main-table-con">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
+          <tr>
+            <th>Sr.No.</th>
+            <th>Name</th>
+          </tr>
+          <tr *ngFor="let person of personList; let id = index">
+            <td>
+              <span>{{id+1}}</span>
+            </td>
+            <td valign="top"> 
+              <span *ngIf="!this.checkObject.canEdit"  (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(person.id,id, 'name', $event)">{{person.name}}</span>
+  
+              <span contenteditable="true" *ngIf="this.checkObject.canEdit"  (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(person.id,id, 'name', $event)">{{person.name}}</span>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
-</div>
+  <div class="clear"></div>
 </body>
-</html>
+

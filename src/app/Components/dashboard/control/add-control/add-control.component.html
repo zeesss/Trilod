@@ -30,7 +30,7 @@
         </div>
         <div class="col-md-6 float-left pl-5 pr-0">
           <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Frequency:</label></div>
-          <div class="col-md-9 float-left pl-0 pr-0 mt-4"><select class="field-01 form-control" [(ngModel)]="frequency">
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4"><select class="field-01 custom-select pl-2" [(ngModel)]="frequency">
             <option selected value="">-SELECT-</option>
             <option>Daily</option>
             <option>Monthly</option>
@@ -41,7 +41,7 @@
         <div class="clear"></div>
         <div class="col-md-6 float-left pl-0 pr-5">
           <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Sub-Process Name:</label></div>
-          <div class="col-md-9 float-left pl-0 pr-0 mt-4"><select id="subProcess" (change)="onChangeSubProcess($event.target.value)" class="field-01 form-control" name="template" [(ngModel)]="process">
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4"><select id="subProcess" (change)="onChangeSubProcess($event.target.value)" class="field-01 custom-select pl-2" name="template" [(ngModel)]="process">
             <option selected value="">-SELECT-</option>
             <option *ngFor="let subprocess of this.subProcessList; index as i;">{{subprocess.name}}</option>
           </select>
@@ -50,7 +50,7 @@
         <div class="col-md-6 float-left pl-5 pr-0">
           <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Description:</label></div>
           <div class="col-md-9 float-left pl-0 pr-0 mt-4">
-            <textarea rows="8" cols="200" class=" form-control" [(ngModel)]="description"></textarea>
+            <textarea rows="8" cols="200" class=" form-control" [(ngModel)]="description" maxlength="200"></textarea>
             <!-- <input type="password" class="field-01 form-control"> -->
           </div>
         </div>
@@ -67,7 +67,7 @@
         <div class="col-md-6 float-left pl-5 pr-0">
           <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Field Type:</label></div>
           <div class="col-md-9 float-left pl-0 pr-0 mt-4">
-                <select class="field-01 form-control" [(ngModel)]="newAttribute.fieldType">
+                <select class="field-01 custom-select pl-2" [(ngModel)]="newAttribute.fieldType">
                   <option selected value="">-SELECT-</option>
                   <option>Numeric</option>
                   <option>String</option>
@@ -79,7 +79,7 @@
         <div class="col-md-6 float-left pl-5 pr-0">
           <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Template:</label></div>
           <div class="col-md-9 float-left pl-0 pr-0 mt-4">
-                <select id="template" (change)="onChange($event.target.value)" class="field-01 form-control" name="template" [(ngModel)]="newAttribute.selectedTemplate">
+                <select id="template" (change)="onChange($event.target.value)" class="field-01 custom-select pl-2" name="template" [(ngModel)]="newAttribute.selectedTemplate">
                   <option selected value="">-SELECT-</option>
                   <option *ngFor="let template of this.templateList; index as i;">{{template.name}}</option>
                 </select>
@@ -89,7 +89,7 @@
         <div class="col-md-6 float-left pl-5 pr-0">
           <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Template Field Name:</label></div>
           <div class="col-md-9 float-left pl-0 pr-0 mt-4">
-            <select id="templateField" (change)="onChangeTemplateField($event.target.value)" class="field-01 form-control" name="templateField" [(ngModel)]="newAttribute.templateField">
+            <select id="templateField" (change)="onChangeTemplateField($event.target.value)" class="field-01 custom-select pl-2" name="templateField" [(ngModel)]="newAttribute.templateField">
               <option selected value="">-SELECT-</option>
               <option *ngFor="let templateField of this.templateFieldList; index as i;">{{templateField.columnName}}</option>
             </select>
@@ -149,7 +149,7 @@
             <div class="col-md-12 float-left pl-0 pr-5">
               <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Template Name:</label></div>
               <div class="col-md-9 float-left pl-0 pr-0 mt-4">
-                <select id="template" (change)="onChangeTemplate1($event.target.value)" class="field-01 form-control" name="template" [(ngModel)]="template_name1">
+                <select id="template" (change)="onChangeTemplate1($event.target.value)" class="field-01 custom-select pl-2" name="template" [(ngModel)]="template_name1">
                   <option selected value="">-SELECT-</option>
                   <option *ngFor="let template of this.templateList_dialog; index as i;">{{template.name}}</option>
                 </select>
@@ -158,7 +158,7 @@
               <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Template Field Name:</label></div>
               <div class="col-md-9 float-left pl-0 pr-0 mt-4">
                 
-                <select id="templateField" (change)="onChangeTemplateField1($event.target.value)" class="field-01 form-control" name="templateField" [(ngModel)]="template_field_name1">
+                <select id="templateField" (change)="onChangeTemplateField1($event.target.value)" class="field-01 custom-select pl-2" name="templateField" [(ngModel)]="template_field_name1">
                   <option selected value="">-SELECT-</option>
                   <option *ngFor="let templateField of this.templateFieldList1; index as i;">{{templateField.columnName}}</option>
                 </select>
@@ -167,7 +167,7 @@
               <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Template Name:</label></div>
               <div class="col-md-9 float-left pl-0 pr-0 mt-4">
                 
-                <select id="template" (change)="onChangeTemplate2($event.target.value)" class="field-01 form-control" name="template" [(ngModel)]="template_name2">
+                <select id="template" (change)="onChangeTemplate2($event.target.value)" class="field-01 custom-select pl-2" name="template" [(ngModel)]="template_name2">
                   <option selected value="">-SELECT-</option>
                   <option *ngFor="let template of this.templateList_dialog; index as i;">{{template.name}}</option>
                 </select>
@@ -175,7 +175,7 @@
 
               <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Template Field Name:</label></div>
               <div class="col-md-9 float-left pl-0 pr-0 mt-4">
-                <select id="templateField" (change)="onChangeTemplateField2($event.target.value)" class="field-01 form-control" name="templateField" [(ngModel)]="template_field_name2">
+                <select id="templateField" (change)="onChangeTemplateField2($event.target.value)" class="field-01 custom-select pl-2" name="templateField" [(ngModel)]="template_field_name2">
                   <option selected value="">-SELECT-</option>
                   <option *ngFor="let templateField of this.templateFieldList2; index as i;">{{templateField.columnName}}</option>
                 </select>
@@ -197,19 +197,19 @@
       
                   </tr>
                   <tr *ngFor="let field of tableArray; let id = index" style="color: black;">
-                    <td>
+                    <td align="center"> 
                       <span contenteditable="false">{{field.template_name}}</span>
                     </td>
-                    <td>
+                    <td align="center">
                       <span contenteditable="false">{{field.template_name2}}</span>
                     </td>
-                    <td>
+                    <td align="center">
                       <span contenteditable="false">{{field.template_field_name1}}</span>
                     </td>
-                    <td>
+                    <td align="center">
                       <span contenteditable="false">{{field.template_field_name2}}</span>
                     </td>
-                    <td>
+                    <td align="center">
                       <a class="mt-delete-btn" (click)="remove(field.id, id)"></a>
                     </td>
                   </tr>

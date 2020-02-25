@@ -40,7 +40,7 @@
                   <th>Description</th>
                   <th>Frequency</th>
                   <th>Action</th>
-            <th>&nbsp; &nbsp; </th>
+            <!-- <th>&nbsp; &nbsp; </th> -->
            
           </tr>
           <tr *ngFor="let control of dataSource; let id = index;">
@@ -59,7 +59,7 @@
             <td>
               <!-- <a class="mt-delete-btn" (click)=delete(organization.id)>
               </a> -->
-              <a class="mt-edit-btn" (click)=openEdit(control.id)></a>
+              <a class="mt-edit-btn float-left" (click)=openEdit(control.id)></a>
             </td>
           </tr>
         </table>

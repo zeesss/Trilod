@@ -107,10 +107,11 @@
 
         <div class="clear"></div>
       </div><!--form-con-->
-      <div class="main-table-con">
+      <div class="main-table-con" *ngIf="tableshow">
         <div class="records">No of Records: {{this.dataList.length}}</div>
         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
           <tr>
+            <th   align="center">Sr.</th>
             <th width="300"  align="center"></th>
             <th class="text-center"  align="center" *ngFor="let row of this.mapList; let id = index;" >{{this.mapData[row]}}</th>
           </tr>
@@ -125,7 +126,7 @@
   
       
         </table>
-        <div class="lt-btn aax-blue-btn float-left"><a (click)="processData()">Save</a></div>
+        <div class="lt-btn aax-blue-btn float-right"><a (click)="processData()">Save</a></div>
       </div>
 
 

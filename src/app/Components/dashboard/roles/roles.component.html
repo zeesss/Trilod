@@ -85,7 +85,7 @@
 
               <span contenteditable="true" *ngIf="this.checkObject.canEdit" (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(person.id,id, 'name', $event)">{{person.roleName}}</span>
             </td>
-            <td >
+            <td  align="center">
               <!-- <input  type="checkbox" [(ngModel)]="person.isActive" *ngIf="!this.checkObject.canEdit" > -->
               <label class="cc" *ngIf="!this.checkObject.canEdit">
                 <input type="checkbox"[(ngModel)]="person.isActive" >
