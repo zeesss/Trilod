@@ -128,6 +128,7 @@ export class TopNavComponent implements OnInit {
   //                          route: 'dashboard/patient-dashboard/vital-charts',
   //                        }];
   ngOnInit() {
+    this.user=localStorage.getItem('currentUser');
 
     this.rest.findFormsByUserId(localStorage.getItem("userId")).subscribe((data: any) => {
 
