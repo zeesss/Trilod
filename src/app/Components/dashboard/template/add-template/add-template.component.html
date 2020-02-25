@@ -33,7 +33,7 @@
           <div class="clear"></div>
           <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Format:</label></div>
           <div class="col-md-9 float-left pl-0 pr-0 mt-4">
-            <select (change)="onChange($event.target.value)" class="field-01 form-control" formControlName="format">
+            <select (change)="onChange($event.target.value)" class="field-01 custom-select pl-2" formControlName="format">
               <option selected value="">-SELECT-</option>
               <option *ngFor="let file of this.FileTypeList; index as i;">{{file.name}}</option>
             </select>

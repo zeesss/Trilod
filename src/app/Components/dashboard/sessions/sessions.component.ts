@@ -322,8 +322,9 @@ export class StartAudit {
 
      }
      executeControl(controlId){
-      alert(localStorage.getItem('startSessionId'));
-      alert(controlId);
+      localStorage.setItem('startControlId',controlId)
+      // alert(localStorage.getItem('startSessionId'));
+      // alert(controlId);
       let executeBody={
         'controlId':controlId,
         'auditSessionId':localStorage.getItem('startSessionId')
@@ -337,7 +338,8 @@ export class StartAudit {
              if(data.responseCode==="00"){
               this.toastr.success('', 'Audit Has been Started!');
               this.dialogRef.close();
-              location.reload();
+              this.router.navigate(['dashboard/WPT']);
+              //location.reload();
              }
            });
      }

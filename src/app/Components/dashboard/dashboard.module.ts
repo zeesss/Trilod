@@ -1,3 +1,4 @@
+import { ListComponent } from './sessions/list/list.component';
 import { MultisheetExcelTemplateComponent } from './multisheet-excel-template/multisheet-excel-template.component';
 import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component';
 import { RoleEditComponent } from './role-edit/role-edit.component';
@@ -16,6 +17,9 @@ import { DashTabsComponent } from './dash-tabs/dash-tabs.component';
 import { SearchComponent } from './search/search.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 //import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 import {
@@ -130,7 +134,8 @@ const dashboardRoutes: Routes = [
           {path: 'process', component:ProcessListComponent},
           {path: 'sub-process-add', component:SubProcessAddComponent},
           {path: 'sub-process-edit', component:SubProcessEditComponent},
-          {path: 'sub-process', component:SubProcessListComponent}
+          {path: 'sub-process', component:SubProcessListComponent},
+          {path: 'WPT', component:ListComponent}
 
           
         ]
@@ -185,7 +190,8 @@ const dashboardRoutes: Routes = [
     ProcessEditComponent,
     SubProcessAddComponent,
     SubProcessListComponent,
-    SubProcessEditComponent
+    SubProcessEditComponent,
+    ListComponent
   ],
   entryComponents: [],
   imports: [
@@ -222,6 +228,7 @@ const dashboardRoutes: Routes = [
     FlexLayoutModule,
     MatSelectModule,
     AngularDraggableModule,
+    //BrowserAnimationsModule
   ],
   exports: [RouterModule],
   providers: [ImportFileComponent]

@@ -64,7 +64,7 @@
           <div class="col-md-9 float-left pl-0 pr-0 mt-4">
             <select (change)="onChangeTemplate1($event.target.value)" class="field-01 form-control" name="template1">
               <option selected value="">-SELECT-</option>
-              <option *ngFor="let template of this.templateList; index as i">{{template.name}}</option>
+              <option *ngFor="let template of this.templateList; index as i" value={{template.id}}>{{template.sheetName}}</option>
             </select> 
           </div>
         </div>
@@ -95,7 +95,7 @@
           <div class="col-md-9 float-left pl-0 pr-0 mt-4">
             <select (change)="onChangeTemplate2($event.target.value)" class="field-01 form-control" name="template2">
               <option selected value="">-SELECT-</option>
-              <option *ngFor="let template of this.templateListEvidence; index as i;">{{template.name}}</option>
+              <option *ngFor="let template of this.templateListEvidence; index as i;" value={{template.id}}>{{template.sheetName}}</option>
             </select>
           </div>
         </div>

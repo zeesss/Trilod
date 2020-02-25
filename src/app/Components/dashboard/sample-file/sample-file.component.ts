@@ -62,7 +62,7 @@ audit_file_id: string;
   }
   addSampling(){
     
-    
+    this.selectControl();
     if(this.size=== undefined && this.percentage===undefined)
     {
       alert('Select one option');
@@ -154,6 +154,7 @@ audit_file_id: string;
           );
   }
   processData(){
+    
     debugger;
     //alert('Hello');
     this.processedData = this.dataList.filter(items => items.isProcessable === true);

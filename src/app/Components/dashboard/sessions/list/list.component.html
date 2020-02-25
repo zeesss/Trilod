@@ -1,0 +1,46 @@
+<div style="text-align: center;margin:25px;">
+    <button (click)="LoadData()" mat-raised-button type="button" class="add-button"
+        *ngIf="dataSource['data'].length==0">Generate</button>
+</div>
+<div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+        <ng-container matColumnDef="Sno">
+            <mat-header-cell *matHeaderCellDef> Sno </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                {{row.Sno}}
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Name">
+            <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                {{row.Name}}
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="TextRule">
+            <mat-header-cell *matHeaderCellDef> TextRule </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <div class="typewriter">
+                    <p>{{row.TextTicker}}</p>
+                </div>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Rule1">
+            <mat-header-cell *matHeaderCellDef> Rule1 </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <div [id]="row.Rule1DivId" class="circle-loader">
+                    <div class=""></div>
+                </div>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Rule2">
+            <mat-header-cell *matHeaderCellDef> Rule2 </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <div [id]="row.Rule2DivId" class="circle-loader">
+                    <div class=""></div>
+                </div>
+            </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row [@rowsAnimation]="" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+</div>

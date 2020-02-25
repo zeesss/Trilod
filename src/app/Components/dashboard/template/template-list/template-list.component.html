@@ -37,26 +37,30 @@
           <tr>
             <th>Sr.No.</th>
             <th>Name</th>
+            <th>Sheet Name</th>
             <th>Format</th>
             <th>Description</th>
             <th>&nbsp; &nbsp; </th>
            
           </tr>
           <tr *ngFor="let template of dataSource; let id = index">
-            <td>
+            <td align="center">
               <span>{{id+1}}</span>
             </td>
-            <td>
+            <td align="center">
               <span>{{template.name}}</span>
+            </td>
+            <td align="center">
+              <span>{{template.sheetName}}</span>
             </td>
             <td>
               <span>{{template.fileType.name}}</span>
             </td>
-            <td>
+            <td align="center">
               <span>{{template.description}}</span>
             </td>
-            <td><a class="mt-delete-btn" (click)=delete(template.id)></a>
-              <a class="mt-edit-btn" (click)=editUserRole(template.id)></a>
+            <td align="center"><a class="mt-delete-btn center" (click)=delete(template.id)></a>
+              <a class="mt-edit-btn center" (click)=editUserRole(template.id)></a>
             </td>
           </tr>
         </table>

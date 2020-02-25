@@ -235,7 +235,7 @@ header {
 }
 .main-table {
 	float: left;
-	margin-top: 40px;
+	margin-top: 12px; 
 }
 .main-table th {
 	color: #254070;
@@ -269,7 +269,9 @@ header {
 /***************** CONTROL TASK DEFINATION *****************/
 .side-menu {
 	float: right;
-	margin-top: -50px;
+	margin-bottom: -50px;
+	position: relative;
+	z-index: 99;
 }
 .side-menu ul {
 	margin: 0;
@@ -683,6 +685,52 @@ header {
 	max-width: 80%;
 
 }
+/************ MENU STYLES ************/
+.navbar-nav li{
+	margin-left: 3px;
+	margin-right: 3px;
+}
+.navbar-nav .nav-link{
+	color: #fff !important;
+	border-radius: 8px;
+	padding-left: 16px !important;
+	padding-right: 14px !important;
+	background-color: #008f6d;
+	background-image: -webkit-linear-gradient(left, #7cc7a6, #008f6d);
+	background-image: -o-linear-gradient(left, #7cc7a6, #008f6d);
+	background-image: linear-gradient(to right, #7cc7a6, #008f6d);
+}
+.navbar-nav .nav-link:hover{
+
+	background-color: #008f6d;
+	background-image: -webkit-linear-gradient(left, #008f6d, #008f6d);
+	background-image: -o-linear-gradient(left, #008f6d, #008f6d);
+	background-image: linear-gradient(to right, #008f6d, #008f6d);
+}
+.dropdown-menu{
+	border-radius: 8px;
+}
+.dropdown-item{
+	padding: 6px 16px;
+}
+.dropdown-item:hover{
+	color: #fff;
+	background-color: #008f6d;
+	background-image: -webkit-linear-gradient(left, #7cc7a6, #008f6d);
+	background-image: -o-linear-gradient(left, #7cc7a6, #008f6d);
+	background-image: linear-gradient(to right, #7cc7a6, #008f6d);
+}
+.navbar-nav li:last-child .dropdown-menu{
+	left: auto;
+	right: 0;
+}
+
+
+
+
+
+
+
 
 
 
@@ -726,6 +774,27 @@ header {
 }
 .main-search input {
 	width: 75%;
+}
+.navbar-light {
+	width: 100%;
+	margin:20px 0 15px;
+}
+.navbar-light .navbar-toggler{
+	width: 100%;
+}
+.navbar-toggler-icon{
+	float: right;
+}
+button:focus{
+	outline: none;
+}
+.navbar-nav li{
+	margin: 4px 0 0;
+}
+.dropdown-toggle:after{
+	float: right;
+	margin-top: 7px;
+}
 }
 @media screen and (max-width:768px) {
 .logo-02 {

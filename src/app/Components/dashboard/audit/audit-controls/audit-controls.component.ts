@@ -134,24 +134,23 @@ this.rest.getTemplateByFileName(value).subscribe((data: any) => {
     console.log(this.selectedControlId);
   }
   onChangeTemplate1(value) {
-    this.selectedTemplate1 = this.templateList.filter((items) => items.name === value)[0];
-    //this.newAttribute.selectedTemplate = this.selectedTemplate.name;
-    //this.cDetailBody.templateDetailEntityIdTransient=this.selectedTemplate.id;
-    //console.log("selectedTemplate=====");
-    console.log(this.selectedTemplate1);
-    this.rest.getTemplateDetails(this.selectedTemplate1.id).subscribe((data: any) => {
+    //alert(value);
+   //this.selectedTemplate1 = this.templateList.filter((items) => items.id === value);
+   this.selectedTemplate1=value;
+    //console.log(this.selectedTemplate1);
+    //this.rest.getTemplateDetails(this.selectedTemplate1.id).subscribe((data: any) => {
+      this.rest.getTemplateDetails(value).subscribe((data: any) => {
       this.templateFieldList1 = data.data;
       console.log(this.templateFieldList1);
     });
 
   }
   onChangeTemplate2(value) {
-    this.selectedTemplate2 = this.templateList.filter((items) => items.name === value)[0];
-    //this.newAttribute.selectedTemplate = this.selectedTemplate.name;
-    //this.cDetailBody.templateDetailEntityIdTransient=this.selectedTemplate.id;
-    //console.log("selectedTemplate=====");
-    console.log(this.selectedTemplate2);
-    this.rest.getTemplateDetails(this.selectedTemplate2.id).subscribe((data: any) => {
+   // this.selectedTemplate2 = this.templateList.filter((items) => items.id === value);
+   this.selectedTemplate2=value;
+    //console.log(this.selectedTemplate2);
+    //this.rest.getTemplateDetails(this.selectedTemplate2.id).subscribe((data: any) => {
+    this.rest.getTemplateDetails(value).subscribe((data: any) => {
       this.templateFieldList2 = data.data;
       console.log(this.templateFieldList2);
     });
@@ -231,12 +230,12 @@ this.rest.getTemplateByFileName(value).subscribe((data: any) => {
    // this.openDialog();
     //alert();
     debugger;
-    if (!this.isEmpty(this.selectedControlId)
-      && !this.isEmpty(this.selectedAuditId)
-      && !this.isEmpty(this.selectedTemplate1)
-      && !this.isEmpty(this.selectedTemplateField1)
-      && !this.isEmpty(this.selectedTemplate2)
-      && !this.isEmpty(this.selectedTemplateField2)) {
+    // if (!this.isEmpty(this.selectedControlId)
+    //   && !this.isEmpty(this.selectedAuditId)
+    //   && !this.isEmpty(this.selectedTemplate1)
+    //   && !this.isEmpty(this.selectedTemplateField1)
+    //   && !this.isEmpty(this.selectedTemplate2)
+    //   && !this.isEmpty(this.selectedTemplateField2)) {
       const formData = new FormData();
       if(this.uploadForm.get('sheetNo').value===null){
         formData.append('sheetNo', '1');
@@ -247,9 +246,9 @@ this.rest.getTemplateByFileName(value).subscribe((data: any) => {
       formData.append('controlId', this.selectedControlId);
       //formData.append('audit_session_id', this.selectedAuditId);
       formData.append('auditId', this.selectedAuditId);
-      formData.append('templateId1', this.selectedTemplate1.id);
+      formData.append('templateId1', this.selectedTemplate1);
       formData.append('templateField1', this.selectedTemplateField1.id);
-      formData.append('templateId2', this.selectedTemplate2.id);
+      formData.append('templateId2', this.selectedTemplate2);
       formData.append('templateField2', this.selectedTemplateField2.id);
       formData.append('sheetNo', this.uploadForm.get('sheetNo').value);
 
@@ -276,10 +275,10 @@ this.rest.getTemplateByFileName(value).subscribe((data: any) => {
 
 
 
-    }
-    else {
-      this.toastr.error('', 'Enter all required fields!');
-    }
+    //}
+    // else {
+    //   this.toastr.error('', 'Enter all required fields!');
+    // }
   }
 }
 @Component({

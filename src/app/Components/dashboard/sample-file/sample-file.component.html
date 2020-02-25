@@ -3,165 +3,136 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Trilod</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AuditorAX</title>
+  <meta name="viewport" concc float-lefttent="width=device-width, initial-scale=1">
   <!-- Styles Sheets -->
   <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="assets/css/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-  <!-- <header class="bg-01">
-  <div class="col-md-12">
-    <div class="content-box"><a href="#" class="logout">Logout</a>
-      <div class="logo logo-02"><a href="#"><img src="assets/images/logo.png" alt="logo"></a></div>
-    </div>
-  </div>
-</header> -->
+ 
   <div class="clear"></div>
   <div class="col-md-12">
     <div class="content-box">
-      <div class="white-con">
-        <div class="breadcrumb mb-0">
-          <ul>
-            <li>
-              <a href="#">Dashboard</a>
-            </li>
-            <li>
-              <a href="#">Sample Source</a>
-            </li>
-          </ul>
-        </div>
-        <div class="inner-white-box">
-          <div class="form-con">
-            <div class="col-md-12">
-              <div class="col-md-4 float-left pl-0 pr-5">
-                <label>Audit</label>
-                <select id="audit_select" name="" class="field-01 form-control" [(ngModel)]="audit" (change)="auditSelectOnchange()">
-                  <option value="" selected>-select-</option>
-                  <option *ngFor="let audit of this.auditList; index as i;">{{audit.auditName}}</option>
-                </select>
-              </div>
-              <div class="col-md-4 float-left pl-0 pr-5" *ngIf="this.control_hidden">
-                <label>Control</label>
-                <select id="control_select" name="" class="field-01 form-control" [(ngModel)]="control" (change)="controlSelectOnchange()">
-                  <option value="" selected>-select-</option>
-                  <option *ngFor="let c of this.controlList;" [ngValue]="c.name">{{c.name}}</option>
-                </select>
-              </div>
-              <div class="col-md-2 float-left pl-0">
-                <label>&nbsp;</label>
-                <button (click)="selectControl()" class="field-01 form-control button float-left">Select</button>
-              </div>
-              <div class="col-md-2 float-left pl-0">
-                <label>&nbsp;</label>
-                <button (click)="deselectControl()" class="field-01 form-control button float-left">De-Select</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--end-->
-  <div class="clear"></div>
-  <div class="col-md-12">
-    <div class="content-box">
-      <div class="white-con">
-        <!-- <div class="breadcrumb mb-0">
+      <div class="breadcrumb">
         <ul>
-          <li><a href="#">Dashboard</a></li>
-          <li><a href="#">Session Audit</a></li>
-          <li><a href="#">Add File</a></li>
+          <li><a href="#">Dashboard ></a></li>
+          <li><a href="#">Sample Source</a></li>
         </ul>
-      </div> -->
-        <div class="inner-white-box">
-          <div class="form-con">
-            <div class="col-md-12">
-              <div class="col-md-4 float-left pl-0 pr-5">
-                <label>
-                  <input name="sample" type="radio" value="size1" [(ngModel)]="option"> Sample Size Number</label>
-                <input *ngIf="option==='size1'" type="text" name="" class="field-01 form-control" [(ngModel)]="size">
-              </div>
-              <div class="col-md-4 float-left pr-0 pl-4">
-                <label>
-                  <input name="sample" type="radio" value="percentage1" [(ngModel)]="option"> Sample Size % Population</label>
-                <select *ngIf="option==='percentage1'" name="" class="field-01 form-control" [(ngModel)]="percentage">
-                  <option>10</option>
-                  <option>20</option>
-                  <option>30</option>
-                  <option>40</option>
-                  <option>50</option>
-                  <option>60</option>
-                  <option>70</option>
-                  <option>80</option>
-                  <option>90</option>
-                  <option>100</option>
-                </select>
-              </div>
-              <!-- <input *ngIf="size==='percentage'" type="text" name="" class="field-01 form-control"  > -->
-              <div class="col-md-4 float-left pl-0 pr-5">
-                <div class="blue-btn">
-                  <a (click)="addSampling()" >Save</a>
-                </div>
-                
-              </div>
-              <!-- <div class="blue-btn"><a (click)="addSampling()">Process</a></div> -->
-
-            </div>
+      </div>
+      <h2>Sample Source</h2>
+      <div class="form-con">
+        <div class="col-md-6 float-left pl-0 pr-5">
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Audit:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <select id="audit_select" name="" class="field-01 custom-select pl-2" [(ngModel)]="audit" (change)="auditSelectOnchange()">
+              <option value="" selected>-select-</option>
+              <option *ngFor="let audit of this.auditList; index as i;">{{audit.auditName}}</option>
+            </select>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="clear"></div>
-  <div class="main-table-con-scroll">
-    <div class="col-md-12">
-      <div class="content-box">
+
+        <div class="col-md-6 float-left pl-0 pr-5" *ngIf="this.control_hidden">
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Control:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <select id="control_select" name="" class="field-01 custom-select pl-2" [(ngModel)]="control" (change)="controlSelectOnchange()">
+              <option value="" selected>-select-</option>
+              <option *ngFor="let c of this.controlList;" [ngValue]="c.name">{{c.name}}</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- <div class="col-md-6 float-left pl-5 pr-0">
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Attribute1:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4"><input type="text" name="" class="field-01 form-control">
+          </div>
+          <div class="clear"></div>
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Attribute2:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4"><input type="text" name="" class="field-01 form-control">
+          </div>
+          <div class="clear"></div>
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Attribute3:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4"><input type="text" name="" class="field-01 form-control">
+          </div>
+        </div>
+        <div class="clear"></div> -->
+
+        <!-- <div class="blue-seprator"></div>
+        <div class="col-md-6 float-left pl-0 pr-5">
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Description</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4"><input type="text" name="" class="field-01 form-control">
+          </div>
+        </div>
+
+        <div class="col-md-6 float-left pl-5 pr-0">
+
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4 fifty-p"><label>Upload File Here..</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4 fifty-p">
+            <div class="lt-btn aax-blue-btn float-right mt-0 "><a href="#">Upload</a></div>
+          </div>
+
+        </div> -->
+        <div class="grey-seprator"></div>
+
+        <div class="col-md-6 float-left pl-0 pr-5 mt-2">
+          <div class="col-md-12 float-left pl-0 pr-0 ">
+            <label>
+              <input name="sample" type="radio" value="size1" [(ngModel)]="option"> Sample Size Number</label>
+            <input *ngIf="option==='size1'" type="text" name="" class="field-01 form-control" [(ngModel)]="size">
+          </div>
+        </div>
+
+        <div class="col-md-6 float-left pl-5 pr-0 mt-2">
+          <label>
+            <input name="sample" type="radio" value="percentage1" [(ngModel)]="option"> Sample Size % Population</label>
+          <select *ngIf="option==='percentage1'" name="" class="field-01 custom-select pl-2" [(ngModel)]="percentage">
+            <option>10</option>
+            <option>20</option>
+            <option>30</option>
+            <option>40</option>
+            <option>50</option>
+            <option>60</option>
+            <option>70</option>
+            <option>80</option>
+            <option>90</option>
+            <option>100</option>
+          </select>
+        </div>
+
+        <div class="grey-seprator"></div>
+        <div class="rt-btn aax-green-btn float-right mt-0 mt-4"><a (click)="addSampling()">Save</a></div>
+        
+
+
+        <div class="clear"></div>
+      </div><!--form-con-->
+      <div class="main-table-con">
         <div class="records">No of Records: {{this.dataList.length}}</div>
         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
-          <!-- <tr *ngFor="let row of this.fileData; let id = index;"> -->
-            <tr >
-            <th>Sr. No</th>
-            <th width="150" class="text-center"></th>
-            <!-- <th class="text-center">row.header</th> -->
-            <th class="text-center" *ngFor="let row of this.mapList; let id = index;">{{this.mapData[row]}}</th>
+          <tr>
+            <th width="300"  align="center"></th>
+            <th class="text-center"  align="center" *ngFor="let row of this.mapList; let id = index;" >{{this.mapData[row]}}</th>
           </tr>
           <tr *ngFor="let row of this.dataList; let id = index;">
             <td>{{id+1}}</td>
             <td align="center">
               <input type="checkbox" [(ngModel)]="row.isProcessable" [ngModelOptions]="{standalone: true}" (onchange)="changeValue(id, 'isProcessable', $event)"
                 (blur)="updateList(row.id,id, 'isProcessable', $event)">
-            </td>
-            <!-- <td align="center" *ngFor="let row of row; let id = index;">{{row1.col0}}</td> -->
-            <!-- <td align="center">{{row.col0}}</td> -->
-            
+            </td>           
             <td class="text-center" *ngFor="let row1 of this.mapList; let i = index;">{{row[row1]}}</td>
-
-            <!-- <td align="center">{{row.userFullName}}</td>
-            <td align="center">{{row.lastLogOnDate}}</td>
-            <td align="center">{{row.createdDate}}</td>
-            <td align="center">{{row.userEndDate}}</td>
-            <td align="center">{{row.startDate}}</td> -->
-
           </tr>
-
+  
+      
         </table>
-        <div class="clear"></div>
-        <div class="blue-btn">
-          <a (click)="processData()">Save</a>
-        </div>
-        <!-- <ul class="pagination t-pagination">
-        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">4</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-      </ul> -->
+        <div class="lt-btn aax-blue-btn float-left"><a (click)="processData()">Save</a></div>
       </div>
+
+
+
     </div>
   </div>
+  <div class="clear"></div>
 </body>
 
 </html>

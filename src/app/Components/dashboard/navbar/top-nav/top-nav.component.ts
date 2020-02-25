@@ -249,6 +249,18 @@ export class TopNavComponent implements OnInit {
   auditControl() {
     this.router.navigate(['dashboard/auditControl']);
   }
+  organization() {
+    this.router.navigate(['dashboard/organization']);
+  }
+  client() {
+    this.router.navigate(['dashboard/client']);
+  }
+  process() {
+    this.router.navigate(['dashboard/process']);
+  }
+  subprocess() {
+    this.router.navigate(['dashboard/sub-process']);
+  }
   openDashboard() {
     /*var element = document.getElementById("home");
    element.classList.add("active");*/
