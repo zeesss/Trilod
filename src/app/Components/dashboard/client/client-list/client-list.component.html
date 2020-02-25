@@ -42,11 +42,9 @@
                   <th>Address</th>
                   <th>City</th>
                   <th>State</th>
-                  <th>Zip/Postal Code</th>
                   <th>Description</th>
-                  <th>Status</th>
             <th>&nbsp; &nbsp; </th>
-           
+
           </tr>
           <tr *ngFor="let client of this.clientList; let id = index ">
             <td>
@@ -71,18 +69,7 @@
               <span>{{client.state}}</span>
             </td>
             <td>
-              <span>{{client.zip}}</span>
-            </td>
-            <td>
               <span>{{client.description}}</span>
-            </td>
-            <td>
-              <!-- <input name="checkbox" type="checkbox" id="checkbox"  [(ngModel)]="client.status"
-          [ngModelOptions]="{standalone: true}" > -->
-          <label class="cc" >
-            <input type="checkbox"[(ngModel)]="client.status" [ngModelOptions]="{standalone: true}">
-            <span class="checkmark"></span>
-          </label>
             </td>
             <td><a class="mt-delete-btn" (click)=delete(client.id)></a>
               <a class="mt-edit-btn" (click)=editClient(client.id)></a>
