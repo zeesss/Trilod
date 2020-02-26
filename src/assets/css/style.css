@@ -584,6 +584,10 @@ header {
 	width: 40px;
 	padding: 0;
 }
+.popup-content{
+	height: 425px;
+	overflow: auto;
+}
 .btn-01{
 	height: 48px;
 	width: 130px;
