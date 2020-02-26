@@ -43,6 +43,7 @@ h2 {
 	width: 403px;
 	height: 51px;
 	margin: 100px auto 0;
+	text-align: center;
 }
 .logo a {
 	display: block;
@@ -112,6 +113,7 @@ h2 {
 	border-radius: 16px;
 	bottom: 0;
 	text-transform: uppercase;
+	cursor: pointer;
 }
 .login-btn a {
 	background-color: #008f6d;
