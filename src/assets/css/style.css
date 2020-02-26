@@ -1,4 +1,4 @@
-		body {
+body {
 	margin: 0;
 	padding: 0;
 	padding-bottom: 30px;
@@ -112,7 +112,7 @@ h2 {
 	border-radius: 16px;
 	bottom: 0;
 	text-transform: uppercase;
-	cursor: pointer;
+	cursor:pointer;
 }
 .login-btn a {
 	background-color: #008f6d;
