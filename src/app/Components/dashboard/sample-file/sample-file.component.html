@@ -118,8 +118,13 @@
           <tr *ngFor="let row of this.dataList; let id = index;">
             <td>{{id+1}}</td>
             <td align="center">
-              <input type="checkbox" [(ngModel)]="row.isProcessable" [ngModelOptions]="{standalone: true}" (onchange)="changeValue(id, 'isProcessable', $event)"
+              <!-- <input type="checkbox" [(ngModel)]="row.isProcessable" [ngModelOptions]="{standalone: true}" (onchange)="changeValue(id, 'isProcessable', $event)"
+                (blur)="updateList(row.id,id, 'isProcessable', $event)"> -->
+                <label class="cc" >
+                  <input type="checkbox" [(ngModel)]="row.isProcessable" [ngModelOptions]="{standalone: true}" (onchange)="changeValue(id, 'isProcessable', $event)"
                 (blur)="updateList(row.id,id, 'isProcessable', $event)">
+                  <span class="checkmark"></span>
+                </label>
             </td>           
             <td class="text-center" *ngFor="let row1 of this.mapList; let i = index;">{{row[row1]}}</td>
           </tr>

@@ -21,6 +21,11 @@ export class SessionsComponent implements OnInit {
   StartEndDateSearch;
   controlList: any;
   checkObject: any;
+//dialog
+  tfn1;
+  tfn2;
+  sessionId;
+  controlsList_dialog: any;
 
   constructor(public dialog:MatDialog,public toastr:ToastrService,public router:Router,public rest:RestService, public auth:AuthService) { }
 
@@ -196,7 +201,14 @@ this.router.navigate(['dashboard/eventLog']);
   }
   startAudit(id){
     localStorage.setItem('startSessionId', id);
-    this.openDialog();
+    //this.openDialog();
+    this.sessionId=localStorage.getItem("startSessionId");
+  this.rest.controlsAgainstSessionId(this.sessionId).subscribe((data:any) => {
+    debugger;
+         this.controlsList_dialog = data.data[0];
+    
+         console.log(this.controlsList_dialog);
+       });
   }
 openDialog(): void {
     let dialogRef = this.dialog.open(StartAudit, {
@@ -293,6 +305,45 @@ this.router.navigate(['dashboard/editSessionAudit']);
     alert("keypressed");
   }
 
+  //dialog functions
+
+  executeControl(controlId){
+    localStorage.setItem('startControlId',controlId)
+    // alert(localStorage.getItem('startSessionId'));
+    // alert(controlId);
+    let executeBody={
+      'controlId':controlId,
+      'auditSessionId':localStorage.getItem('startSessionId')
+    };
+     //alert(executeBody.controlId);
+    this.rest.executeControl(executeBody).subscribe((data:any) => {
+      debugger;
+           //this.controlsList = data.data[0];
+      
+           console.log(data);
+           if(data.responseCode==="00"){
+            this.toastr.success('', 'Audit Has been Started!');
+            // location.reload();
+            var element = document.getElementById("closebutton");
+            element.click();
+            this.router.navigate(['dashboard/WPT']);
+            //location.reload();
+           }
+           else{
+            this.toastr.error('', 'Could not execute control!');
+
+           }
+         });
+   }
+
+onNoClick(): void {
+  //this.dialogRef.close();
+  //this.auth.logout();
+}
+
+onYesClick(): void {
+ 
+}
 }
 
 @Component({

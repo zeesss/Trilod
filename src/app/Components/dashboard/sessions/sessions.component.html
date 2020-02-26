@@ -44,10 +44,12 @@
     </div>
   </div>
   <div class="clear"></div>
-  <div class="main-table-con" *ngIf="this.checkObject.canView">
+  <!-- <div class="main-table-con" *ngIf="this.checkObject.canView"> -->
+    <div class="main-table-con">
     <div class="col-md-12">
       <div class="content-box">
         <a (click)="addSession()" class="mt-add-row-btn" *ngIf="this.checkObject.canAdd"></a>
+        
         <div class="table-outer-con">
           <div id="table" class="table-editable">
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table mt-0">
@@ -71,7 +73,7 @@
                 </td>
                 <td>
                   <!-- <a *ngIf="person.status===0 && this.checkObject.canEdit" (click)="abort(person.id)" class="">Abort</a> -->
-                  <button *ngIf="person.status===0" (click)="startAudit(person.id)" class="green-btn btn-01  float-right mt-3">Start Audit</button>
+                  <button *ngIf="person.status===0" (click)="startAudit(person.id)" class="green-btn btn-01  float-right mt-3" data-toggle="modal" data-target="#myModal">Start Audit</button>
                   
                   <!-- <a *ngIf="person.status!==2 && this.checkObject.canEdit" (click)="editSession(person.id)" class="mt-edit-btn"></a> -->
                 </td>
@@ -80,6 +82,48 @@
           </div>
         </div>
         <div class="clear"></div>
+
+        <div id="myModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header border-0">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <!-- <label>Name:*</label>
+                <input type="text" [(ngModel)]="roleName" name="name" class="textfield" required placeholder="Name">
+                <div class="text-box color-white text-16">
+                  <input type="checkbox"  [(ngModel)]="isActive">
+                  Active</div>    -->
+                  <div class="col-md-12 float-left pl-0 pr-5">
+                    <div class="col-md-3 float-left pl-0 pr-0 mt-4">
+                      <label *ngFor="let control of this.controlsList_dialog">{{control.control.name}}</label>
+                    </div>
+                    <!-- <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+                      <input type="text" name="" class="field-01 form-control" placeholder="Name" [(ngModel)]="roleName" required > 
+                    </div> -->
+                  
+                    <!-- <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Status:</label></div> -->
+                    <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+                      <div class="lt-btn aax-blue-btn float-right"><a *ngFor="let control of this.controlsList_dialog" (click)="executeControl(control.control.id)">Execute</a></div>
+                      
+                      <!-- <label class="cc" >
+                        <input type="checkbox"[(ngModel)]="isActive" >
+                        <span class="checkmark"></span>
+                      </label> -->
+                    </div>
+                  </div> 
+              </div>
+              <div class="modal-footer">
+                <!-- <button type="button" class="btn green-btn" data-dismiss="modal" (click)="onYesClick()">Save</button> -->
+                <button type="button" class="btn blue-btn" data-dismiss="modal" id="closebutton" hidden>Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
       </div>
     </div>
   </div>
