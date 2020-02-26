@@ -434,9 +434,10 @@ export class AddControlComponent implements OnInit {
   //dialog functions
 
   onChangeTemplate1(value) {
-;
-   //alert(value);
-    this.selectedTemplate1 = this.templateList_dialog.filter((items) => items.name === value)[0];
+var y = +value;
+   alert(y);
+   debugger;
+    this.selectedTemplate1 = this.templateList_dialog.filter((items) => items.id === y)[0];
    //alert(JSON.stringify(this.templateList_dialog.filter((items) => items.name === value)[0]));
    // alert("enter");
     //alert(this.selectedTemplate1);
@@ -449,7 +450,7 @@ export class AddControlComponent implements OnInit {
     //alert();
     //alert(this.selectedTemplate1.id);
   
-    this.rest.getTemplateDetails(this.selectedTemplate1.id).subscribe((data: any) => {
+    this.rest.getTemplateDetails(y).subscribe((data: any) => {
 
       this.templateFieldList1 = data.data;
 
@@ -462,7 +463,7 @@ export class AddControlComponent implements OnInit {
   }
   onChangeTemplate2(value) {
   
-    this.selectedTemplate2 = this.templateList_dialog.filter((items) => items.name === value)[0];
+    this.selectedTemplate2 = this.templateList_dialog.filter((items) => items.id === +value)[0];
     
     this.newAttribute1.template_name2 = this.selectedTemplate2.name;
     this.newAttributeWithIds.templateId2=this.selectedTemplate2.id;
