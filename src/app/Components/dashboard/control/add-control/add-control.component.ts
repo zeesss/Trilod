@@ -162,13 +162,15 @@ export class AddControlComponent implements OnInit {
     //alert(this.controlBody.subProcessId);
   }
   onChange(value) {
-    this.selectedTemplate = this.templateList.filter((items) => items.name === value)[0];
-    
-    this.newAttribute.selectedTemplate = this.selectedTemplate.name;
-    //this.cDetailBody.templateDetailEntityIdTransient=this.selectedTemplate.id;
+   debugger;
+   var y = +value;
+    this.selectedTemplate = this.templateList.filter((items) => items.id === y)[0];
+    console.log(value);
     console.log("selectedTemplate=====");
     console.log(this.selectedTemplate);
-    this.rest.getTemplateDetails(this.selectedTemplate.id).subscribe((data: any) => {
+   this.newAttribute.selectedTemplate = this.selectedTemplate.name;
+    
+    this.rest.getTemplateDetails(y).subscribe((data: any) => {
       this.templateFieldList = data.data;
       console.log(this.templateFieldList);
     });

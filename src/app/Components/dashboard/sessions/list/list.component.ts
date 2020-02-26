@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, transition, sequence, animate, style } from '@angular/animations';
 import * as $ from 'jquery';
 import { MatTableDataSource } from '@angular/material';
-import { RestService } from './../../../services/rest/rest.service';
-
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -21,67 +19,128 @@ import { RestService } from './../../../services/rest/rest.service';
   ],
 })
 export class ListComponent implements OnInit {
-  headers: any;
-//displayedColumns = ['Sno', 'Name', 'TextRule', 'Rule1', 'Rule2'];
-displayedColumns: Array<any> ;
-  
-dataSource: MatTableDataSource<UserData>;
-countRows: number = 0;
-loadCount: number = 0;
-  ngOnInit() {
 
-    let executeBody={
-      'controlId':localStorage.getItem('startControlId'),
-      'auditSessionId':localStorage.getItem('startSessionId')
-    };
-    this.rest.executeControl(executeBody).subscribe((data:any) => {
-      debugger;
-           //this.controlsList = data.data[0];
-      
-           console.log(data);
-           if(data.responseCode==="00"){
-            this.displayedColumns=data.headers;
-            console.log( this.displayedColumns);
-            //location.reload();
-           }
-         });
+  ngOnInit() {
   }
 
-  
+  // displayedColumns = ['Sno', 'Name', 'TextRule', 'Rule1', 'Rule2'];
+  displayedColumns = [];
+  dataSource: MatTableDataSource<object>;
+  countRows: number = 0;
+  loadCount: number = 0;
+  headersToDisplay = [
+    "PO file",
+    "name",
+    "limit",
+    "amount",
+    "approval amount"
+  ];
+  dataToLoad = [
+    [
+      "9002",
+      "Irene Ligoe",
+      "100000",
+      "55000",
+      true
+    ],
+    [
+      "9002",
+      "Irene Ligoe",
+      "25000",
+      "55000",
+      false
+    ],
+    [
+      "9004",
+      "Wallis Tommis",
+      "25000",
+      "20000",
+      true
+    ],
+    [
+      "9005",
+      "Portie Deeley",
+      "25000",
+      "15000",
+      true
+    ],
+    [
+      "9007",
+      "Cati Enterlein",
+      "10000",
+      "4500",
+      true
+    ],
+    [
+      "9007",
+      "Cati Enterlein",
+      "10000",
+      "4500",
+      true
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      false
+    ]
+  ];
 
-  constructor(public rest:RestService) {
-    const users: UserData[] = [];
+  constructor() {
+    const users: object[] = [];
     this.dataSource = new MatTableDataSource(users);
   }
   handleOneTime = 0
   LoadData() {
+    for (let j = 0; j < this.headersToDisplay.length; j++) {
+      this.displayedColumns.push(this.headersToDisplay[j]);
+    }
+    // return;
+
+    setTimeout(() => {
+      this.StartLoadData();
+    }, 1000);
+  }
+  StartLoadData() {
     this.loadCount = 0;
     this.countRows++;
     let i = this.countRows;
+    if (this.dataToLoad.length > i) {
       this.dataSource['data'].push(this.getRandomUser(i));
       this.dataSource.filter = "";
+      setTimeout(() => {
+        this.StartLoadData();
+      }, 1000);
+    }
 
-      setTimeout(() => {
-        this.toggleLoaders("Rule1_" + i, this.dataSource['data'][i - 1].Rule1);
-      }, this.RandomNumber(1500, 3500));
-      setTimeout(() => {
-        this.toggleLoaders("Rule2_" + i, this.dataSource['data'][i - 1].Rule2);
-      }, this.RandomNumber(1500, 3500));
+    // setTimeout(() => {
+    //   this.toggleLoaders("Rule1_" + i, this.dataSource['data'][i - 1].Rule1);
+    // }, this.RandomNumber(1500, 3500));
+    // setTimeout(() => {
+    //   this.toggleLoaders("Rule2_" + i, this.dataSource['data'][i - 1].Rule2);
+    // }, this.RandomNumber(1500, 3500));
   }
-  getRandomUser(i): UserData {
-    let _Rule1DivId = "Rule1_" + i;
-    let _Rule2DivId = "Rule2_" + i;
+  getRandomUser(i) {
+    // let _Rule1DivId = "Rule1_" + i;
+    // let _Rule2DivId = "Rule2_" + i;
 
-    return {
-      id: i.toString(),
-      Sno: i,
-      Name: NAMES[Math.floor(Math.random() * NAMES.length)],
-      Rule1DivId: _Rule1DivId,
-      Rule2DivId: _Rule2DivId,
-      TextTicker: TextSentences[Math.floor(Math.random() * TextSentences.length)],
-      Rule1: (Math.random() >= 0.5),
-      Rule2: (Math.random() >= 0.5),
-    };
+    let obj = {};
+    for (let j = 0; j < this.displayedColumns.length; j++) {
+      obj[this.displayedColumns[j]] = this.dataToLoad[i][j];
+    }
+    obj["id"] = i.toString();
+    return obj;
+    // return {
+    //   id: i.toString(),
+    //   Sno: i,
+    //   Name: NAMES[Math.floor(Math.random() * NAMES.length)],
+    //   Rule1DivId: _Rule1DivId,
+    //   Rule2DivId: _Rule2DivId,
+    //   TextTicker: TextSentences[Math.floor(Math.random() * TextSentences.length)],
+    //   Rule1: (Math.random() >= 0.5),
+    //   Rule2: (Math.random() >= 0.5),
+    // };
   }
   RandomNumber(min, max) {
     return Math.random() * (max - min) + min;
@@ -97,7 +156,7 @@ loadCount: number = 0;
     }
     this.loadCount++;
     if (this.countRows < 50 && this.loadCount == 2)
-      this.LoadData();
+      this.StartLoadData();
   }
 
 }
@@ -111,7 +170,6 @@ const TextSentences = ['Open the door', 'Cloth is wet',
   'we got the winner', 'I may see you soon'];
 
 export interface UserData {
-  
   id: string;
   Sno: number;
   Name: string;
