@@ -42,7 +42,8 @@ h2 {
 .logo {
 	width: 403px;
 	height: 51px;
-	margin: 100px auto 0;
+  margin: 100px auto 0;
+  text-align: center;
 }
 .logo a {
 	display: block;
