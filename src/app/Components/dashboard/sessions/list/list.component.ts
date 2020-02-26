@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, transition, sequence, animate, style } from '@angular/animations';
 import * as $ from 'jquery';
 import { MatTableDataSource } from '@angular/material';
+import { RestService } from './../../../services/rest/rest.service';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -21,6 +22,23 @@ import { MatTableDataSource } from '@angular/material';
 export class ListComponent implements OnInit {
 
   ngOnInit() {
+    let executeBody={
+      'controlId':localStorage.getItem('startControlId'),
+      'auditSessionId':localStorage.getItem('startSessionId')
+    };
+    this.rest.executeControl(executeBody).subscribe((data:any) => {
+      debugger;
+           //this.controlsList = data.data[0];
+      
+           console.log(data);
+           if(data.responseCode==="00"){
+            this.headersToDisplay=data.headers;
+            console.log( this.displayedColumns);
+            this.dataToLoad=data.data;
+            //location.reload();
+           }
+         });
+
   }
 
   // displayedColumns = ['Sno', 'Name', 'TextRule', 'Rule1', 'Rule2'];
@@ -28,66 +46,68 @@ export class ListComponent implements OnInit {
   dataSource: MatTableDataSource<object>;
   countRows: number = 0;
   loadCount: number = 0;
-  headersToDisplay = [
-    "PO file",
-    "name",
-    "limit",
-    "amount",
-    "approval amount"
-  ];
-  dataToLoad = [
-    [
-      "9002",
-      "Irene Ligoe",
-      "100000",
-      "55000",
-      true
-    ],
-    [
-      "9002",
-      "Irene Ligoe",
-      "25000",
-      "55000",
-      false
-    ],
-    [
-      "9004",
-      "Wallis Tommis",
-      "25000",
-      "20000",
-      true
-    ],
-    [
-      "9005",
-      "Portie Deeley",
-      "25000",
-      "15000",
-      true
-    ],
-    [
-      "9007",
-      "Cati Enterlein",
-      "10000",
-      "4500",
-      true
-    ],
-    [
-      "9007",
-      "Cati Enterlein",
-      "10000",
-      "4500",
-      true
-    ],
-    [
-      null,
-      null,
-      null,
-      null,
-      false
-    ]
-  ];
+  headersToDisplay=[];
+  dataToLoad=[];
+  // headersToDisplay = [
+  //   "PO file",
+  //   "name",
+  //   "limit",
+  //   "amount",
+  //   "approval amount"
+  // ];
+  // dataToLoad = [
+  //   [
+  //     "9002",
+  //     "Irene Ligoe",
+  //     "100000",
+  //     "55000",
+  //     true
+  //   ],
+  //   [
+  //     "9002",
+  //     "Irene Ligoe",
+  //     "25000",
+  //     "55000",
+  //     false
+  //   ],
+  //   [
+  //     "9004",
+  //     "Wallis Tommis",
+  //     "25000",
+  //     "20000",
+  //     true
+  //   ],
+  //   [
+  //     "9005",
+  //     "Portie Deeley",
+  //     "25000",
+  //     "15000",
+  //     true
+  //   ],
+  //   [
+  //     "9007",
+  //     "Cati Enterlein",
+  //     "10000",
+  //     "4500",
+  //     true
+  //   ],
+  //   [
+  //     "9007",
+  //     "Cati Enterlein",
+  //     "10000",
+  //     "4500",
+  //     true
+  //   ],
+  //   [
+  //     null,
+  //     null,
+  //     null,
+  //     null,
+  //     false
+  //   ]
+  // ];
 
-  constructor() {
+  constructor(public rest:RestService) {
     const users: object[] = [];
     this.dataSource = new MatTableDataSource(users);
   }
