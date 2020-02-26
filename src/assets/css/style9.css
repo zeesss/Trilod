@@ -153,8 +153,7 @@ header {
 	text-align: right;
 	margin: 41px 0 0 20px;
 	padding-bottom: 10px;
-  border-bottom: 2px solid #9aaac1;
-  cursor: pointer;
+	border-bottom: 2px solid #9aaac1;
 }
 .logout a {
 	font-size: 20px;
@@ -236,7 +235,7 @@ header {
 }
 .main-table {
 	float: left;
-	margin-top: 12px;
+	margin-top: 12px; 
 }
 .main-table th {
 	color: #254070;
@@ -257,16 +256,15 @@ header {
 	height: 29px;
 	width: 29px;
 	float: right;
-	margin: 5px 0 0 0;
-  cursor: pointer;
+	margin: 0 10px;
+
 }
 .mt-delete-btn {
 	background: url("assets/images/delete-btn.png")no-repeat top left;
 	height: 29px;
 	width: 29px;
 	float: right;
-  margin: 5px 0 0 0;
-  cursor: pointer;
+	margin: 0 10px;
 }
 /***************** CONTROL TASK DEFINATION *****************/
 .side-menu {
@@ -281,14 +279,13 @@ header {
 }
 .side-menu ul li {
 	float: right;
-	height: 30px;
-	width: 30px;
+	height: 48px;
+	width: 50px;
 	list-style: none;
-  margin: 20px 0 0 8px;
+	margin-left: 8px;
 	border-radius: 10px;
 	background-color: #008f6d;
-  background-image: linear-gradient(to right, #7cc7a6, #008f6d);
-  cursor: pointer;
+	background-image: linear-gradient(to right, #7cc7a6, #008f6d);
 }
 .side-menu ul li:hover {
 	background-image: linear-gradient(to right, #008f6d, #008f6d);
@@ -302,7 +299,7 @@ header {
 	width: 50px;
 	font-size: 14px;
 	padding-bottom: 22px;
-	margin: -33px 0 0 -10px;
+	margin-top: -24px;
 	text-align: center;
 }
 .side-menu ul li a:hover {
@@ -310,13 +307,13 @@ header {
 	color: #008f6d;
 }
 .side-menu ul li a.new {
-	background: url(assets/images/new-btn-icon.png) no-repeat center 40px;
+	background: url(assets/images/new-btn-icon.png) no-repeat center 33px;
 }
 .side-menu ul li a.edit {
-	background: url(assets/images/edit-btn-icon.png) no-repeat center 40px;
+	background: url(assets/images/edit-btn-icon.png) no-repeat center 33px;
 }
 .side-menu ul li a.delete {
-	background: url(assets/images/delete-btn-icon.png) no-repeat center 40px;
+	background: url(assets/images/delete-btn-icon.png) no-repeat center 33px;
 }
 .field-style-list-01 {
 	float: left;
@@ -354,8 +351,7 @@ header {
 }
 .rt-btn {
 	float: right;
-  margin-top: 20px;
-  cursor: pointer;
+	margin-top: 20px;
 }
 .lt-btn a, .rt-btn a {
 	height: 48px;
@@ -821,7 +817,7 @@ header .col-md-8 {
 	padding-bottom: 5px;
 	float: none;
 	border: none;
-  text-align: center;
+	text-align: center;
 }
 .logout a {
 	border-bottom: 2px solid;
@@ -913,7 +909,7 @@ header .col-md-4 {
 }
 @media screen and (max-width:416px) {
 .login-btn, .signup-btn {
-  margin: 0 0 -20px;
+	margin: 0 0 -20px;
 }
 .signup-btn {
 	margin: 0 0 -20px 170px;
@@ -924,7 +920,6 @@ header .col-md-4 {
 	font-size: 17px;
 	line-height: 44px;
 	border-radius: 16px;
-  cursor: pointer;
 }
 .center-btn {
 	margin: 0 0 -20px;
