@@ -55,6 +55,7 @@ export class MultisheetExcelTemplateComponent implements OnInit {
    formData = new FormData();
   sheetHeaderList: any;
   fileFormat: any;
+  showPopup=false;
   //public PdfViewerModule:PdfViewerModule,
   constructor(public dialog: MatDialog, public toastr: ToastrService, public rest: RestService, public router: Router, public http: HttpClient, public formBuilder: FormBuilder, public formsModule: FormsModule, public reactiveFormsModule: ReactiveFormsModule) {
 
@@ -272,7 +273,7 @@ this.fileFormat=this.format.name;
       //      alert(JSON.stringify(data));
       
       if (data.responseCode === "00") {
-
+        this.showPopup=true;
         console.log(data);
         this.sheetHeaderList=data.sheetHeaderList;
        // this.openDialog();
@@ -281,7 +282,7 @@ this.fileFormat=this.format.name;
         
       }
       if (data.responseCode === "01") {
-
+        this.showPopup=false;
         this.toastr.error('Error', 'Duplicate File cannot be uploaded!');
         
       }

@@ -81,7 +81,7 @@
           <div class="col-md-9 float-left pl-0 pr-0 mt-4">
                 <select id="template" (change)="onChange($event.target.value)" class="field-01 custom-select pl-2" name="template" [(ngModel)]="newAttribute.selectedTemplate">
                   <option selected value="">-SELECT-</option>
-                  <option *ngFor="let template of this.templateList; index as i;" value={{template.id}}>{{template.sheetName}}</option>
+                  <option *ngFor="let template of this.templateList; index as i;" value={{template.id}}>{{template.name}}--{{template.sheetName}}</option>
                 </select>
           </div>
         </div>
@@ -151,7 +151,7 @@
               <div class="col-md-9 float-left pl-0 pr-0 mt-4">
                 <select id="template" (change)="onChangeTemplate1($event.target.value)" class="field-01 custom-select pl-2" name="template" [(ngModel)]="template_name1">
                   <option selected value="">-SELECT-</option>
-                  <option *ngFor="let template of this.templateList_dialog; index as i;" value={{template.id}}>{{template.sheetName}}</option>
+                  <option *ngFor="let template of this.templateList_dialog; index as i;"  value={{template.id}}>{{template.name}}{{template.sheetName}}</option>
                 </select>
               </div>
             

@@ -435,7 +435,7 @@ export class AddControlComponent implements OnInit {
 
   onChangeTemplate1(value) {
 var y = +value;
-   alert(y);
+   //alert(y);
    debugger;
     this.selectedTemplate1 = this.templateList_dialog.filter((items) => items.id === y)[0];
    //alert(JSON.stringify(this.templateList_dialog.filter((items) => items.name === value)[0]));

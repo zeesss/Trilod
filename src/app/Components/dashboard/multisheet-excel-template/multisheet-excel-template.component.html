@@ -30,7 +30,29 @@
           <div class="col-md-9 float-left pl-0 pr-0 mt-4">
             <input type="text" name="" class="field-01 form-control" maxlength="50" formControlName="file_name" > 
           </div>
-          <div class="clear"></div>
+          <!-- <div class="clear"></div>
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Format:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <select (change)="onChange($event.target.value)" class="field-01 custom-select pl-2"
+            formControlName="format">
+            <option selected value="">-SELECT-</option>
+            <option *ngFor="let file of this.FileTypeList; index as i">{{file.name}}</option>
+          </select>
+          </div> -->
+          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Description:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <!-- <input type="text" name="" class="field-01 form-control"  formControlName="descmain" maxlength="500" >  -->
+            <textarea rows="8" cols="250" class=" form-control" formControlName="descmain" maxlength="200"></textarea>
+          </div>
+       
+        </div>
+
+        <div class="col-md-6 float-left pl-0 pr-5">
+          <!-- <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>File Name:</label></div>
+          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+            <input type="text" name="" class="field-01 form-control" maxlength="50" formControlName="file_name" > 
+          </div>
+          <div class="clear"></div> -->
           <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Format:</label></div>
           <div class="col-md-9 float-left pl-0 pr-0 mt-4">
             <select (change)="onChange($event.target.value)" class="field-01 custom-select pl-2"
@@ -42,20 +64,12 @@
        
         </div>
 
-        <div class="col-md-6 float-left pl-0 pr-5">
+        <!-- <div class="col-md-6 float-left pl-0 pr-5">
           <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Description:</label></div>
           <div class="col-md-9 float-left pl-0 pr-0 mt-4">
-            <!-- <input type="text" name="" class="field-01 form-control"  formControlName="descmain" maxlength="500" >  -->
-            <textarea rows="8" cols="250" class=" form-control" formControlName="descmain" maxlength="500"></textarea>
-          </div>
-          <!-- <div class="clear"></div>
-          <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>State:</label></div>
-          <div class="col-md-9 float-left pl-0 pr-0 mt-4">
-            <input type="text" name="" class="field-01 form-control"> 
-     
-          </div> -->
-       
-        </div>
+           <textarea rows="8" cols="250" class=" form-control" formControlName="descmain" maxlength="200"></textarea>
+          </div>   
+        </div> -->
         <div class="col-md-6 float-left pl-0 pr-5" *ngIf="fileFormat==='Excel'">
           <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Upload File:</label></div>
           <div class="col-md-9 float-left pl-0 pr-0 mt-4">
@@ -163,7 +177,7 @@
     </div>
   </div>
   <div class="clear"></div>
-  <div id="myModal" class="modal fade" role="dialog">
+  <div id="myModal" class="modal fade" role="dialog" *ngIf="showPopup">
     <div class="modal-dialog custom-dialog">
       <div class="modal-content">
         <div class="modal-header border-0">
