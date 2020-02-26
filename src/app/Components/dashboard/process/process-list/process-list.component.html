@@ -14,32 +14,26 @@
   <div class="clear"></div>
   <div class="col-md-12">
     <div class="content-box">
-      <div class="row">
-        <div class="col-md-8 float-left">
+      <div class="">
+        <div class="">
           <div class="breadcrumb">
             <ul>
-              <li><a href="#">Dashboard > </a></li>
+              <li>
+                <a href="#">Dashboard > </a>
+              </li>
               <li>
                 <a href="#">Process</a>
               </li>
             </ul>
           </div>
         </div>
-          <div class="side-menu align-self-center">
-            <ul>
-              <li><a href="#" class="new" (click)=openAddNew()>New</a></li>
-            </ul>
-          </div>
-          <!-- <h1>Process
-            <span></span>
-          </h1> -->
-       
-        <!-- <div class="col-md-4 float-left">
-          <div class="main-search">
-            <div class="search-btn"><a href="#"><img src="assets/images/search-bg.png" alt="Search"></a></div>
-            <input type="text" name="search" placeholder="Search">
-          </div>
-        </div> -->
+        <div class="side-menu align-self-center">
+          <ul>
+            <li>
+              <a href="#" class="new" (click)=openAddNew()>New</a>
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="clear"></div>
       <div class="main-table-con">
@@ -57,7 +51,8 @@
             <td>{{process.name}}</td>
             <td align="center">{{process.description}}</td>
             <td align="center">{{process.client.clientName}}</td>
-            <td><a class="mt-delete-btn" (click)=delete(process.id)></a>
+            <td>
+              <a class="mt-delete-btn" (click)=delete(process.id)></a>
               <a class="mt-edit-btn" (click)=editProcess(process.id)></a>
             </td>
           </tr>
