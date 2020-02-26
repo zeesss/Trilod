@@ -138,14 +138,14 @@
   </div>
   <div class="clear"></div>
 
-  <div id="myModal" class="modal fade" role="dialog">
+  <div id="myModal" class="modal fade" role="dialog" *ngIf="showPopup">
     <div class="modal-dialog custom-dialog">
       <div class="modal-content">
         <div class="modal-header border-0">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-         
+          <div class="popup-content">
             <div class="col-md-12 float-left pl-0 pr-5">
               <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Template Name:</label></div>
               <div class="col-md-9 float-left pl-0 pr-0 mt-4">
@@ -219,7 +219,7 @@
                 <!-- <a (click)="onYesClick()" class="button float-right">OK</a>
                 <a (click)="onNoClick()" class="button float-left">Cancel</a> -->
                 <div class="clear"></div>
-             
+             </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn green-btn" data-dismiss="modal" (click)="saveMapping()">Save</button>

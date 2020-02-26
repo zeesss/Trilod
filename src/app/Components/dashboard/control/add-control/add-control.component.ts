@@ -78,6 +78,7 @@ export class AddControlComponent implements OnInit {
   cDetailArray: Array<any> = [];
   subProcessList: any;
   selectedSubProcess: any;
+  showPopup=false;
 
 
   //dialog variables
@@ -313,6 +314,7 @@ export class AddControlComponent implements OnInit {
         //alert(data.data[0].controlId);
        
         if (data.responseCode === "00") {
+          this.showPopup=true;
           //alert(data.responseCode);
           this.toastr.success('', 'Map Controls!');
           // this.templateList=data.list;
@@ -342,6 +344,7 @@ export class AddControlComponent implements OnInit {
     }
     else {
       this.toastr.error('', "Enter Complete Detail!");
+      this.showPopup=false;
     }
   }
   // openDialog(controlId): void {
@@ -434,6 +437,9 @@ export class AddControlComponent implements OnInit {
   //dialog functions
 
   onChangeTemplate1(value) {
+
+   //alert(value);
+    this.selectedTemplate1 = this.templateList_dialog.filter((items) => items.name === value)[0];
 var y = +value;
    //alert(y);
    debugger;
