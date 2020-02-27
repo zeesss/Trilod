@@ -142,6 +142,8 @@ export class AddControlComponent implements OnInit {
   templateFieldList1: any;
   templateFieldList2: any;
 
+  display='none'; //default Variable
+
   constructor(public dialog: MatDialog,public toastr: ToastrService, public router: Router, public rest: RestService) { }
 
   ngOnInit() {
@@ -300,6 +302,7 @@ export class AddControlComponent implements OnInit {
     return (val === undefined || val == null || val.length <= 0) ? true : false;
   }
   saveControl() {
+    //alert();
     if (!this.isEmpty(this.name) && !this.isEmpty(this.frequency) &&
       !this.isEmpty(this.description) && this.cDetailArray.length > 0) {
       this.controlBody.name = this.name;
@@ -315,6 +318,7 @@ export class AddControlComponent implements OnInit {
        
         if (data.responseCode === "00") {
           this.showPopup=true;
+          this.display='block'; //Set block css
           //alert(data.responseCode);
           this.toastr.success('', 'Map Controls!');
           // this.templateList=data.list;
@@ -345,6 +349,8 @@ export class AddControlComponent implements OnInit {
     else {
       this.toastr.error('', "Enter Complete Detail!");
       this.showPopup=false;
+      var element = document.getElementById("myModal");
+      element.click();
     }
   }
   // openDialog(controlId): void {
@@ -540,9 +546,11 @@ var y = +value;
   //  this.dialogRef.close();
   }
   saveMapping(){
+    debugger;
 this.mappingEvidence.controlId=this.controlId;
 this.mappingEvidence.evidenceMapping=this.mappingList;
 debugger;
+console.log("mapping evidence");
 console.log(this.mappingEvidence);
 this.rest.saveTemplateMapping(this.mappingEvidence).subscribe((data: any) => {
   console.log(data);

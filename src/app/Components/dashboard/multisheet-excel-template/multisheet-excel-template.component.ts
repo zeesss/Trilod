@@ -57,6 +57,7 @@ export class MultisheetExcelTemplateComponent implements OnInit {
   fileFormat: any;
   showPopup=false;
   //public PdfViewerModule:PdfViewerModule,
+  display='none'; //default Variable
   constructor(public dialog: MatDialog, public toastr: ToastrService, public rest: RestService, public router: Router, public http: HttpClient, public formBuilder: FormBuilder, public formsModule: FormsModule, public reactiveFormsModule: ReactiveFormsModule) {
 
   }
@@ -274,6 +275,7 @@ this.fileFormat=this.format.name;
       
       if (data.responseCode === "00") {
         this.showPopup=true;
+        this.display='block'; //Set block css
         console.log(data);
         this.sheetHeaderList=data.sheetHeaderList;
        // this.openDialog();
@@ -283,6 +285,9 @@ this.fileFormat=this.format.name;
       }
       if (data.responseCode === "01") {
         this.showPopup=false;
+       //this.display='null'; //set none css after close dialog
+        var element = document.getElementById("myModal");
+        element.click();
         this.toastr.error('Error', 'Duplicate File cannot be uploaded!');
         
       }
@@ -309,6 +314,11 @@ this.fileFormat=this.format.name;
     pdf.text("", 15,15);
     pdf.save('MYPdf.pdf'); // Generated PDF
     });
+  }
+
+  onCancelclick()
+  {
+    location.reload();
   }
 
   openDialog(): void {

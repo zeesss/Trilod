@@ -138,7 +138,7 @@
   </div>
   <div class="clear"></div>
 
-  <div id="myModal" class="modal fade" role="dialog" *ngIf="showPopup">
+  <div id="myModal" class="modal fade" role="dialog" [ngStyle]="{'display':display}">
     <div class="modal-dialog custom-dialog">
       <div class="modal-content">
         <div class="modal-header border-0">

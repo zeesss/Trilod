@@ -25,7 +25,8 @@
             </ul>
           </div>
         </div>
-          <div class="side-menu align-self-center" *ngIf="this.checkObject.canAdd">
+          <!-- <div class="side-menu align-self-center" *ngIf="this.checkObject.canAdd"> -->
+            <div class="side-menu align-self-center" >
             <ul>
               <li><a  class="new" data-toggle="modal" data-target="#myModal" >New</a></li>
             </ul>
@@ -64,9 +65,9 @@
               <span>{{id+1}}</span>
             </td>
             <td valign="top"> 
-              <span *ngIf="!this.checkObject.canEdit"  (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(person.id,id, 'name', $event)">{{person.name}}</span>
+              <!-- <span *ngIf="!this.checkObject.canEdit"  (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(person.id,id, 'name', $event)">{{person.name}}</span> -->
   
-              <span contenteditable="true" *ngIf="this.checkObject.canEdit"  (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(person.id,id, 'name', $event)">{{person.name}}</span>
+              <span contenteditable="true"   (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(person.id,id, 'name', $event)">{{person.name}}</span>
             </td>
           </tr>
         </table>

@@ -54,7 +54,7 @@
           <div class="col-md-9 float-left pl-0 pr-0 mt-4">
             <select (change)="onChangeControl($event.target.value)" class="field-01 form-control" name="control">
               <option selected value="">-SELECT-</option>
-              <option *ngFor="let control of this.controlList; index as i">{{control.name}}</option>
+              <option *ngFor="let control of this.controlList; index as i" value={{control.id}}>{{control.name}}</option>
             </select>
           </div>
         </div>

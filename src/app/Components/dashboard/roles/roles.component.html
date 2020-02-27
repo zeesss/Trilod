@@ -81,17 +81,17 @@
               <span>{{id+1}}</span>
             </td>
             <td>
-              <span contenteditable="false" *ngIf="!this.checkObject.canEdit" (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(person.id,id, 'name', $event)">{{person.roleName}}</span>
+              <!-- <span contenteditable="false" *ngIf="!this.checkObject.canEdit" (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(person.id,id, 'name', $event)">{{person.roleName}}</span> -->
 
-              <span contenteditable="true" *ngIf="this.checkObject.canEdit" (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(person.id,id, 'name', $event)">{{person.roleName}}</span>
+              <span contenteditable="true" (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(person.id,id, 'name', $event)">{{person.roleName}}</span>
             </td>
             <td  align="center">
               <!-- <input  type="checkbox" [(ngModel)]="person.isActive" *ngIf="!this.checkObject.canEdit" > -->
-              <label class="cc" *ngIf="!this.checkObject.canEdit">
+              <!-- <label class="cc" *ngIf="!this.checkObject.canEdit">
                 <input type="checkbox"[(ngModel)]="person.isActive" >
                 <span class="checkmark"></span>
-              </label>
-              <label class="cc" *ngIf="this.checkObject.canEdit" >
+              </label> -->
+              <label class="cc"  >
                 <input type="checkbox"[(ngModel)]="person.isActive"  [ngModelOptions]="{standalone: true}" (onchange)="changeValue(id, 'isActive', $event)" (blur)="updateList(person.id,id, 'isActive', $event)">
                 <span class="checkmark"></span>
               </label>

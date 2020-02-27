@@ -27,13 +27,17 @@
           <li><a href="#">Users</a></li>
         </ul>
       </div>
-      <div class="side-menu" *ngIf="this.checkObject.canAdd" >
+      <div class="side-menu align-self-center">
         <ul>
-          <li><a (click)=newUser()>New</a></li>
-          <!-- <li><a href="#">Edit</a></li>
-          <li><a href="#">Delete</a></li> -->
+          <li><a  class="new" (click)=newUser()>New</a></li>
         </ul>
       </div>
+      <!-- <div class="side-menu"  >
+        <ul>
+          <li><a (click)=newUser()>New</a></li>
+         
+        </ul>
+      </div> -->
       <h1>Users<span></span></h1>
     </div>
   </div>
@@ -41,7 +45,7 @@
 
 <!-- <div class="clear"></div> -->
 
-<div class="main-table-con" *ngIf="this.checkObject.canView" >
+<div class="main-table-con"  >
   <div class="col-md-12">
     <div class="content-box">
       <!-- Editable table -->
@@ -56,7 +60,7 @@
               <th>Last Name</th>
               <th>Email</th>
               <th align="center">Is Active</th>
-              <th *ngIf="this.checkObject.canEdit">Action</th>
+              <th >Action</th>
           
             
           </tr>
@@ -68,30 +72,30 @@
               <span >{{person.userName}}</span>
             </td>
             <td>
-              <span contenteditable="false" *ngIf="!this.checkObject.canEdit" (keyup)="changeValue(id, 'fname', $event)" (blur)="updateList(person.id,id, 'fname', $event)">{{person.firstName}}</span>
+              <!-- <span contenteditable="false" *ngIf="!this.checkObject.canEdit" (keyup)="changeValue(id, 'fname', $event)" (blur)="updateList(person.id,id, 'fname', $event)">{{person.firstName}}</span> -->
 
-              <span contenteditable="true" *ngIf="this.checkObject.canEdit" (keyup)="changeValue(id, 'fname', $event)" (blur)="updateList(person.id,id, 'fname', $event)">{{person.firstName}}</span>
+              <span contenteditable="true"   (keyup)="changeValue(id, 'fname', $event)" (blur)="updateList(person.id,id, 'fname', $event)">{{person.firstName}}</span>
             </td>
             <td>
-              <span contenteditable="false"  *ngIf="!this.checkObject.canEdit" (keyup)="changeValue(id, 'lname', $event)" (blur)="updateList(person.id,id, 'lname', $event)">{{person.lastName}}</span>
+              <span contenteditable="false"   (keyup)="changeValue(id, 'lname', $event)" (blur)="updateList(person.id,id, 'lname', $event)">{{person.lastName}}</span>
 
-              <span contenteditable="true" *ngIf="this.checkObject.canEdit" (keyup)="changeValue(id, 'lname', $event)" (blur)="updateList(person.id,id, 'lname', $event)">{{person.lastName}}</span>
+              <!-- <span contenteditable="true"   (keyup)="changeValue(id, 'lname', $event)" (blur)="updateList(person.id,id, 'lname', $event)">{{person.lastName}}</span> -->
             </td>
             <td>
-              <span contenteditable="false" *ngIf="!this.checkObject.canEdit" (keyup)="changeValue(id, 'email', $event)" (blur)="updateList(person.id,id, 'email', $event)">{{person.email}}</span>
+              <span contenteditable="false"  (keyup)="changeValue(id, 'email', $event)" (blur)="updateList(person.id,id, 'email', $event)">{{person.email}}</span>
 
-              <span contenteditable="true" *ngIf="this.checkObject.canEdit" (keyup)="changeValue(id, 'email', $event)" (blur)="updateList(person.id,id, 'email', $event)">{{person.email}}</span>
+              <!-- <span contenteditable="true"   (keyup)="changeValue(id, 'email', $event)" (blur)="updateList(person.id,id, 'email', $event)">{{person.email}}</span> -->
             </td>
            
             <td align="center" valign="top">
-              <input  type="checkbox" [(ngModel)]="person.isActive" *ngIf="!this.checkObject.canEdit" >
+              <!-- <input  type="checkbox" [(ngModel)]="person.isActive"  > -->
            
-              <input  type="checkbox" [(ngModel)]="person.isActive" *ngIf="this.checkObject.canEdit"
+              <input  type="checkbox" [(ngModel)]="person.isActive"  
               [ngModelOptions]="{standalone: true}"  (onchange)="changeValue(id, 'isActive', $event)" (blur)="updateList(person.id,id, 'isActive', $event)" >
             </td>
 
-           <td *ngIf="this.checkObject.canEdit">
-            <a class="mt-edit-btn" (click)=editUserRole(person.id) *ngIf="this.checkObject.canEdit"></a>
+           <td >
+            <a class="mt-edit-btn" (click)=editUserRole(person.id) ></a>
            </td>
            
           </tr>

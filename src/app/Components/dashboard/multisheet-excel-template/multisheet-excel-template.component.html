@@ -177,7 +177,7 @@
     </div>
   </div>
   <div class="clear"></div>
-  <div id="myModal" class="modal fade" role="dialog" *ngIf="showPopup">
+  <div id="myModal" class="modal fade" role="dialog"  [ngStyle]="{'display':display}">
     <div class="modal-dialog custom-dialog">
       <div class="modal-content">
         <div class="modal-header border-0">
@@ -233,7 +233,7 @@
         </div></div>
         <div class="modal-footer">
           <button type="button" class="btn green-btn" data-dismiss="modal" (click)="onYesClick()">Save</button>
-          <button type="button" class="btn blue-btn" data-dismiss="modal" (click)="onNoClick()">Close</button>
+          <button type="button" class="btn blue-btn" data-dismiss="modal"  (click)="onNoClick()">Close</button>
         </div>
       </div>
     </div>
