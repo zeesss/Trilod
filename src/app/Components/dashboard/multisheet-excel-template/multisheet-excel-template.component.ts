@@ -150,7 +150,7 @@ this.fileFormat=this.format.name;
       && !this.isEmpty(this.new_mainFile)
 
       && !this.isEmpty(this.new_format)
-      && !this.isEmpty(this.new_descmain)
+     
     ) {
       if(this.fileFormat==="PDF")
     {

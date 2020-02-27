@@ -23,26 +23,122 @@
     <div class="white-con">
       <div class="breadcrumb">
         <ul>
-          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Dashboard ></a></li>
           <li><a href="#">Users</a></li>
         </ul>
       </div>
-      <div class="side-menu align-self-center">
+      <div class="side-menu"  >
         <ul>
-          <li><a  class="new" (click)=newUser()>New</a></li>
+          <li><a data-toggle="modal" data-target="#myModal" (click)="newUser()">New</a></li>
+          <!-- <li><a href="#">Edit</a></li>
+          <li><a href="#">Delete</a></li> -->
         </ul>
       </div>
-      <!-- <div class="side-menu"  >
-        <ul>
-          <li><a (click)=newUser()>New</a></li>
-         
-        </ul>
-      </div> -->
       <h1>Users<span></span></h1>
     </div>
   </div>
 </div>
 
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- <label>Name:*</label>
+        <input type="text" [(ngModel)]="roleName" name="name" class="textfield" required placeholder="Name">
+        <div class="text-box color-white text-16">
+          <input type="checkbox"  [(ngModel)]="isActive">
+          Active</div>    -->
+          <div class="col-md-12 float-left pl-0 pr-5">
+            <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>User Name*:</label></div>
+            <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+              <input type="text" name="" class="field-01 form-control" placeholder="Name" [(ngModel)]="userName" required > 
+              
+            </div>
+          
+            <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>First Name*:</label></div>
+            <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+              <input type="text" name="" class="field-01 form-control" placeholder="First Name" [(ngModel)]="firstName" required > 
+             
+            </div>
+
+            <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Middle Name:</label></div>
+            <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+              <input type="text" name="" class="field-01 form-control" placeholder="Middle Name" [(ngModel)]="middleName"  > 
+             
+            </div>
+           
+          </div> 
+          <div class="col-md-12 float-left pl-0 pr-5">
+          
+            <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Last Name*:</label></div>
+            <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+              <input type="text" name="" class="field-01 form-control" placeholder="Last Name" [(ngModel)]="lastName" required > 
+             
+            </div>
+
+            <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Email:*</label></div>
+            <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+              <input type="text" name="" class="field-01 form-control" placeholder="example@example.com" [(ngModel)]="email" required > 
+             
+            </div>
+          </div> 
+
+
+          <div class="col-md-12 float-left pl-0 pr-5">
+            <!-- <div class="text-box color-white text-16">
+              <input type="checkbox"  [(ngModel)]="isActive">
+              Active</div>
+              Select Role -->
+              <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Select Role:*</label></div>
+              <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+                <input type="checkbox"  [(ngModel)]="isActive">
+              Active
+               
+              </div>
+              
+             
+              <!-- <select  multiple="true" [(ngModel)]="selected">
+                
+                  <option *ngFor="let object of rolesList; let i=index" >{{object.roleName}}</option>
+                   
+                </select> -->
+
+                <!-- <div *ngFor="let object of rolesList; let i=index">
+                  <input type="checkbox" (click)="changeValue_dialog(object.id, $event)" > {{object.roleName}}
+                </div> -->
+
+              <!-- <ng-container *ngFor="let object of rolesList; let i=index">
+                <input type="checkbox" (click)="changeValue_dialog(object.id, $event)" > {{object.roleName}}
+              </ng-container> -->
+              <!-- <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Email:*</label></div> -->
+              <div class="col-md-9 float-left pl-0 pr-0 mt-4">
+                <!-- <p *ngFor="let object of rolesList; let i=index">
+                            <label class="cc float-left ml-4" >
+                  <input type="checkbox" (click)="changeValue_dialog(object.id, $event)" >
+                  <span class="checkmark mt-0 ml-0"></span>
+                  {{object.roleName}}
+                </label>
+              </p> -->
+               <ng-container *ngFor="let object of rolesList; let i=index">
+                <input type="checkbox" (click)="changeValue_dialog(object.id, $event)" > {{object.roleName}}
+              </ng-container>
+              </div>
+            
+          </div> 
+
+          
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn green-btn" data-dismiss="modal" (click)="onYesClick()">Save</button>
+        <button type="button" class="btn blue-btn" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- <div class="clear"></div> -->
 
 <div class="main-table-con"  >
@@ -72,25 +168,25 @@
               <span >{{person.userName}}</span>
             </td>
             <td>
-              <!-- <span contenteditable="false" *ngIf="!this.checkObject.canEdit" (keyup)="changeValue(id, 'fname', $event)" (blur)="updateList(person.id,id, 'fname', $event)">{{person.firstName}}</span> -->
+              <span contenteditable="false" *ngIf="!this.checkObject.canEdit" (keyup)="changeValue(id, 'fname', $event)" (blur)="updateList(person.id,id, 'fname', $event)">{{person.firstName}}</span>
 
-              <span contenteditable="true"   (keyup)="changeValue(id, 'fname', $event)" (blur)="updateList(person.id,id, 'fname', $event)">{{person.firstName}}</span>
+              <span contenteditable="true" *ngIf="this.checkObject.canEdit" (keyup)="changeValue(id, 'fname', $event)" (blur)="updateList(person.id,id, 'fname', $event)">{{person.firstName}}</span>
             </td>
             <td>
-              <span contenteditable="false"   (keyup)="changeValue(id, 'lname', $event)" (blur)="updateList(person.id,id, 'lname', $event)">{{person.lastName}}</span>
+              <span contenteditable="false"  *ngIf="!this.checkObject.canEdit" (keyup)="changeValue(id, 'lname', $event)" (blur)="updateList(person.id,id, 'lname', $event)">{{person.lastName}}</span>
 
-              <!-- <span contenteditable="true"   (keyup)="changeValue(id, 'lname', $event)" (blur)="updateList(person.id,id, 'lname', $event)">{{person.lastName}}</span> -->
+              <span contenteditable="true" *ngIf="this.checkObject.canEdit" (keyup)="changeValue(id, 'lname', $event)" (blur)="updateList(person.id,id, 'lname', $event)">{{person.lastName}}</span>
             </td>
             <td>
-              <span contenteditable="false"  (keyup)="changeValue(id, 'email', $event)" (blur)="updateList(person.id,id, 'email', $event)">{{person.email}}</span>
+              <span contenteditable="false" *ngIf="!this.checkObject.canEdit" (keyup)="changeValue(id, 'email', $event)" (blur)="updateList(person.id,id, 'email', $event)">{{person.email}}</span>
 
-              <!-- <span contenteditable="true"   (keyup)="changeValue(id, 'email', $event)" (blur)="updateList(person.id,id, 'email', $event)">{{person.email}}</span> -->
+              <span contenteditable="true" *ngIf="this.checkObject.canEdit" (keyup)="changeValue(id, 'email', $event)" (blur)="updateList(person.id,id, 'email', $event)">{{person.email}}</span>
             </td>
            
             <td align="center" valign="top">
-              <!-- <input  type="checkbox" [(ngModel)]="person.isActive"  > -->
+              <input  type="checkbox" [(ngModel)]="person.isActive" *ngIf="!this.checkObject.canEdit" >
            
-              <input  type="checkbox" [(ngModel)]="person.isActive"  
+              <input  type="checkbox" [(ngModel)]="person.isActive" *ngIf="this.checkObject.canEdit"
               [ngModelOptions]="{standalone: true}"  (onchange)="changeValue(id, 'isActive', $event)" (blur)="updateList(person.id,id, 'isActive', $event)" >
             </td>
 

@@ -34,6 +34,34 @@ export class UserComponent implements OnInit {
   controlList: any;
   checkObject: any;
   selected: any;
+
+  //add dialog
+  firstName;
+  userName;
+  middleName;
+  lastName;
+  email;
+  isActive;
+  filtered;
+  selected_dialog;
+  saveBody = {
+    "userName": "",
+    "firstName": "",
+    "middleName": "",
+    "lastName": "",
+    "email": "",
+    "isActive": true
+
+  };
+  listToPush: Array<any> = [];
+  trueList: Array<any> = [];
+
+  pushObject = {
+    "roleId": ""
+  };
+  rolesList: any;
+  optionsMap: any;
+
   constructor(public auth: AuthService, public confirmationService: ConfirmationService, public toastr: ToastrService, public dialog: MatDialog, public rest: RestService, public http: HttpClient) { }
 
   ngOnInit() {
@@ -122,7 +150,15 @@ export class UserComponent implements OnInit {
     }
   }
   newUser() {
-    this.openDialog();
+    // this.openDialog();
+    this.rest.getRolesList().subscribe((data: any) => {
+      debugger;
+      this.rolesList = data;
+
+      console.log(this.rolesList);
+
+    }
+    );
   }
   openDialog(): void {
     let dialogRef = this.dialog.open(DialogUserAdd, {
@@ -146,6 +182,90 @@ export class UserComponent implements OnInit {
 
   }
 
+  //Add dialog
+  isEmpty(val) {
+    return (val === undefined || val == null || val.length <= 0) ? true : false;
+  }
+  changeValue_dialog(id, event: any) {
+    debugger;
+    const checkField = event.target.checked;
+    // alert(id +"====="+checkField);
+    if (checkField === true) {
+      this.pushObject.roleId = id;
+      this.listToPush.push(this.pushObject);
+
+      //alert(this.listToPush);
+      console.log(this.listToPush);
+      this.pushObject = { "roleId": "" };
+    }
+    if (checkField === false) {
+      //this.pushObject.roleId=id;
+      this.listToPush.splice(this.listToPush.findIndex(x => x.roleId == id), 1);
+      //alert(this.listToPush);
+      console.log(this.listToPush);
+      this.pushObject = { "roleId": "" };
+    }
+
+  }
+  onYesClick(): void {
+   // alert(this.selected_dialog);
+        if(!this.isEmpty(this.userName) && !this.isEmpty(this.firstName) && !this.isEmpty(this.lastName) && !this.isEmpty(this.email) )
+
+      {
+        this.saveBody.userName=this.userName;
+        this.saveBody.firstName=this.firstName;
+        this.saveBody.lastName=this.lastName;
+        this.saveBody.email=this.email;
+        if(this.isEmpty(this.middleName))
+        this.saveBody.middleName="";
+        else{
+         this.saveBody.middleName=this.middleName;
+        }
+       if(this.isActive===undefined)
+       this.saveBody.isActive=false;
+       else if(this.isActive===false)
+       this.saveBody.isActive=false;
+       else
+       this.saveBody.isActive=true;
+
+       console.log(this.saveBody);
+       debugger;
+        this.rest.addUser(this.saveBody).subscribe((data : any)=>{
+          console.log(data);
+          debugger;
+          if(data.error===null){
+            this.rest.addUserRoleList(data.id, this.listToPush).subscribe((data : any)=>{
+              console.log(data);
+              if(data.saved==="successful"){
+           // this.dialogRef.close();
+            this.toastr.success('', 'Record Saved!');
+            location.reload();
+              }
+            });
+
+          }
+          else{
+          //  this.dialogRef.close();
+            this.toastr.error('', 'Sorry! Something went wrong!');
+          }
+
+
+    }
+    ,
+    (err : HttpErrorResponse)=>{
+
+
+    this.toastr.error('', 'Failed!');
+
+    });
+
+      }
+
+      else
+      {
+        this.toastr.error('', 'Enter all required fields!');
+      }
+  }
 }
 @Component({
   selector: 'dialog-overview-example-dialog',
@@ -228,63 +348,63 @@ export class DialogUserAdd {
 
   }
   onYesClick(): void {
-    //alert(this.selected);
-        if(!this.isEmpty(this.userName) && !this.isEmpty(this.firstName) && !this.isEmpty(this.lastName) && !this.isEmpty(this.email) )
+    alert(this.selected);
+    //     if(!this.isEmpty(this.userName) && !this.isEmpty(this.firstName) && !this.isEmpty(this.lastName) && !this.isEmpty(this.email) )
 
-      {
-        this.saveBody.userName=this.userName;
-        this.saveBody.firstName=this.firstName;
-        this.saveBody.lastName=this.lastName;
-        this.saveBody.email=this.email;
-        if(this.isEmpty(this.middleName))
-        this.saveBody.middleName="";
-        else{
-         this.saveBody.middleName=this.middleName;
-        }
-       if(this.isActive===undefined)
-       this.saveBody.isActive=false;
-       else if(this.isActive===false)
-       this.saveBody.isActive=false;
-       else
-       this.saveBody.isActive=true;
+    //   {
+    //     this.saveBody.userName=this.userName;
+    //     this.saveBody.firstName=this.firstName;
+    //     this.saveBody.lastName=this.lastName;
+    //     this.saveBody.email=this.email;
+    //     if(this.isEmpty(this.middleName))
+    //     this.saveBody.middleName="";
+    //     else{
+    //      this.saveBody.middleName=this.middleName;
+    //     }
+    //    if(this.isActive===undefined)
+    //    this.saveBody.isActive=false;
+    //    else if(this.isActive===false)
+    //    this.saveBody.isActive=false;
+    //    else
+    //    this.saveBody.isActive=true;
 
-       console.log(this.saveBody);
-       debugger;
-        this.rest.addUser(this.saveBody).subscribe((data : any)=>{
-          console.log(data);
-          debugger;
-          if(data.error===null){
-            this.rest.addUserRoleList(data.id, this.listToPush).subscribe((data : any)=>{
-              console.log(data);
-              if(data.saved==="successful"){
-            this.dialogRef.close();
-            this.toastr.success('', 'Record Saved!');
-            location.reload();
-              }
-            });
+    //    console.log(this.saveBody);
+    //    debugger;
+    //     this.rest.addUser(this.saveBody).subscribe((data : any)=>{
+    //       console.log(data);
+    //       debugger;
+    //       if(data.error===null){
+    //         this.rest.addUserRoleList(data.id, this.listToPush).subscribe((data : any)=>{
+    //           console.log(data);
+    //           if(data.saved==="successful"){
+    //         this.dialogRef.close();
+    //         this.toastr.success('', 'Record Saved!');
+    //         location.reload();
+    //           }
+    //         });
 
-          }
-          else{
-            this.dialogRef.close();
-            this.toastr.error('', 'Sorry! Something went wrong!');
-          }
-
-
-    }
-    ,
-    (err : HttpErrorResponse)=>{
+    //       }
+    //       else{
+    //         this.dialogRef.close();
+    //         this.toastr.error('', 'Sorry! Something went wrong!');
+    //       }
 
 
-    this.toastr.error('', 'Failed!');
+    // }
+    // ,
+    // (err : HttpErrorResponse)=>{
 
-    });
 
-      }
+    // this.toastr.error('', 'Failed!');
 
-      else
-      {
-        this.toastr.error('', 'Enter all required fields!');
-      }
+    // });
+
+    //   }
+
+    //   else
+    //   {
+    //     this.toastr.error('', 'Enter all required fields!');
+    //   }
   }
 
 }
