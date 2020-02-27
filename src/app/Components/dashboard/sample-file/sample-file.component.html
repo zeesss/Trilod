@@ -26,9 +26,9 @@
         <div class="col-md-6 float-left pl-0 pr-5">
           <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Audit:</label></div>
           <div class="col-md-9 float-left pl-0 pr-0 mt-4">
-            <select id="audit_select" name="" class="field-01 custom-select pl-2" [(ngModel)]="audit" (change)="auditSelectOnchange()">
+            <select id="audit_select" name="" class="field-01 custom-select pl-2" [(ngModel)]="audit" (change)="auditSelectOnchange($event.target.value)">
               <option value="" selected>-select-</option>
-              <option *ngFor="let audit of this.auditList; index as i;">{{audit.auditName}}</option>
+              <option *ngFor="let audit of this.auditList; index as i;" value={{audit.id}}>{{audit.auditName}}</option>
             </select>
           </div>
         </div>
@@ -36,9 +36,9 @@
         <div class="col-md-6 float-left pl-0 pr-5" *ngIf="this.control_hidden">
           <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Control:</label></div>
           <div class="col-md-9 float-left pl-0 pr-0 mt-4">
-            <select id="control_select" name="" class="field-01 custom-select pl-2" [(ngModel)]="control" (change)="controlSelectOnchange()">
+            <select id="control_select" name="" class="field-01 custom-select pl-2" [(ngModel)]="control" (change)="controlSelectOnchange($event.target.value)">
               <option value="" selected>-select-</option>
-              <option *ngFor="let c of this.controlList;" [ngValue]="c.name">{{c.name}}</option>
+              <option *ngFor="let c of this.controlList;" value={{c.id}}>{{c.name}}</option>
             </select>
           </div>
         </div>

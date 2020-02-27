@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule,FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 @Component({
   selector: 'app-sample-file',
@@ -205,7 +206,7 @@ audit_file_id: string;
           // }
           );
   }
-  auditSelectOnchange()
+  auditSelectOnchange(value)
   {
     debugger;
     if(this.audit=="")
@@ -213,37 +214,44 @@ audit_file_id: string;
       this.control_hidden=false;
       this.template_hidden=false;
     }
-    else
+    else{
     this.control_hidden=true;
+    this.selected_audit_id=+value;
+    console.log(this.selected_audit_id);
+    }
   }
-  controlSelectOnchange()
+  controlSelectOnchange(value)
   {
     if(this.control=="")
     {
       this.template_hidden=false;
     }
-    else
-    this.template_hidden=true;
+    else{
+      this.template_hidden=true;
+      this.selected_control_id=+value;
+      console.log(this.selected_control_id);
+    }
+    
   }
   selectControl() {
     //alert();
     debugger;
     //alert(this.audit);
-    this.auditList.forEach(element => {
-      if(element.auditName===this.audit)
-      {
-        this.selected_audit_id=element.id;
-       // alert(this.selected_audit_id);
-      }
-    }); 
+    // this.auditList.forEach(element => {
+    //   if(element.auditName===this.audit)
+    //   {
+    //     this.selected_audit_id=element.id;
+    //    // alert(this.selected_audit_id);
+    //   }
+    // }); 
   //  alert(this.control);
-    this.controlList.forEach(element => {
-      if(element.name===this.control)
-      {
-        this.selected_control_id=element.id;
-     //   alert(this.selected_control_id);
-      }
-    });
+    // this.controlList.forEach(element => {
+    //   if(element.name===this.control)
+    //   {
+    //     this.selected_control_id=element.id;
+    //  //   alert(this.selected_control_id);
+    //   }
+    // });
     //alert(this.selected_audit_id);
     //alert(this.selected_control_id);
     this.rest.getSamplingRows(this.selected_audit_id,this.selected_control_id).subscribe((data: any) => {
