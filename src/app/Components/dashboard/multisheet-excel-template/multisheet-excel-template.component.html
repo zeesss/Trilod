@@ -112,9 +112,35 @@
         <form class="container" (ngSubmit)="saveDataPDF()">
         <div class="form-con">
           <div class="col-md-12">
-            <div class="col-md-9 float-left pl-0 pr-0 mt-7 ml-3">
-             <div id="myDiv" class="mt-6">Hello</div> 
+            <div class="page">
+              <div class="header">
+                <label for="x-axis">X-axis</label>
+                
+                <input type="number" [(ngModel)]="x">
+            
+            
+                <label for="y-axis">Y-axis</label>
+                
+                <input type="number" [(ngModel)]="y">
+            
+            
+                <label for="y-axis">Width</label>
+                
+                <input type="number" [(ngModel)]="w">
+            
+                <label for="y-axis">Height</label>
+                
+                <input type="number" [(ngModel)]="h">
+            
+            
+                <input type="button" value="Click" (click)="wvDocumentLoadedHandler()">
               </div>
+              <div #viewer class="viewer"></div>
+            
+             
+              
+            
+            </div>
             <!-- </div> -->
           <!-- </div> -->
           <!-- <div class="col-md-12"> -->

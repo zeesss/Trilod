@@ -7,7 +7,7 @@ import { AddFile } from './Components/dashboard/session-audit/session-audit.comp
 import { AddFileAuditDialog } from './Components/dashboard/audit/audit-controls/audit-controls.component';
 import { DialogUserAdd, DialogUserEdit } from './Components/dashboard/user/user.component';
 import { DialogRoleAdd } from './Components/dashboard/roles/roles.component';
-import { DialogOverviewExampleDialog3 } from './Components/dashboard/company/company.component';
+//import { DialogOverviewExampleDialog3 } from './Components/dashboard/company/company.component';
 import { ConfirmationComponent } from './Components/dashboard/confirmation/confirmation.component';
 import { ConfirmationService } from './Components/dashboard/confirmation/confirmation.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -44,7 +44,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     
     DialogOverviewExampleDialog,
     DialogOverviewExampleDialog2,
-    DialogOverviewExampleDialog3,
+    //DialogOverviewExampleDialog3,
     DialogOverviewExampleDialog4,
     DialogOverviewExampleDialog5,
     DialogRoleAdd,
@@ -94,7 +94,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   entryComponents: [
     DialogOverviewExampleDialog,
     DialogOverviewExampleDialog2,
-    DialogOverviewExampleDialog3,
+    //DialogOverviewExampleDialog3,
     DialogOverviewExampleDialog4,
     DialogOverviewExampleDialog5,
     DialogRoleAdd,

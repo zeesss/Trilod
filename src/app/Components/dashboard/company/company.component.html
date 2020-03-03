@@ -1,207 +1,25 @@
-<!doctype html>
-<html>
+<div class="page">
+  <div class="header">
+    <label for="x-axis">X-axis</label>
+    
+    <input type="number" [(ngModel)]="x">
 
-<head>
-  <meta charset="utf-8">
-  <title>Trilod</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Styles Sheets -->
-  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
-</head>
 
-<body>
-  <!-- <header class="bg-01">
-  <div class="col-md-12">
-    <div class="content-box">
-      <a href="#" class="logout">Logout</a> 
-      <div class="logo logo-02"><a href="#"><img src="assets/images/logo.png" alt="logo"></a></div>
-    </div>
+    <label for="y-axis">Y-axis</label>
+    
+    <input type="number" [(ngModel)]="y">
+
+
+    <label for="y-axis">Width</label>
+    
+    <input type="number" [(ngModel)]="w">
+
+    <label for="y-axis">Height</label>
+    
+    <input type="number" [(ngModel)]="h">
+
+
+    <input type="button" value="Click" (click)="wvDocumentLoadedHandler()">
   </div>
-</header> -->
-  <div class="clear"></div>
-  <div class="col-md-12">
-    <div class="content-box">
-      <div class="white-con">
-        <div class="breadcrumb">
-          <ul>
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Company</a></li>
-          </ul>
-        </div>
-        <div class="side-menu" *ngIf="this.checkObject.canAdd">
-          <ul>
-            <li><a (click)=newControl()>New</a></li>
-            <!-- <li><a href="#">Edit</a></li>
-          <li><a href="#">Delete</a></li> -->
-          </ul>
-        </div>
-        <h1>Company<span></span></h1>
-      </div>
-    </div>
-  </div>
-
-  <!-- <div class="clear"></div> -->
-
-  <div class="main-table-con" *ngIf="this.checkObject.canView">
-    <div class="col-md-12">
-      <div class="content-box">
-        <!-- Editable table -->
-        <div class="">
-          <div class="table-outer-con">
-            <div id="table" class="table-editable">
-
-              <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table  mt-0">
-                <tr>
-                  <th>Sr.No.</th>
-                  <th>Name</th>
-                  <th>Description</th>
-                  <th>Status</th>
-                  <th>Address</th>
-                  <th>City</th>
-                  <th align="center">State</th>
-                  <th>Zip</th>
-
-
-                </tr>
-                <tr *ngFor="let person of personList; let id = index">
-                  <td>
-                    <span>{{id+1}}</span>
-                  </td>
-                  <td>
-                    <span contenteditable="false" *ngIf="!this.checkObject.canEdit" (keyup)="changeValue(id, 'clientName', $event)"
-                    (blur)="updateList(person.id,id, 'clientName', $event)">{{person.clientName}}</span>
-
-                    <span contenteditable="true" *ngIf="this.checkObject.canEdit" (keyup)="changeValue(id, 'clientName', $event)"
-                      (blur)="updateList(person.id,id, 'clientName', $event)">{{person.clientName}}</span>
-                  </td>
-                  <td>
-                    <span contenteditable="false" *ngIf="!this.checkObject.canEdit" (keyup)="changeValue(id, 'description', $event)"
-                      (blur)="updateList(person.id,id, 'description', $event)">{{person.description}}</span>
-
-                    <span contenteditable="true" *ngIf="this.checkObject.canEdit" (keyup)="changeValue(id, 'description', $event)"
-                      (blur)="updateList(person.id,id, 'description', $event)">{{person.description}}</span>
-                  </td>
-
-                  <td align="center" valign="top">
-                    <input type="checkbox" [(ngModel)]="person.status" *ngIf="!this.checkObject.canEdit">
-
-                    <input type="checkbox" [(ngModel)]="person.status" *ngIf="this.checkObject.canEdit"
-                      [ngModelOptions]="{standalone: true}" (onchange)="changeValue(id, 'status', $event)"
-                      (blur)="updateList(person.id,id, 'status', $event)">
-                    </td>
-
-
-                  <td>
-                    <span *ngIf="!this.checkObject.canEdit" (keyup)="changeValue(id, 'address', $event)"
-                      (blur)="updateList(person.id,id, 'address', $event)">{{person.address}}</span>
-
-                    <span contenteditable="true" *ngIf="this.checkObject.canEdit" (keyup)="changeValue(id, 'address', $event)"
-                      (blur)="updateList(person.id,id, 'address', $event)">{{person.address}}</span>
-
-                  </td>
-                  <td>
-                    <span *ngIf="!this.checkObject.canEdit" (keyup)="changeValue(id, 'city', $event)"
-                    (blur)="updateList(person.id,id, 'city', $event)">{{person.city}}</span>
-
-                    <span contenteditable="true"*ngIf="this.checkObject.canEdit" (keyup)="changeValue(id, 'city', $event)"
-                      (blur)="updateList(person.id,id, 'city', $event)">{{person.city}}</span>
-
-                  </td>
-                  <td>
-                    <span *ngIf="!this.checkObject.canEdit" (keyup)="changeValue(id, 'state', $event)"
-                      (blur)="updateList(person.id,id, 'state', $event)">{{person.state}}</span>
-
-                    <span contenteditable="true" *ngIf="this.checkObject.canEdit" (keyup)="changeValue(id, 'state', $event)"
-                      (blur)="updateList(person.id,id, 'state', $event)">{{person.state}}</span>
-
-                  </td>
-                  <td>
-                    <span *ngIf="!this.checkObject.canEdit" (keyup)="changeValue(id, 'zip', $event)"
-                      (blur)="updateList(person.id,id, 'zip', $event)">{{person.zip}}</span>
-
-                    <span contenteditable="true" *ngIf="this.checkObject.canEdit" (keyup)="changeValue(id, 'zip', $event)"
-                      (blur)="updateList(person.id,id, 'zip', $event)">{{person.zip}}</span>
-
-                  </td>
-
-
-
-
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
-        <!-- Editable table -->
-        <!-- <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
-        <tr>
-          <th>Control Task Code</th>
-          <th>Description</th>
-          <th>Business Rule</th>
-          <th>Rule Type</th>
-          <th>File Type</th>
-          <th align="center">Is Active</th>
-          <th>Creation Date</th>
-         <th>Actions</th>
-        </tr>
-        <tr *ngFor="let control of this.ControlTaskList; index as i">
-          <td valign="top"><select name="" class="field-style-list-01 custom-select" >
-              <option>{{control.code}}</option>
-           
-            </select></td>
-          <td valign="top"><input type="text" name="" class="field-style-01 form-control" placeholder="{{control.description}}" ></td>
-          <td valign="top"><textarea cols="" rows="" class="textarea-style-02 form-control" placeholder="{{control.businessRule}}" ></textarea></td>
-          <td valign="top"><select name="" class="field-style-list-01 custom-select">
-              <option *ngFor="let ruleType of this.RuleTypeList; index as i"  >{{ruleType.text}}</option>
-           
-            </select>
-            
-          
-          </td>
-          <td valign="top"><select name="" class="field-style-list-01 custom-select">
-              <option *ngFor="let fileType of this.FileTypeList; index as i" >{{fileType.name}}</option>
-              
-            </select></td>
-          <td align="center" valign="top"><input name="" type="checkbox" value="" checked="control.isActive" ></td>
-          <td valign="top">{{control.createDate}}</td>
-          <td><div class="side-menu">
-              <ul>
-            <li><a (click)=editControl(control.id)>Edit</a></li>
-          <li><a (click)=deleteControl(control.id)>Delete</a></li>
-        </ul>
-        </div>
-      </td>
-          
-        </tr>
-       
-       
-       
-       
-       
-      </table> -->
-        <div class="clear"></div>
-        <!-- <ul class="pagination t-pagination">
-        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">4</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-      </ul> -->
-      </div>
-    </div>
-  </div>
-</body>
-
-</html>
-<script>
-  jQuery(document).ready(function ($) {
-    $(window).load(function () {
-      setTimeout(function () {
-        $('#preloader').fadeOut('slow', function () {
-        });
-      }, 3000); // set the time here
-    });
-  });
-</script>
+  <div #viewer class="viewer"></div>
+</div>
