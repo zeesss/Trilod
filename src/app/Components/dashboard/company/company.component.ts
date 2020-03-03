@@ -129,16 +129,16 @@ this.rest.addPDF(this.pdfBody).subscribe((data: any) => {
       instance.docViewer.on('documentLoaded', this.wvDocumentLoadedHandler)
     })
   }
-  x: number=200;
+  x: number=300;
   y: number;
-  w: number=200;
-  h: number=200;
+  w: number=300;
+  h: number=300;
  
  
 
   ngOnInit() {
     // this.x=230;
-    this.y=200;
+    this.y=300;
 
     this.wvDocumentLoadedHandler = this.wvDocumentLoadedHandler.bind(this);
   }
