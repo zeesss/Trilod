@@ -8,6 +8,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { json } from 'node_modules/@angular-devkit/core/src';
 import { stringify } from 'querystring';
 import { any, ifTrue } from 'node_modules/codelyzer/util/function';
+import * as $ from 'jquery';
+
 @Component({
   selector: 'app-rule',
   templateUrl: './add-rule.component.html',
@@ -114,7 +116,8 @@ export class AddRuleComponent implements OnInit {
 
   }
   selectControl() {
-
+    $('#loader').addClass('loader');
+    setTimeout(()=>{  
     this.disableAll = true;
     this.showcard = true;
     this.controlList.forEach(element => {
@@ -126,6 +129,9 @@ export class AddRuleComponent implements OnInit {
       this.controlFN = data;
       this.controlFieldName = this.controlFN.data;
     });
+    $('#loader').removeClass('loader');
+  }, 2000);
+  
   }
   deselectControl() {
     this.disableAll = false;
@@ -289,6 +295,8 @@ export class AddRuleComponent implements OnInit {
   }
   saveRule() {
     if (true) {
+      $('#loader').addClass('loader');
+      setTimeout(()=>{  
       this.ruleSaveBody.controlId = this.controlID;
       this.ruleSaveBody.rules = this.fieldArray;
       console.log(this.ruleSaveBody);
@@ -310,6 +318,8 @@ export class AddRuleComponent implements OnInit {
           this.toastr.error('', "Some error ocurred!");
         }
       });
+      $('#loader').removeClass('loader');
+    }, 3000);
     } 
   }
 

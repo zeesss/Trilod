@@ -7,6 +7,8 @@ import { HttpErrorResponse, HttpHeaders, HttpClient } from '@angular/common/http
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import * as $ from 'jquery';
+
 @Component({
   selector: 'app-audit',
   templateUrl: './audit-controls.component.html',
@@ -107,7 +109,8 @@ export class AuditControlsComponent implements OnInit {
       console.log(this.templateList);
     });
     this.rest.getEvidenceFileNames().subscribe((data: any) => {
-
+      alert(data.responseCode);
+    //console.log(data);
       this.evidenceFiles = data.data;
       console.log(this.evidenceFiles);
     });
@@ -263,7 +266,8 @@ this.rest.getTemplateByFileName(value).subscribe((data: any) => {
       formData.append('templateField2', this.selectedTemplateField2.id);
       formData.append('sheetNo', this.uploadForm.get('sheetNo').value);
 
-
+      $('#loader').addClass('loader');
+      setTimeout(()=>{  
       console.log(formData);
       this.rest.auditControlSource(formData).subscribe((data: any) => {
 
@@ -283,6 +287,8 @@ this.rest.getTemplateByFileName(value).subscribe((data: any) => {
       }
         
       );
+      $('#loader').removeClass('loader');
+    }, 3000);
 
 
 

@@ -4,6 +4,7 @@ import { Component, OnInit,Inject } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-control',
@@ -305,6 +306,7 @@ export class AddControlComponent implements OnInit {
     //alert();
     if (!this.isEmpty(this.name) && !this.isEmpty(this.frequency) &&
       !this.isEmpty(this.description) && this.cDetailArray.length > 0) {
+        $('#loader').addClass('loader');
       this.controlBody.name = this.name;
       this.controlBody.frequency = this.frequency;
       this.controlBody.description = this.description;
@@ -317,6 +319,7 @@ export class AddControlComponent implements OnInit {
         //alert(data.data[0].controlId);
        
         if (data.responseCode === "00") {
+          $('#loader').removeClass('loader');
           this.showPopup=true;
           this.display='block'; //Set block css
           //alert(data.responseCode);
@@ -546,6 +549,7 @@ var y = +value;
   //  this.dialogRef.close();
   }
   saveMapping(){
+    $('#loader').addClass('loader');
     debugger;
 this.mappingEvidence.controlId=this.controlId;
 this.mappingEvidence.evidenceMapping=this.mappingList;
@@ -556,6 +560,7 @@ this.rest.saveTemplateMapping(this.mappingEvidence).subscribe((data: any) => {
   console.log(data);
  
   if (data.responseCode === "00") {
+    $('#loader').removeClass('loader');
     this.toastr.success('', 'Mapping Done Successfully!');
     location.reload();
    

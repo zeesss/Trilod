@@ -6,6 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Inject, Input } from '@angular/core';
 import { HttpErrorResponse, HttpHeaders, HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import * as $ from 'jquery';
+
 @Component({
   selector: 'app-session-audit',
   templateUrl: './session-audit.component.html',
@@ -236,7 +238,8 @@ export class SessionAuditComponent implements OnInit {
 
     if (!this.isEmpty(this.name) && !this.isEmpty(this.address) && !this.isEmpty(this.startDate)
       && !this.isEmpty(this.endDate) && !this.isEmpty(this.city) && !this.isEmpty(this.state) && !this.isEmpty(this.zip)) {
-      this.auditbody.address = this.address;
+      
+        this.auditbody.address = this.address;
       this.auditbody.auditName = this.name;
       this.auditbody.city = this.city;
       this.auditbody.clientIdTransient = localStorage.getItem("clientId");
@@ -245,15 +248,20 @@ export class SessionAuditComponent implements OnInit {
       this.auditbody.state = this.state;
       this.auditbody.zip = this.zip;
       console.log(this.auditbody);
+      $('#loader').addClass('loader');
+      setTimeout(()=>{  
       this.rest.saveAuditSession(this.auditbody).subscribe((data: any) => {
         if (data.responseCode === "00") {
           this.toastr.success('', 'Audit Session Saved!');
-          location.reload();
+          this.router.navigate(['dashboard/sessions']);
+         // location.reload();
         }
         else {
           this.toastr.error('', 'Some Error Occurred!');
         }
       });
+      $('#loader').removeClass('loader');
+    }, 3000);
     }
     else {
       this.toastr.error('', 'Enter all required fields!');

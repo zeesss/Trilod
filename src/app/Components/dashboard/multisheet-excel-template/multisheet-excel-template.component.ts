@@ -8,6 +8,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
+import * as $ from 'jquery';
+
 //import { PdfViewerModule } from "ng2-pdf-viewer";
 @Component({
   selector: 'app-multisheet-excel-template',
@@ -138,7 +140,7 @@ this.fileFormat=this.format.name;
     return (val === undefined || val == null || val.length <= 0) ? true : false;
   }
   onSubmit() {
-    
+    $('#loader').addClass('loader');
     //var client = 14;
     debugger;
     this.new_filename = this.uploadForm.get('file_name').value;
@@ -187,7 +189,7 @@ this.fileFormat=this.format.name;
         debugger;
         //      alert(JSON.stringify(data));
         if (data.responseCode === "00") {
-
+          $('#loader').removeClass('loader');
           console.log(data);
           if(this.fileFormat==="Excel")
           this.show = true;
@@ -214,6 +216,7 @@ this.fileFormat=this.format.name;
     }
   }
     else {
+      $('#loader').removeClass('loader');
       this.toastr.error('', 'Enter all required fields!');
     }
   }
@@ -269,11 +272,13 @@ this.fileFormat=this.format.name;
   //   }
   // }
   saveData() {
+    $('#loader').addClass('loader');
     this.rest.addMultiSheets(this.formData).subscribe((data: any) => {
       debugger;
       //      alert(JSON.stringify(data));
       
       if (data.responseCode === "00") {
+        $('#loader').removeClass('loader');
         this.showPopup=true;
         this.display='block'; //Set block css
         console.log(data);
@@ -284,6 +289,8 @@ this.fileFormat=this.format.name;
         
       }
       if (data.responseCode === "01") {
+        $('#loader').removeClass('loader');
+
         this.showPopup=false;
        //this.display='null'; //set none css after close dialog
         var element = document.getElementById("myModal");

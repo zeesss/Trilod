@@ -8,6 +8,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { resolve } from 'url';
 import { BOOL_TYPE } from '@angular/compiler/src/output/output_ast';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-conrol',

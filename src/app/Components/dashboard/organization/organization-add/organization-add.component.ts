@@ -3,6 +3,7 @@ import {ToastrService} from 'ngx-toastr';
 import { HttpErrorResponse,HttpHeaders, HttpClient } from '@angular/common/http';
 import { RestService } from 'src/app/Components/services/rest/rest.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-organization-add',
@@ -48,6 +49,7 @@ onSaveButton()
   "state":"",
   "street":""
 };
+$('#loader').addClass('loader');
 this.saveBody.name=this.name;
 this.saveBody.city=this.city;
 this.saveBody.country=this.country;
@@ -71,7 +73,9 @@ this.rest.addOrganization(this.saveBody).subscribe((data:any) => {
   this.toastr.error('', 'Failed!');
   
   }
+  
 );
+$('#loader').removeClass('loader');
   }
   else
   {

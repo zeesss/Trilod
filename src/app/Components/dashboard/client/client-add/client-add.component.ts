@@ -3,6 +3,7 @@ import {ToastrService} from 'ngx-toastr';
 import { HttpErrorResponse,HttpHeaders, HttpClient } from '@angular/common/http';
 import { RestService } from 'src/app/Components/services/rest/rest.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-client-add',
@@ -78,6 +79,7 @@ export class ClientAddComponent implements OnInit {
       this.saveBody.clientName=this.client_name;
       this.saveBody.description=this.description;
       this.saveBody.email=this.email;
+      $('#loader').addClass('loader');
       this.rest.client_add(this.saveBody).subscribe((data:any) => {
         if(data.responseCode=="00")
         {
@@ -90,6 +92,7 @@ export class ClientAddComponent implements OnInit {
         this.toastr.error('', 'Failed!');
         }
       );
+      $('#loader').removeClass('loader');
     }
     else
     {

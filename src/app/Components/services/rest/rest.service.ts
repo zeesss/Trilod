@@ -52,8 +52,8 @@ export class RestService {
     headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic bW1wQmFja0VuZENsaWVudDkxMDI6YjZiNjI5LWVyNzMtOTk2OS05MWViLTBkZmZmZmY0NDVk' })
   };
   //ApiLink = "http://ec2-3-21-40-198.us-east-2.compute.amazonaws.com:8080/trilod/";
-  ApiLink="http://3.135.142.246:8080/trilod/";
-  //ApiLink = "http://192.168.52.182:8080/trilod/";
+ // ApiLink="http://3.135.142.246:8080/trilod/";
+  ApiLink = "http://192.168.52.182:8080/trilod/";
   
   constructor(private http: HttpClient, private router: Router) {
 
@@ -61,7 +61,8 @@ export class RestService {
 
   /*  ValidateUser() {
 
-     const headers = new HttpHeaders()
+     const headers = new H
+     ttpHeaders()
        .set('Authorization', "Basic " + btoa("mmpProviderClient:b6b629-er73-9969-91eb-0dfffff445d"))
        .set('Content-Type', "application/x-www-form-urlencoded");
 

@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule,FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-sample-file',
@@ -84,6 +85,8 @@ audit_file_id: string;
 // "size":this.size,
 // "percentage":this.percentage
 //     }
+$('#loader').addClass('loader');
+setTimeout(()=>{  
     const formData = new FormData();
     formData.append('audit_session_id', this.selected_audit_id);
     formData.append('control_id', this.selected_control_id);
@@ -117,6 +120,8 @@ audit_file_id: string;
             
           }
           );
+          $('#loader').removeClass('loader');
+        }, 3000);
           if(this.dataList.length>0)
           {
            
@@ -164,6 +169,8 @@ audit_file_id: string;
     
     debugger;
     //alert('Hello');
+    $('#loader').addClass('loader');
+    setTimeout(()=>{  
     this.processedData = this.dataList.filter(items => items.isProcessable === true);
     console.log(this.processedData);
     this.arrayToSend = this.processedData.map(a => a.id);
@@ -205,6 +212,8 @@ audit_file_id: string;
           
           // }
           );
+          $('#loader').removeClass('loader');
+        }, 3000);
   }
   auditSelectOnchange(value)
   {

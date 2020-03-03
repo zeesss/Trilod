@@ -3,6 +3,7 @@ import {ToastrService} from 'ngx-toastr';
 import { HttpErrorResponse,HttpHeaders, HttpClient } from '@angular/common/http';
 import { RestService } from 'src/app/Components/services/rest/rest.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-process-add',
@@ -54,6 +55,7 @@ saveBody={
       this.saveBody.clientId=this.client_id;
       this.saveBody.name=this.process_name;
       this.saveBody.description=this.description;
+      $('#loader').addClass('loader');
       this.rest.process_add(this.saveBody).subscribe((data:any) => {
 
         if(data.responseCode=="00")
@@ -67,6 +69,7 @@ saveBody={
         this.toastr.error('', 'Failed!');
         }
       );
+      $('#loader').removeClass('loader');
     }
     else
     {
