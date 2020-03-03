@@ -980,4 +980,7 @@ export class RestService {
   {
     return this.http.get(this.ApiLink + 'dataTable/findAllProcessableRowsByTemplateId/' + AUDIT_SESSION_ID+"/"+CONTROL_ID+"/").pipe(map(res => { return res }));
   }
+  addPDF(pdfBody)
+  {
+    return this.http.post(this.ApiLink + "template/addPdf", pdfBody);  }
 }

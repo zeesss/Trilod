@@ -1,7 +1,10 @@
 import { Component, ViewChild, OnInit, ElementRef, AfterViewInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 declare const WebViewer: any;
-
+import { RestService } from 'src/app/Components/services/rest/rest.service';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {  ReactiveFormsModule, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-company',
   templateUrl: './company.component.html',
@@ -12,7 +15,47 @@ declare const WebViewer: any;
 export class CompanyComponent implements OnInit, AfterViewInit {
   @ViewChild('viewer') viewer: ElementRef;
   wvInstance: any;
+  count=0;
+  pdfBody={
+    "filePath": "test.pdf",
+    "clientId":"",
+    "description":"",
+    "fileTypeId":"2",
+    "name":"test",
+    "columns": [
+      // {
+      //   "key": {
+      //     "x": "",
+      //     "y": "",
+      //     "width": "",
+      //     "height": ""
+      //   },
+      //   "value": {
+      //     "x": "",
+      //     "y": "",
+      //     "width": "",
+      //     "height": ""
+      //   }
+      // }
+    ]
+  }
+  obj={
+    "key": {
+      "x": "",
+      "y": "",
+      "width": "",
+      "height": ""
+    },
+    "value": {
+      "x": "",
+      "y": "",
+      "width": "",
+      "height": ""
+    }
+  }
+  constructor(public rest: RestService, public router: Router, public http: HttpClient) {
 
+  }
   ngAfterViewInit(): void {
 
     WebViewer({
@@ -34,11 +77,40 @@ export class CompanyComponent implements OnInit, AfterViewInit {
 
         const annotations = annotManager.getAnnotationsList();
         const no=annotations.length-1;
+        this.count++;
 alert(parseInt(annotations[no].getRect().x1)+','+parseInt(annotations[no].getRect().y1)+"  "+
 parseInt(annotations[no].getRect().x2)+','+parseInt(annotations[no].getRect().y2)+"\n"+
 "Height -"+parseInt(annotations[no].getRect().getHeight())+"\nWidth -"+parseInt(annotations[no].getRect().getWidth())
 );
-      
+alert(this.count);
+if(this.count===1){
+this.obj.key.height= parseInt(annotations[no].getRect().getHeight()).toString();
+this.obj.key.width=parseInt(annotations[no].getRect().getWidth()).toString();
+this.obj.key.x=parseInt(annotations[no].getRect().x1).toString();
+this.obj.key.y=parseInt(annotations[no].getRect().y1).toString();
+}
+if(this.count===2){
+this.obj.value.height= parseInt(annotations[no].getRect().getHeight()).toString();
+this.obj.value.width=parseInt(annotations[no].getRect().getWidth()).toString();
+this.obj.value.x=parseInt(annotations[no].getRect().x1).toString();
+this.obj.value.y=parseInt(annotations[no].getRect().y1).toString();
+this.pdfBody.columns.push(this.obj);
+}
+//call here
+
+console.log(this.pdfBody);
+
+this.rest.addPDF(this.pdfBody).subscribe((data: any) => {
+  debugger;
+  //      alert(JSON.stringify(data));
+  console.log(data);
+  if (data.responseCode === "00") {
+   alert('done');
+  }
+
+
+});
+
       });
 
       this.viewer.nativeElement.addEventListener('pageChanged', (e) => {
@@ -57,7 +129,7 @@ parseInt(annotations[no].getRect().x2)+','+parseInt(annotations[no].getRect().y2
       instance.docViewer.on('documentLoaded', this.wvDocumentLoadedHandler)
     })
   }
-  x: number=60;
+  x: number=200;
   y: number;
   w: number=200;
   h: number=200;
