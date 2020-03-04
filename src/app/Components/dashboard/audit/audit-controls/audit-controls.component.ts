@@ -241,12 +241,12 @@ this.rest.getTemplateByFileName(value).subscribe((data: any) => {
     //   && !this.isEmpty(this.selectedTemplate2)
     //   && !this.isEmpty(this.selectedTemplateField2)) {
 
-      alert(this.selectedControlId);
-      alert(this.selectedAuditId);
-      alert(this.selectedTemplate1.id);
-      alert(this.selectedTemplateField1.id);
-      alert(this.selectedTemplate2);
-      alert(this.selectedTemplateField2.id);
+      // alert(this.selectedControlId);
+      // alert(this.selectedAuditId);
+      // alert(this.selectedTemplate1.id);
+      // alert(this.selectedTemplateField1.id);
+      // alert(this.selectedTemplate2);
+      // alert(this.selectedTemplateField2.id);
       console.log('ids----');
       console.log(this.selectedControlId);
       console.log(this.selectedAuditId);
