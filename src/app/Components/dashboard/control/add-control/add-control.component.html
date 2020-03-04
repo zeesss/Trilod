@@ -132,13 +132,18 @@
 
       </div>
       <div class="clear"></div>
-      <div class="rt-btn aax-green-btn"><a (click)="saveControl()" data-toggle="modal" data-target="#myModal">SAVE</a></div>
-      <div class="lt-btn aax-blue-btn"><a href="#">CANCEL</a></div>
+      <!-- <div class="rt-btn aax-green-btn"><a (click)="saveControl()">SAVE</a></div> -->
+      <div class="rt-btn aax-green-btn">
+        <!-- <a (click)="saveControl()" data-toggle="modal" data-target="#myModal">SAVE</a> -->
+         <a (click)="saveControl()">SAVE</a>
+      </div>
+      <div class="lt-btn aax-blue-btn"><a (click)="onNoClick()">CANCEL</a></div>
+       <a id="popupbutton" data-toggle="modal" data-target="#myModal" hidden>popup</a>
     </div>
   </div>
   <div class="clear"></div>
-
-  <div id="myModal" class="modal fade" role="dialog" [ngStyle]="{'display':display}">
+  <!-- [ngStyle]="{'display':display}" -->
+  <div id="myModal" class="modal fade" role="dialog" >
     <div class="modal-dialog custom-dialog">
       <div class="modal-content">
         <div class="modal-header border-0">
@@ -223,7 +228,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn green-btn" data-dismiss="modal" (click)="saveMapping()">Save</button>
-          <button type="button" class="btn blue-btn" data-dismiss="modal" (click)="onNoClick()">Close</button>
+          <button type="button" class="btn blue-btn" data-dismiss="modal" id="close">Close</button>
         </div>
       </div>
     </div>

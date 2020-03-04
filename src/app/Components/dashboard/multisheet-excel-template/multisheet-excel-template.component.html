@@ -98,7 +98,7 @@
                  Save
                 </a>
             </div> -->
-            <button class=" blue-btn btn-01 float-right ml-1 mt-3">Cancel</button>
+            <button class=" blue-btn btn-01 float-right ml-1 mt-3" (click)="onCancelclick()">Cancel</button>
             <button class="green-btn btn-01  float-right mt-3" >Process</button>
            
         <div class="clear"></div>
@@ -193,8 +193,12 @@
     </div>
   </div>
   <div class="col-md-12  pl-0 pr-5">
-  <button  class="blue-btn btn-01  float-right mt-4" data-toggle="modal" data-target="#myModal">Upload Data</button>
+  <button  class="blue-btn btn-01  float-right mt-4" >Upload Data</button>
+  
   <!-- <a  class="new" data-toggle="modal" data-target="#myModal">New</a> -->
+</div>
+<div class="float-left">
+  <a id="popupbutton" data-toggle="modal" data-target="#myModal" hidden>popup</a>
 </div>
   </form>
 
@@ -203,14 +207,14 @@
     </div>
   </div>
   <div class="clear"></div>
-  <div id="myModal" class="modal fade" role="dialog"  [ngStyle]="{'display':display}">
+  <div id="myModal" class="modal fade" role="dialog"  >
     <div class="modal-dialog custom-dialog">
       <div class="modal-content">
         <div class="modal-header border-0">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-           <div class="popup-content">
+           <!-- <div class="popup-content"> -->
          
             <!-- <div class="col-md-12 float-left pl-0 pr-5">
               <div class="col-md-3 float-left pl-0 pr-0 mt-4"><label>Name*:</label></div>
@@ -230,7 +234,7 @@
             <!-- <div class="arrow-box-content">
               <div class="form"> -->
                 
-                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main-table">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="popup-table">
                   <tr>
                     <th>Sheets</th>
                     <th>Headers</th>
@@ -240,12 +244,19 @@
                     <td>
                     {{sheet.sheetName}}
                     </td>
-                    <td *ngFor="let header of sheet.headers">
+                    <!-- <td *ngFor="let header of sheet.headers">
                      
                       <div> {{header}}</div>
                       
                         
                         
+                    </td> -->
+                    <td >
+                      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="inner-popup-table" *ngFor="let header of sheet.headers">
+                        <tr>          
+                          <td>{{header}}</td>
+                        </tr>
+                      </table>
                     </td>
       
                   </tr>
@@ -257,7 +268,8 @@
                 <div class="clear"></div>
               <!-- </div>
             </div> -->
-        </div></div>
+        <!-- </div> -->
+      </div>
         <div class="modal-footer">
           <button type="button" class="btn green-btn" data-dismiss="modal" (click)="onYesClick()">Save</button>
           <button type="button" class="btn blue-btn" data-dismiss="modal"  (click)="onNoClick()">Close</button>

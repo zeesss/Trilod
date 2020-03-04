@@ -17,8 +17,16 @@ const routes: Route [] = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{onSameUrlNavigation: "reload"}),
-    RouterModule.forRoot(routes, {useHash:true}),FormsModule, ReactiveFormsModule],
+  imports: [RouterModule.forRoot(routes,
+    {onSameUrlNavigation: "reload"})
+    ,
+    // RouterModule.forRoot(routes, {useHash:true}),
+    // RouterModule.forRoot(
+    //   routes,
+    //   { enableTracing: true } 
+    // ),
+    FormsModule, 
+    ReactiveFormsModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

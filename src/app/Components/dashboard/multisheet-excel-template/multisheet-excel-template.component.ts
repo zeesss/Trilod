@@ -356,8 +356,10 @@ this.fileFormat=this.format.name;
       
       if (data.responseCode === "00") {
         $('#loader').removeClass('loader');
-        this.showPopup=true;
-        this.display='block'; //Set block css
+        // this.showPopup=true;
+        // this.display='block'; //Set block css
+        var element = document.getElementById("popupbutton");
+        element.click();
         console.log(data);
         this.sheetHeaderList=data.sheetHeaderList;
        // this.openDialog();
@@ -370,8 +372,8 @@ this.fileFormat=this.format.name;
 
         this.showPopup=false;
        //this.display='null'; //set none css after close dialog
-        var element = document.getElementById("myModal");
-        element.click();
+      //  var element = document.getElementById("popupbutton");
+      //  element.click();
         this.toastr.error('Error', 'Duplicate File cannot be uploaded!');
         
       }

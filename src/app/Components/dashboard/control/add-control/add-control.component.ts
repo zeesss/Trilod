@@ -80,6 +80,7 @@ export class AddControlComponent implements OnInit {
   subProcessList: any;
   selectedSubProcess: any;
   showPopup=false;
+  templateListForMappingString;
 
 
   //dialog variables
@@ -321,11 +322,38 @@ export class AddControlComponent implements OnInit {
         if (data.responseCode === "00") {
           $('#loader').removeClass('loader');
           this.showPopup=true;
-          this.display='block'; //Set block css
+          
           //alert(data.responseCode);
           this.toastr.success('', 'Map Controls!');
           // this.templateList=data.list;
           // this.controlId=data.id;
+         // alert(JSON.stringify(this.templateListToSendToDialog));
+         //If template is same then pop uo wouldn't open
+          this.templateListForMappingString=this.templateListToSendToDialog[0].name;
+        
+          var dialogOpen=true;
+          this.templateListToSendToDialog.forEach(element => {
+            if(element.name==this.templateListForMappingString)
+            dialogOpen=false;
+            else 
+            dialogOpen=true;
+          });
+          if(dialogOpen)
+          {
+            //alert();
+            this.display='block'; //Set block css
+            var element = document.getElementById("popupbutton");
+            element.click();
+          }
+          else
+          {
+            // var element = document.getElementById("myModal");
+            // element.click();
+           // alert();
+            
+          }
+
+
           //dialog related
          
           this.templateList_dialog=this.templateListToSendToDialog;
@@ -547,6 +575,7 @@ var y = +value;
   }
   onNoClick(): void {
   //  this.dialogRef.close();
+  location.reload();
   }
   saveMapping(){
     $('#loader').addClass('loader');
@@ -562,6 +591,8 @@ this.rest.saveTemplateMapping(this.mappingEvidence).subscribe((data: any) => {
   if (data.responseCode === "00") {
     $('#loader').removeClass('loader');
     this.toastr.success('', 'Mapping Done Successfully!');
+    var element = document.getElementById("close");
+    element.click();
     location.reload();
    
   }

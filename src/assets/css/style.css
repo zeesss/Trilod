@@ -623,7 +623,40 @@ header {
 	background-image: linear-gradient(to right, #0e165e, #0e165e);
 }
 
+.popup-table {
+	float: left;
+	margin-top: 12px;
+}
+.popup-table th {
+	color: #254070;
+	font-size: 20px;
+	font-weight: bold;
+	text-transform: uppercase;
+	border-bottom: 2px solid #254070;
+}
+.popup-table th, .popup-table td {
+	padding: 14px 10px;
+	white-space: nowrap;
+}
+.popup-table td {
+	border-bottom: 1px solid #ddd;
+}
+.popup-table tr td:first-child {
+	border-right: 1px solid #ddd;
+}
 
+
+.inner-popup-table td {
+	padding: 14px 10px;
+	white-space: nowrap;
+	border-bottom: 1px solid #ddd;
+}
+.inner-popup-table tr td:first-child {
+	border-right:none;
+}
+.inner-popup-table tr:last-child td {
+	border-bottom:none;
+}
 
 
 
