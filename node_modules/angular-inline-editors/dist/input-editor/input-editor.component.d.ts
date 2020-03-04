@@ -1,0 +1,36 @@
+import { ElementRef, Renderer, OnInit, EventEmitter } from '@angular/core';
+import { ControlValueAccessor } from '@angular/forms';
+export declare class InputEditorComponent implements ControlValueAccessor, OnInit {
+    private _renderer;
+    inputEditorControl: ElementRef;
+    label: string;
+    placeholder: string;
+    type: string;
+    required: string;
+    requiredMessage: string;
+    disabled: string;
+    id: string;
+    stringlength: string;
+    onSave: EventEmitter<string>;
+    onCancel: EventEmitter<string>;
+    onEditing: EventEmitter<string>;
+    editing: boolean;
+    preValue: string;
+    inputReqflag: boolean;
+    onChange: any;
+    onTouched: any;
+    private _originalValue;
+    private _value;
+    constructor(element: ElementRef, _renderer: Renderer);
+    onSaveInput(): void;
+    onCancelInput(): void;
+    onCloseInput(): void;
+    value: any;
+    writeValue(value: any): void;
+    registerOnChange(fn: (_: any) => {}): void;
+    registerOnTouched(fn: () => {}): void;
+    onBlur($event: Event): void;
+    edit(value: any): void;
+    IsInputTextEmpty(): Boolean;
+    ngOnInit(): void;
+}
