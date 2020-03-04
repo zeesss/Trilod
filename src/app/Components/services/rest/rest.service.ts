@@ -52,7 +52,7 @@ export class RestService {
     headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic bW1wQmFja0VuZENsaWVudDkxMDI6YjZiNjI5LWVyNzMtOTk2OS05MWViLTBkZmZmZmY0NDVk' })
   };
   //ApiLink = "http://ec2-3-21-40-198.us-east-2.compute.amazonaws.com:8080/trilod/";
- // ApiLink="http://3.135.142.246:8080/trilod/";
+  //ApiLink="http://3.135.142.246:8080/trilod/";
   ApiLink = "http://192.168.52.182:8080/trilod/";
   
   constructor(private http: HttpClient, private router: Router) {
@@ -644,7 +644,7 @@ export class RestService {
     let HttpHdr = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    return this.http.get("http://192.168.52.182:8080/trilod/rcm/findByRCMName/" + searchString).pipe(map(res => { return res }));
+    return this.http.get(this.ApiLink +"rcm/findByRCMName/" + searchString).pipe(map(res => { return res }));
   }
   getUsersList() {
     return this.http.get(this.ApiLink + 'user/').pipe(map(res => { return res }));
@@ -682,28 +682,28 @@ export class RestService {
   }
   getRoleEdit_RoleList() {
 
-    return this.http.get('http://192.168.52.182:8080/trilod/role/active').pipe(map(res => { return res }));
+    return this.http.get( this.ApiLink +'role/active').pipe(map(res => { return res }));
   }
   getRoleDropDown_SelectionList(roleId) {
 
-    return this.http.get('http://192.168.52.182:8080/trilod/roleAccess/findByRoleId/' + roleId).pipe(map(res => { return res }));
+    return this.http.get( this.ApiLink +'roleAccess/findByRoleId/' + roleId).pipe(map(res => { return res }));
 
   }
   getRoleEdit_FormName() {
 
-    return this.http.get('http://192.168.52.182:8080/trilod/form/').pipe(map(res => { return res }));
+    return this.http.get(this.ApiLink +'form/').pipe(map(res => { return res }));
   }
   saveRoleEdit_Selection(roleId, updateBody) {
 
     let HttpHdr = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    return this.http.post("http://192.168.52.182:8080/trilod/roleAccess/saveList/" + roleId, updateBody, HttpHdr);
+    return this.http.post(this.ApiLink +"roleAccess/saveList/" + roleId, updateBody, HttpHdr);
 
   }
   findFormsByUserId(id) {
 
-    return this.http.get('http://192.168.52.182:8080/trilod/user/findUserFormsById/' + id).pipe(map(res => { return res }));
+    return this.http.get( this.ApiLink +'user/findUserFormsById/' + id).pipe(map(res => { return res }));
   }
 
   convertToExcel(formData) {
@@ -982,5 +982,10 @@ export class RestService {
   }
   addPDF(pdfBody)
   {
-    return this.http.post(this.ApiLink + "template/addPdf", pdfBody);  }
+    return this.http.post(this.ApiLink + "template/addPdf", pdfBody); 
+   }
+  addPDF1(formData)
+  {
+      return this.http.post(this.ApiLink + "template/uploadFile", formData); 
+     }
 }

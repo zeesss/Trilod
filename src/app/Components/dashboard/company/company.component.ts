@@ -1,10 +1,20 @@
 import { Component, ViewChild, OnInit, ElementRef, AfterViewInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-declare const WebViewer: any;
+
 import { RestService } from 'src/app/Components/services/rest/rest.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {  ReactiveFormsModule, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
+import * as jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
+declare const WebViewer: any;
+
+import * as $ from 'jquery';
+
 @Component({
   selector: 'app-company',
   templateUrl: './company.component.html',
@@ -13,6 +23,7 @@ import { Router } from '@angular/router';
 
 
 export class CompanyComponent implements OnInit, AfterViewInit {
+  uploadForm: FormGroup;
   @ViewChild('viewer') viewer: ElementRef;
   wvInstance: any;
   count=0;
@@ -53,7 +64,19 @@ export class CompanyComponent implements OnInit, AfterViewInit {
       "height": ""
     }
   }
-  constructor(public rest: RestService, public router: Router, public http: HttpClient) {
+  new_filename: any;
+  new_mainFile: any;
+  new_format: any;
+  new_descmain: any;
+  fileFormat: string;
+  formData = new FormData();
+  client: number;
+  FileTypeList: any;
+  format: any;
+  uploadedFile: any;
+  path:any;
+  pdfSrc: any;
+  constructor(public dialog: MatDialog, public toastr: ToastrService, public rest: RestService, public router: Router, public http: HttpClient, public formBuilder: FormBuilder, public formsModule: FormsModule, public reactiveFormsModule: ReactiveFormsModule) {
 
   }
   ngAfterViewInit(): void {
@@ -62,8 +85,10 @@ export class CompanyComponent implements OnInit, AfterViewInit {
       
       path: '../lib',
       // initialDoc: '../files/webviewer-demo-annotated.pdf'
-      initialDoc: '../files/abc.pdf'
+      //initialDoc: '../files/abc.pdf'
       // initialDoc: '../files/1.png'
+      initialDoc:'C:/Users/Zahra-PC/Downloads/MYPdf.pdf' 
+
     }, this.viewer.nativeElement).then(instance => {
       this.wvInstance = instance;
       const annotManager = instance.annotManager;
@@ -141,7 +166,31 @@ this.rest.addPDF(this.pdfBody).subscribe((data: any) => {
     this.y=300;
 
     this.wvDocumentLoadedHandler = this.wvDocumentLoadedHandler.bind(this);
+    this.rest.getFileTypeList().subscribe((data: {}) => {
+      // debugger;
+      //      alert(JSON.stringify(data));
+      this.FileTypeList = data;
+      console.log(this.FileTypeList);
+
+    });
+    //   this.uploadForm = new FormGroup({
+    //     mainFile: new FormControl(),
+    //     file_name: new FormControl(),
+    //     audit_session_id:new FormControl()
+    //  });
+
+    this.uploadForm = this.formBuilder.group({
+      mainFile: [''],
+      //file: [''],
+      file_name: new FormControl(),
+      //audit_session_id:new FormControl(),
+      format: new FormControl(),
+      row: new FormControl(),
+      sheetNo: new FormControl(),
+      descmain: new FormControl()
+    });
   }
+  
   
 
   wvDocumentLoadedHandler(): void {
@@ -175,5 +224,102 @@ this.rest.addPDF(this.pdfBody).subscribe((data: any) => {
     // annotManager.addAnnotation(rectangle.X);
     // annotManager.drawAnnotations(rectangle.PageNumber);
     // see https://www.pdftron.com/api/web/WebViewer.html for the full list of low-level APIs
+  }
+  onFileSelect(event) {
+    debugger;
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      //console.log(file);
+      this.uploadedFile = file;
+      this.pdfSrc=event.target.value;
+      console.log(event.target.value);
+      
+      this.uploadForm.get('mainFile').setValue(file);
+    }
+  }
+  onChange(value) {
+    this.format = this.FileTypeList.filter((items) => items.name === value)[0];
+//alert(this.format.name);
+this.fileFormat=this.format.name;
+  } 
+  isEmpty(val) {
+    return (val === undefined || val == null || val.length <= 0) ? true : false;
+  }
+  onSubmit() {
+    $('#loader').addClass('loader');
+    //var client = 14;
+    debugger;
+    this.new_filename = this.uploadForm.get('file_name').value;
+    this.new_mainFile = this.uploadForm.get('mainFile').value;
+    //this.new_type=this.uploadForm.get('type').value;
+    this.new_format = this.uploadForm.get('format').value;
+    this.new_descmain = this.uploadForm.get('descmain').value;
+    if (!this.isEmpty(this.new_filename)
+      && !this.isEmpty(this.new_mainFile)
+
+      && !this.isEmpty(this.new_format)
+     
+    ) {
+      
+    
+      
+      const formDataCall1 = new FormData();
+      //alert(this.uploadForm.get('sheetNo').value);
+      // alert(this.new_mainFile);
+      // alert(this.new_format);
+      // alert(this.new_descmain);
+      // alert(this.uploadForm.get('row').value);
+
+      this.client = 1;
+      //formData.append('audit_session_id',localStorage.getItem('editSessionId'));
+      this.formData.append('file', this.uploadForm.get('mainFile').value);
+      this.formData.append('name', this.uploadForm.get('file_name').value);
+      //this.formData.append('headerRow', this.uploadForm.get('row').value);
+     // this.formData.append('sheetNo', this.uploadForm.get('sheetNo').value);
+      this.formData.append('fileTypeId', '2');
+      this.formData.append('description', this.uploadForm.get('descmain').value);
+      this.formData.append('clientId', "1");
+      formDataCall1.append('attachment', this.uploadForm.get('mainFile').value);
+
+      console.log(this.formData);
+      console.log(formDataCall1);
+      // alert(this.uploadForm.get('mainFile').value);
+      // alert(formDataCall1.get('file'));
+
+
+      this.rest.addPDF1(formDataCall1).subscribe((data: any) => {
+        debugger;
+        //      alert(JSON.stringify(data));
+        if (data.responseCode === "00") {
+         $('#loader').removeClass('loader');
+          console.log(data);
+         
+          
+         
+          // this.NoOfSheets = data.sheetNames.length;
+          // this.sheetsList = data.sheetNames;
+          //alert(this.NoOfSheets);
+          //data.data.length;
+        }
+
+
+      });
+    
+
+      // this.http.get<any>("http://192.168.52.182:8080/trilod/template/getSheetNames/",formDataCall1).subscribe(
+      //   (res) => console.log(res),
+
+      //   (err) => console.log(err)
+      // );
+      // {
+      //   this.router.navigate(['dashboard/sampleFile']);
+      // }
+
+    
+  }
+    else {
+      $('#loader').removeClass('loader');
+      this.toastr.error('', 'Enter all required fields!');
+    }
   }
 }

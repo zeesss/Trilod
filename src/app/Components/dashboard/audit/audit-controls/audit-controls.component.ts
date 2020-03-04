@@ -109,7 +109,7 @@ export class AuditControlsComponent implements OnInit {
       console.log(this.templateList);
     });
     this.rest.getEvidenceFileNames().subscribe((data: any) => {
-      alert(data.responseCode);
+      //alert(data.responseCode);
     //console.log(data);
       this.evidenceFiles = data.data;
       console.log(this.evidenceFiles);
@@ -161,7 +161,7 @@ this.rest.getTemplateByFileName(value).subscribe((data: any) => {
 
   }
   onChangeTemplateField1(value) {
-    this.selectedTemplateField1 = this.templateFieldList1.filter((items) => items.columnName === value)[0];
+    this.selectedTemplateField1 = this.templateFieldList1.filter((items) => items.id === +value)[0];
 
     console.log(this.selectedTemplateField1.id);
     //this.newAttribute.templateField = this.selectedTemplateField.columnName;
@@ -171,7 +171,7 @@ this.rest.getTemplateByFileName(value).subscribe((data: any) => {
 
   }
   onChangeTemplateField2(value) {
-    this.selectedTemplateField2 = this.templateFieldList2.filter((items) => items.columnName === value)[0];
+    this.selectedTemplateField2 = this.templateFieldList2.filter((items) => items.id === +value)[0];
 
     console.log(this.selectedTemplateField2.id);
     //this.newAttribute.templateField2 = this.selectedTemplateField.columnName;
@@ -240,12 +240,20 @@ this.rest.getTemplateByFileName(value).subscribe((data: any) => {
     //   && !this.isEmpty(this.selectedTemplateField1)
     //   && !this.isEmpty(this.selectedTemplate2)
     //   && !this.isEmpty(this.selectedTemplateField2)) {
-      // alert(this.selectedControlId);
-      // alert(this.selectedAuditId);
-      // alert(this.selectedTemplate1.id);
-      // alert(this.selectedTemplateField1.id);
-      // alert(this.selectedTemplate2);
-      // alert(this.selectedTemplateField2.id);
+
+      alert(this.selectedControlId);
+      alert(this.selectedAuditId);
+      alert(this.selectedTemplate1.id);
+      alert(this.selectedTemplateField1.id);
+      alert(this.selectedTemplate2);
+      alert(this.selectedTemplateField2.id);
+      console.log('ids----');
+      console.log(this.selectedControlId);
+      console.log(this.selectedAuditId);
+      console.log(this.selectedTemplate1.id);
+      console.log(this.selectedTemplateField1.id);
+      console.log(this.selectedTemplate2);
+      console.log(this.selectedTemplateField2.id);
 
 
 
@@ -255,6 +263,11 @@ this.rest.getTemplateByFileName(value).subscribe((data: any) => {
         formData.append('sheetNo', '1');
        
       }
+      else{
+        formData.append('sheetNo', this.uploadForm.get('sheetNo').value);
+       //formData.append('sheetNo', '1');
+      }
+      
       //formData.append('source_file', this.uploadForm.get('file').value);
       formData.append('file', this.uploadForm.get('file').value);
       formData.append('controlId', this.selectedControlId);
@@ -264,7 +277,7 @@ this.rest.getTemplateByFileName(value).subscribe((data: any) => {
       formData.append('templateField1', this.selectedTemplateField1.id);
       formData.append('templateId2', this.selectedTemplate2);
       formData.append('templateField2', this.selectedTemplateField2.id);
-      formData.append('sheetNo', this.uploadForm.get('sheetNo').value);
+      //formData.append('sheetNo', this.uploadForm.get('sheetNo').value);
 
       $('#loader').addClass('loader');
       setTimeout(()=>{  
