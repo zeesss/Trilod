@@ -112,6 +112,7 @@ export class AuditControlsComponent implements OnInit {
       //alert(data.responseCode);
     //console.log(data);
       this.evidenceFiles = data.data;
+      console.log("ev");
       console.log(this.evidenceFiles);
     });
 

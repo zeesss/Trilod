@@ -988,4 +988,12 @@ export class RestService {
   {
       return this.http.post(this.ApiLink + "template/uploadFile", formData); 
      }
+  postFile(fileToUpload: File) 
+  {
+      const endpoint = 'files';
+      const formData: FormData = new FormData();
+      debugger;
+      formData.append('fileKey', fileToUpload, fileToUpload.name);
+      return this.http.post(endpoint, formData);
+  }
 }

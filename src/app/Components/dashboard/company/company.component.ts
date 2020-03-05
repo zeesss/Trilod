@@ -85,9 +85,9 @@ export class CompanyComponent implements OnInit, AfterViewInit {
       
       path: '../lib',
       // initialDoc: '../files/webviewer-demo-annotated.pdf'
-      //initialDoc: '../files/abc.pdf'
+      initialDoc: '../files/abc.pdf'
       // initialDoc: '../files/1.png'
-      initialDoc:'C:/Users/Zahra-PC/Downloads/MYPdf.pdf' 
+      //initialDoc:'C:/Users/Zahra-PC/Downloads/MYPdf.pdf' 
 
     }, this.viewer.nativeElement).then(instance => {
       this.wvInstance = instance;
@@ -226,16 +226,29 @@ this.rest.addPDF(this.pdfBody).subscribe((data: any) => {
     // see https://www.pdftron.com/api/web/WebViewer.html for the full list of low-level APIs
   }
   onFileSelect(event) {
-    debugger;
+    
     if (event.target.files.length > 0) {
+      //alert("I am here");
       const file = event.target.files[0];
       //console.log(file);
       this.uploadedFile = file;
       this.pdfSrc=event.target.value;
       console.log(event.target.value);
-      
+      //alert('hi');
+      this.rest.postFile(this.uploadedFile).subscribe(data => {
+        // do something, if upload success
+        alert('hello');
+        }
+        // , error => {
+        //   console.log(error);
+        // }
+        );
       this.uploadForm.get('mainFile').setValue(file);
+      debugger;
+      
+     
     }
+    
   }
   onChange(value) {
     this.format = this.FileTypeList.filter((items) => items.name === value)[0];

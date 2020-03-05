@@ -67,7 +67,7 @@
           <div class="col-md-9 float-left pl-0 pr-0 mt-4">
             <select (change)="onChangeEvidenceFile($event.target.value)" class="field-01 form-control" name="evidenceFile">
               <option selected value="">-SELECT-</option>
-              <option *ngFor="let evidence of this.evidenceFiles; index as i;">{{evidence}}</option>
+              <option *ngFor="let evidence of this.evidenceFiles; index as i;">{{evidence.fileName}}</option>
             </select>
           </div>
         </div>
