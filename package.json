@@ -47,7 +47,7 @@
     "ngx-show-hide-password": "^2.1.0",
     "ngx-toastr": "^9.2.0",
     "popup": "0.0.3",
-    "read-excel-file": "^4.0.5",
+    "read-excel-file": "^4.1.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.10.0",
     "zone.js": "^0.8.29"
